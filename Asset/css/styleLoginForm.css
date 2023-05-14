@@ -1,0 +1,304 @@
+/* set default */
+head,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* end set*/
+
+/* create container */
+.container {
+    height: 100vh;
+    display: flex;
+    box-sizing: border-box;
+}
+
+/* style box left */
+.boxleft {
+    background: rgba(0, 0, 0, 0.5) url(https://www.pnb.ac.id/img/cov-aboutus.7d875991.jpg);
+    background-blend-mode: darken;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 65%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boxleft h1 {
+    padding: 20px;
+    color: #ddd;
+}
+
+/*end style box left */
+
+/* style box right */
+.boxright {
+    background-color: #ffffff;
+    width: 35%;
+    display: flex;
+    box-sizing: border-box;
+}
+
+
+.back-btn {
+    margin: 15px;
+    position: fixed;
+}
+
+
+.back-btn a {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+}
+
+.back-btn .span {
+    margin-left: 5px;
+}
+
+.back-btn .arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 4px;
+}
+
+.back-btn .left {
+    transform: rotate(135deg);
+}
+
+.back-btn a:hover {
+    border-bottom: solid #343399;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+}
+
+
+.boxright .container-boxright {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.container-boxright img {
+    width: 80px;
+    align-self: center;
+}
+
+.container-boxright h1 {
+    font-size: 18px;
+    align-self: center;
+}
+
+.form-group {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 17px;
+    margin-bottom: 10px;
+}
+
+.container-student-id {
+    display: flex;
+    box-sizing: border-box;
+}
+
+.form-group .container-student-id .check {
+    width: 20%;
+    background-color: green;
+    color: white;
+    border-style: none;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.form-group .container-student-id .check:hover {
+    cursor: pointer;
+}
+
+.form-group .container-student-id .form-control {
+    background-color: #ffffff;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #ccc;
+    height: 30px;
+    width: 80%;
+    font-size: 12px;
+}
+
+/* .form-group .container-student-id .form-control:hover {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    outline: none;
+    border-radius: 0px;
+    height: 30px;
+} */
+
+.form-group .container-student-id .form-control:hover::placeholder {
+    color: transparent;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+.form-group .form-control {
+    background-color: #ffffff;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #ccc;
+    height: 30px;
+}
+
+.form-group .form-control:hover {
+    border-bottom: 2px solid #999
+}
+
+/* .form-group .form-control:hover::placeholder {
+    color: transparent;
+} */
+
+/* for validation */
+.form-group .valid {
+    border-bottom: 2px solid red;
+}
+
+/* .form-group .valid:hover {
+    border: 1px solid red;
+} */
+
+.form-group .valid::placeholder {
+    color: red;
+}
+
+/* end valid */
+
+.errorMessage {
+    margin-top: 10px;
+    box-sizing: border-box;
+    display: none;
+    background-color: rgb(233, 233, 3, 0.4);
+    height: 40px;
+}
+
+.errorMessage p {
+    margin: auto;
+    font-size: 10px;
+    color: black;
+    font-weight: 600;
+}
+
+.hide {
+    display: none;
+}
+
+.form-group .login-btn {
+    background-color: #343399;
+    border: none;
+    border-radius: 10px;
+    height: 40px;
+    font-size: 20px;
+    color: white;
+}
+
+.form-group .login-btn:hover {
+    cursor: pointer;
+    border: 3px solid #333;
+    
+}
+
+.login-btn:active {
+    border: 3px solid #333;
+}
+
+.form-group .footer {
+    font-size: 14px;
+}
+
+.form-group .footer a {
+    text-decoration: none;
+    color: black;
+}
+
+.form-group .footer a:hover {
+    color: #343399;
+    border-bottom: 1px solid #343399;
+}
+
+/*end style box right*/
+
+/* style Popup */
+.popup {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: none;
+}
+
+.popup-content {
+    display: flex;
+    background-color: white;
+    width: 20%;
+    box-sizing: border-box;
+    flex-direction: column;
+    margin: auto;
+    border-radius: 20px;
+    overflow: hidden;
+    align-items: center;
+}
+
+.popup-content h1 {
+    margin: 0;
+    width: 100%;
+    color: white;
+    background-color: black;
+    text-align: center;
+    font-size: 24px;
+}
+
+.popup-content P {
+    font-weight: 600;
+}
+
+.popup-content button {
+    background-color: white;
+    margin: auto;
+    width: 100%;
+    border: 1px solid black;
+    color: black;
+}
+
+.popup-content button:hover {
+    cursor: pointer;
+    background-color: red;
+    margin: auto;
+    width: 100%;
+    color: white;
+}
+
+.show {
+    display: flex;
+}
+
+/*end style Popup*/
