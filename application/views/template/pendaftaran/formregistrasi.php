@@ -99,7 +99,16 @@
     function runSubmit() {
       let nim = $('#containNIM').val();
       let email = $('#email').val();
-      $.post("prosesregis", {nim: nim, email: email}, function (data){
+
+
+      if(email == ""){
+        let valid = document.getElementById("email");
+        valid.classList.add("valid");
+        valid.focus();
+        errorMessage[0].style.display = 'flex';
+        errorText.innerText = 'Please Input your Email';
+      }else{
+        $.post("prosesregis", {nim: nim, email: email}, function (data){
         let password = data;
         // alert("Username: "+nim + "\nPassword: "+password);
 
@@ -123,6 +132,8 @@
           }
         });
       });
+      }
+
     }
 
     </script>
