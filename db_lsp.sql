@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 12, 2023 at 10:02 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.1.12
+-- Waktu pembuatan: 14 Bulan Mei 2023 pada 11.55
+-- Versi server: 10.4.27-MariaDB
+-- Versi PHP: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `masterdata`
+-- Struktur dari tabel `masterdata`
 --
 
 CREATE TABLE `masterdata` (
@@ -35,10 +35,19 @@ CREATE TABLE `masterdata` (
   `smester` enum('1','2','3','4','5','6','7','8') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data untuk tabel `masterdata`
+--
+
+INSERT INTO `masterdata` (`nim`, `namaAsesi`, `jurusan`, `prodi`, `smester`) VALUES
+('2115354030', 'Komang Meriani', 'Pariwisata', 'Management Pariwisata', '6'),
+('2115354066', ' Kadek Dwika Ananda', 'Teknik Mesin', 'Mesin Berat', '8'),
+('2115354070', 'Kadek Yudha Ananda Putra', 'Teknik Elektro', 'TRPL', '7');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbadmin`
+-- Struktur dari tabel `tbadmin`
 --
 
 CREATE TABLE `tbadmin` (
@@ -47,7 +56,7 @@ CREATE TABLE `tbadmin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tbadmin`
+-- Dumping data untuk tabel `tbadmin`
 --
 
 INSERT INTO `tbadmin` (`nipAdmin`, `namaAdmin`) VALUES
@@ -56,7 +65,7 @@ INSERT INTO `tbadmin` (`nipAdmin`, `namaAdmin`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbasesi`
+-- Struktur dari tabel `tbasesi`
 --
 
 CREATE TABLE `tbasesi` (
@@ -69,10 +78,18 @@ CREATE TABLE `tbasesi` (
   `prodi` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data untuk tabel `tbasesi`
+--
+
+INSERT INTO `tbasesi` (`nim`, `namaAsesi`, `smester`, `email`, `password`, `jurusan`, `prodi`) VALUES
+('2115354066', ' Kadek Dwika Ananda', '8', 'asd@gmail.com', 'XQLB', 'Teknik Mesin', 'Mesin Berat'),
+('2115354070', 'Kadek Yudha Ananda Putra', '7', 'anan@gmail.com', 'MD86', 'Teknik Elektro', 'TRPL');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbdatakelengkapan`
+-- Struktur dari tabel `tbdatakelengkapan`
 --
 
 CREATE TABLE `tbdatakelengkapan` (
@@ -85,7 +102,7 @@ CREATE TABLE `tbdatakelengkapan` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbjadwal`
+-- Struktur dari tabel `tbjadwal`
 --
 
 CREATE TABLE `tbjadwal` (
@@ -99,7 +116,7 @@ CREATE TABLE `tbjadwal` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbjurusan`
+-- Struktur dari tabel `tbjurusan`
 --
 
 CREATE TABLE `tbjurusan` (
@@ -109,7 +126,7 @@ CREATE TABLE `tbjurusan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tbjurusan`
+-- Dumping data untuk tabel `tbjurusan`
 --
 
 INSERT INTO `tbjurusan` (`idJurusan`, `namaJurusan`, `nipAdmin`) VALUES
@@ -123,7 +140,7 @@ INSERT INTO `tbjurusan` (`idJurusan`, `namaJurusan`, `nipAdmin`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblogin`
+-- Struktur dari tabel `tblogin`
 --
 
 CREATE TABLE `tblogin` (
@@ -132,10 +149,21 @@ CREATE TABLE `tblogin` (
   `level` char(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data untuk tabel `tblogin`
+--
+
+INSERT INTO `tblogin` (`username`, `password`, `level`) VALUES
+('2115354066', 'XQLB', '2'),
+('2115354070', 'MD86', '2'),
+('admin', '12345', '0'),
+('asesi', '12345', '2'),
+('pegawai', '12345', '1');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbpegawai`
+-- Struktur dari tabel `tbpegawai`
 --
 
 CREATE TABLE `tbpegawai` (
@@ -148,10 +176,18 @@ CREATE TABLE `tbpegawai` (
   `tanggalLahir` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data untuk tabel `tbpegawai`
+--
+
+INSERT INTO `tbpegawai` (`nipPegawai`, `namaPegawai`, `jenisKelamin`, `noHP`, `password`, `tempatLahir`, `tanggalLahir`) VALUES
+('122223233', 'gatau', 'Laki-laki', '0877756555', 'S7TW', 'Singaraja', '2023-05-15'),
+('197801112002121000', 'anan', 'Laki-laki', '087756763300', '12345', 'Singaraja', '2016-04-16');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbprodi`
+-- Struktur dari tabel `tbprodi`
 --
 
 CREATE TABLE `tbprodi` (
@@ -164,7 +200,7 @@ CREATE TABLE `tbprodi` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbskema`
+-- Struktur dari tabel `tbskema`
 --
 
 CREATE TABLE `tbskema` (
@@ -174,16 +210,23 @@ CREATE TABLE `tbskema` (
   `biaya` int(11) NOT NULL,
   `kapasitasPeserta` smallint(6) NOT NULL,
   `keterangan` varchar(500) DEFAULT NULL,
-  `nipAdmin` char(18) NOT NULL,
+  `nipAdmin` char(18) DEFAULT NULL,
   `verifikasiSkema` enum('Terima','Tolak') DEFAULT NULL,
   `nipPegawai` char(18) NOT NULL,
   `templateFile` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data untuk tabel `tbskema`
+--
+
+INSERT INTO `tbskema` (`kodeSkema`, `namaSkema`, `idJurusan`, `biaya`, `kapasitasPeserta`, `keterangan`, `nipAdmin`, `verifikasiSkema`, `nipPegawai`, `templateFile`) VALUES
+('1', 'gaje', 1, 2000000, 200, 'gatau', NULL, NULL, '197801112002121000', 'a');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbujian`
+-- Struktur dari tabel `tbujian`
 --
 
 CREATE TABLE `tbujian` (
@@ -195,7 +238,7 @@ CREATE TABLE `tbujian` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbunit`
+-- Struktur dari tabel `tbunit`
 --
 
 CREATE TABLE `tbunit` (
@@ -210,66 +253,66 @@ CREATE TABLE `tbunit` (
 --
 
 --
--- Indexes for table `masterdata`
+-- Indeks untuk tabel `masterdata`
 --
 ALTER TABLE `masterdata`
   ADD PRIMARY KEY (`nim`);
 
 --
--- Indexes for table `tbadmin`
+-- Indeks untuk tabel `tbadmin`
 --
 ALTER TABLE `tbadmin`
   ADD PRIMARY KEY (`nipAdmin`);
 
 --
--- Indexes for table `tbasesi`
+-- Indeks untuk tabel `tbasesi`
 --
 ALTER TABLE `tbasesi`
   ADD PRIMARY KEY (`nim`),
   ADD KEY `nama` (`namaAsesi`);
 
 --
--- Indexes for table `tbdatakelengkapan`
+-- Indeks untuk tabel `tbdatakelengkapan`
 --
 ALTER TABLE `tbdatakelengkapan`
   ADD PRIMARY KEY (`idUjian`),
   ADD KEY `FK_verifikasiData` (`nipPegawai`);
 
 --
--- Indexes for table `tbjadwal`
+-- Indeks untuk tabel `tbjadwal`
 --
 ALTER TABLE `tbjadwal`
   ADD PRIMARY KEY (`idjadwal`),
   ADD KEY `FK_kodeJadwal` (`kodeSkema`);
 
 --
--- Indexes for table `tbjurusan`
+-- Indeks untuk tabel `tbjurusan`
 --
 ALTER TABLE `tbjurusan`
   ADD PRIMARY KEY (`idJurusan`),
   ADD KEY `FK_nipAdmin` (`nipAdmin`);
 
 --
--- Indexes for table `tblogin`
+-- Indeks untuk tabel `tblogin`
 --
 ALTER TABLE `tblogin`
   ADD PRIMARY KEY (`username`);
 
 --
--- Indexes for table `tbpegawai`
+-- Indeks untuk tabel `tbpegawai`
 --
 ALTER TABLE `tbpegawai`
   ADD PRIMARY KEY (`nipPegawai`);
 
 --
--- Indexes for table `tbprodi`
+-- Indeks untuk tabel `tbprodi`
 --
 ALTER TABLE `tbprodi`
   ADD PRIMARY KEY (`idProdi`),
   ADD KEY `FK_idJurusan` (`idJurusan`);
 
 --
--- Indexes for table `tbskema`
+-- Indeks untuk tabel `tbskema`
 --
 ALTER TABLE `tbskema`
   ADD PRIMARY KEY (`kodeSkema`),
@@ -278,7 +321,7 @@ ALTER TABLE `tbskema`
   ADD KEY `FK_pembuatSkema` (`nipPegawai`);
 
 --
--- Indexes for table `tbujian`
+-- Indeks untuk tabel `tbujian`
 --
 ALTER TABLE `tbujian`
   ADD PRIMARY KEY (`idUjian`),
@@ -286,59 +329,59 @@ ALTER TABLE `tbujian`
   ADD KEY `FK_asesi` (`nim`);
 
 --
--- Indexes for table `tbunit`
+-- Indeks untuk tabel `tbunit`
 --
 ALTER TABLE `tbunit`
   ADD PRIMARY KEY (`kodeUnit`),
   ADD KEY `FK_kodeUnit` (`kodeSkema`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `tbjurusan`
+-- AUTO_INCREMENT untuk tabel `tbjurusan`
 --
 ALTER TABLE `tbjurusan`
   MODIFY `idJurusan` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `tbprodi`
+-- AUTO_INCREMENT untuk tabel `tbprodi`
 --
 ALTER TABLE `tbprodi`
   MODIFY `idProdi` tinyint(4) NOT NULL AUTO_INCREMENT;
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `tbdatakelengkapan`
+-- Ketidakleluasaan untuk tabel `tbdatakelengkapan`
 --
 ALTER TABLE `tbdatakelengkapan`
   ADD CONSTRAINT `FK_ujian` FOREIGN KEY (`idUjian`) REFERENCES `tbujian` (`idUjian`),
   ADD CONSTRAINT `FK_verifikasiData` FOREIGN KEY (`nipPegawai`) REFERENCES `tbpegawai` (`nipPegawai`);
 
 --
--- Constraints for table `tbjadwal`
+-- Ketidakleluasaan untuk tabel `tbjadwal`
 --
 ALTER TABLE `tbjadwal`
   ADD CONSTRAINT `FK_kodeJadwal` FOREIGN KEY (`kodeSkema`) REFERENCES `tbskema` (`kodeSkema`);
 
 --
--- Constraints for table `tbjurusan`
+-- Ketidakleluasaan untuk tabel `tbjurusan`
 --
 ALTER TABLE `tbjurusan`
   ADD CONSTRAINT `FK_nipAdmin` FOREIGN KEY (`nipAdmin`) REFERENCES `tbadmin` (`nipAdmin`);
 
 --
--- Constraints for table `tbprodi`
+-- Ketidakleluasaan untuk tabel `tbprodi`
 --
 ALTER TABLE `tbprodi`
   ADD CONSTRAINT `FK_idJurusan` FOREIGN KEY (`idJurusan`) REFERENCES `tbjurusan` (`idJurusan`);
 
 --
--- Constraints for table `tbskema`
+-- Ketidakleluasaan untuk tabel `tbskema`
 --
 ALTER TABLE `tbskema`
   ADD CONSTRAINT `FK_jurusan` FOREIGN KEY (`idJurusan`) REFERENCES `tbjurusan` (`idJurusan`),
@@ -346,14 +389,14 @@ ALTER TABLE `tbskema`
   ADD CONSTRAINT `FK_verifikasiSkema` FOREIGN KEY (`nipAdmin`) REFERENCES `tbadmin` (`nipAdmin`);
 
 --
--- Constraints for table `tbujian`
+-- Ketidakleluasaan untuk tabel `tbujian`
 --
 ALTER TABLE `tbujian`
   ADD CONSTRAINT `FK_asesi` FOREIGN KEY (`nim`) REFERENCES `tbasesi` (`nim`),
   ADD CONSTRAINT `FK_jadwal` FOREIGN KEY (`idjadwal`) REFERENCES `tbjadwal` (`idjadwal`);
 
 --
--- Constraints for table `tbunit`
+-- Ketidakleluasaan untuk tabel `tbunit`
 --
 ALTER TABLE `tbunit`
   ADD CONSTRAINT `FK_kodeUnit` FOREIGN KEY (`kodeSkema`) REFERENCES `tbskema` (`kodeSkema`);
