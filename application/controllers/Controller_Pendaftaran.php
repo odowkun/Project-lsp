@@ -41,12 +41,6 @@ class Controller_Pendaftaran extends CI_Controller
 		echo $value;
 	}
 
-	function tableskema() {
-		$hasiltable['hasil']=$this->Model_Regis->tampiltable();
-		$data['table']=$this->load->view('template/dashboard/admin/skema_table',$hasiltable,TRUE);
-		$this->load->view('template/dashboard/admin/index', $data);	
-	}
-
 	function logout()
 	{
 		$this->session->sess_destroy();

@@ -11,7 +11,8 @@ class Controller_Dashboard extends CI_Controller
 
         function admin()
         {
-            $this->load->view('template/dashboard/admin/index');	
+            $data['card']=$this->load->view('template/dashboard/admin/card', '', TRUE);
+            $this->load->view('template/dashboard/admin/index', $data);	
         }	
         function pegawai()
         {
