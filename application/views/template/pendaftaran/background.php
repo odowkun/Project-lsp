@@ -19,5 +19,5 @@
 <body>
     <div class="container">
         <div class="boxleft">
-            <h1>website resmi Politeknik Negeri Bali, pada website ini ....more describe in here</h1>
+            <!-- <h1>website resmi Politeknik Negeri Bali, pada website ini ....more describe in here</h1> -->
         </div>

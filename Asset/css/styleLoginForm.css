@@ -43,8 +43,8 @@ body {
     box-sizing: border-box;
 }
 
-
-.back-btn {
+/* ga jadi isi back-btn */
+/* .back-btn {
     margin: 15px;
     position: fixed;
 }
@@ -75,7 +75,7 @@ body {
     border-bottom: solid #343399;
     border-width: 0 3px 3px 0;
     display: inline-block;
-}
+} */
 
 
 .boxright .container-boxright {
@@ -220,7 +220,7 @@ input[type=number] {
 .form-group .login-btn:hover {
     cursor: pointer;
     border: 3px solid #333;
-    
+
 }
 
 .login-btn:active {
@@ -302,3 +302,63 @@ input[type=number] {
 }
 
 /*end style Popup*/
+
+/* media in tablet */
+@media (max-width: 870px) {
+    .container {
+        justify-content: center;
+        /* patern */
+        /* opacity: 0.8;
+        background-image: radial-gradient(#c5c5c5 1.1px, #ffffff 1.1px);
+        background-size: 22px 22px; */
+        background: rgba(0, 0, 0, 0.5) url(https://www.pnb.ac.id/img/cov-aboutus.7d875991.jpg);
+        background-blend-mode: darken;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+
+    .boxleft {
+        display: none;
+    }
+
+    .boxright {
+        background-color: transparent;
+        align-self: center;
+        width: 80%;
+    }
+
+    .back-btn {
+        /* position: fixed; */
+        display: none;
+    }
+
+    .container-boxright {
+        background-color: white;
+        width: 300px;
+        box-shadow: 0px 5px 18px rgb(179, 179, 179);
+        border-radius: 25px;
+    }
+
+    .container-boxright img {
+        margin-top: 20px;
+        width: 80px;
+        align-self: center;
+    }
+}
+
+/* media in mobile */
+@media (max-width: 450px) {
+
+    @media (max-width: 870px) {
+        .container {
+            background-color: white;
+            background-image: none;
+        }
+
+        .container-boxright {
+            box-shadow: none;
+        }
+    }
+}
