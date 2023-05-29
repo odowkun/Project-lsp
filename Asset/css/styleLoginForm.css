@@ -43,8 +43,8 @@ body {
     box-sizing: border-box;
 }
 
-/* ga jadi isi back-btn */
-/* .back-btn {
+/* Back Button */
+.back-btn {
     margin: 15px;
     position: fixed;
 }
@@ -52,7 +52,7 @@ body {
 
 .back-btn a {
     text-decoration: none;
-    color: black;
+    color: white;
     font-size: 18px;
 }
 
@@ -61,7 +61,7 @@ body {
 }
 
 .back-btn .arrow {
-    border: solid black;
+    border: solid white;
     border-width: 0 3px 3px 0;
     display: inline-block;
     padding: 4px;
@@ -72,10 +72,10 @@ body {
 }
 
 .back-btn a:hover {
-    border-bottom: solid #343399;
+    border-bottom: solid white;
     border-width: 0 3px 3px 0;
     display: inline-block;
-} */
+}
 
 
 .boxright .container-boxright {
@@ -329,10 +329,10 @@ input[type=number] {
         width: 80%;
     }
 
-    .back-btn {
-        /* position: fixed; */
+    /* .back-btn {
+        position: fixed;
         display: none;
-    }
+    } */
 
     .container-boxright {
         background-color: white;
@@ -359,6 +359,19 @@ input[type=number] {
 
         .container-boxright {
             box-shadow: none;
+        }
+
+        .back-btn a {
+            text-decoration: none;
+            color: black;
+            font-size: 18px;
+        }
+
+        .back-btn .arrow {
+            border: solid black;
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 4px;
         }
     }
 }

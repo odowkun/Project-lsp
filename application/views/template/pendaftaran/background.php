@@ -17,6 +17,9 @@
 </head>
 
 <body>
+    <div class="back-btn">
+      <a href="<?= base_url('Controller_LandingPage/tampilawal') ?>"><i class="arrow left"></i><span>Website Information</span></a>
+    </div>
     <div class="container">
         <div class="boxleft">
             <!-- <h1>website resmi Politeknik Negeri Bali, pada website ini ....more describe in here</h1> -->

@@ -1,7 +1,4 @@
 <div class="boxright">
-  <div class="back-btn">
-      <a href="<?= base_url('Controller_LandingPage/tampilawal') ?>"><i class="arrow left"></i><span>Website Information</span></a>
-    </div>
     <div class="container-boxright">
       <img src="https://www.pnb.ac.id/img/logo-pnb.3aae610b.png" alt="#">
       <h1>Create your account!</h1>
