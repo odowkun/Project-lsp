@@ -1,12 +1,15 @@
 <!-- submit -->
 <script>
+   document.getElementById("sidebar-asesi").classList.add("sidebar-active")
+   document.getElementById("sidebar-asesi-verifikasi").classList.add("sidebar-active-list")
+
    function submit(kodeSkema) {
       if (document.getElementsByName("verifikasiSkema").values == null) {
          document.getElementsByName("verifikasiSkema").focus
          return false
       } else {
          if(confirm("Data akan disimpan")) {
-            window.open("<?php echo base_url(); ?>Controller_Admin/updateSkema/"+kodeSkema, "_self")
+            window.open("<?php echo base_url(); ?>Controller_Admin/updateAsesi/"+kodeSkema, "_self")
          } 
       }
    }
@@ -34,7 +37,7 @@
          if (!empty($hasil)) {
             foreach ($hasil as $data):
                ?>
-               <form action="<?php echo base_url('Controller_Admin/updateSkema/'.$data->nim)?>" method="post">
+               <form action="<?php echo base_url('Controller_Admin/updatAsesi/'.$data->nim)?>" method="post">
                   <tr>
                      <td class=""><?php echo $data->nim ?></td>
                      <td><?php echo $data->namaAsesi?></td>

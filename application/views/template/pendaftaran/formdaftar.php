@@ -20,7 +20,7 @@
           <span class="invalid-feedback"></span>
         </div>
         <div class="form-group">
-        <button type="button" class="login-btn" onclick="validation()" >Submit</button>
+        <button type="submit" class="login-btn" onclick="validation()" >Submit</button>
           <p class="footer">Need an account? <a href="<?= base_url('Controller_Pendaftaran/registrasi') ?>">Sign up here!</a>
           </p>
         </div>

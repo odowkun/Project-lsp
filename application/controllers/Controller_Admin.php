@@ -12,17 +12,11 @@
          $this->load->view('template/dashboard/admin/index', $data);
       }
 
-      function tableSkema() {
-			$hasiltable['hasil']=$this->Model_Admin->tableskema();
-			$data['table']=$this->load->view('template/dashboard/admin/skema_table',$hasiltable,TRUE);
+      function table($namaTabel, $view) {
+			$hasiltable['hasil']=$this->Model_Admin->table($namaTabel);
+			$data['table']=$this->load->view('template/dashboard/admin/'.$view,$hasiltable,TRUE);
          $this->load->view('template/dashboard/admin/index', $data);	
 		}
-      
-      function tableAsesi() {
-         $hasiltable['hasil']=$this->Model_Admin->tableasesi();
-         $data['table']=$this->load->view('template/dashboard/admin/asesi_table',$hasiltable,TRUE);
-         $this->load->view('template/dashboard/admin/index', $data);	
-      }
 
       function formPegawai() {
          $data['formPegawai']=$this->load->view('template/dashboard/admin/formPegawai','',TRUE);
@@ -36,6 +30,10 @@
 
       function updateSkema($kodeSkema) {
          $this->Model_Admin->updateSkema($kodeSkema);
+      }
+
+      function updatePegawai() {
+         
       }
 
       function simpanPegawai() {

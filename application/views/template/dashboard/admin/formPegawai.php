@@ -1,10 +1,13 @@
 <script>
+   document.getElementById("sidebar-pegawai").classList.add("sidebar-active")
+   document.getElementById("sidebar-pegawai-tambah").classList.add("sidebar-active-list")
+   
    function submit() {
       load("Controller_Admin/simpanPegawai" ,"#script")
    }
 </script>
 
-<h2>Form Pegawai LSP</h2>
+<h2>Tambah Pegawai LSP</h2>
 <hr class="mb-4">
 <?php
 	$pesan=$this->session->flashdata('pesan');
@@ -53,7 +56,7 @@
       <div class="col-sm-10">
          <select name="jenisKelamin" id="jenisKelamin" class="form-select" required>
             <option value="">Pilih</option>
-            <option value="Laki-laki">Lakik</option>
+            <option value="Laki-laki">Laki-laki</option>
             <option value="Perempuan">Perempuan</option>
          </select>
       </div>

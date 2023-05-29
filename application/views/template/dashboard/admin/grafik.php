@@ -4,21 +4,19 @@
       <h1 class="h2">Grafik Skema</h1>
       <div class="btn-toolbar mb-2 mb-md-0">
          <div class="btn-group mr-2">
-            <button class="btn btn-sm btn-outline-secondary">Share</button>
             <button class="btn btn-sm btn-outline-secondary">Export</button>
          </div>
-         <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
-            <span data-feather="calendar"></span>This week
-         </button>
       </div>
    </div>
-   <canvas id="myChart" style="width:100%;max-width:750px"></canvas>
+   <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
 </div>
 
 <!-- Graphs -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
 <script>
-
+   document.getElementById("sidebar-skema").classList.add("sidebar-active")
+   document.getElementById("sidebar-skema-grafik").classList.add("sidebar-active-list")
+   
    var ctx = document.getElementById("myChart");
    var myChart = new Chart(ctx, {
    type: 'bar',

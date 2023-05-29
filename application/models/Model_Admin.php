@@ -7,25 +7,13 @@
 			return $password;
 		}
    
-   	function tableSkema()	{
-			$sql="select * from tbskema";
+   	function table($namaTabel)	{
+			$sql="select * from ". $namaTabel;
 			$query=$this->db->query($sql);
 			if ($query->num_rows() > 0) {
 				foreach($query->result() as $data) {
 					$hasil[]=$data;	
-				}	
-			} else {
-				$hasil="";
-			}
-			return $hasil;	
-		}
-   	function tableAsesi()	{
-			$sql="select * from tbasesi";
-			$query=$this->db->query($sql);
-			if ($query->num_rows() > 0) {
-				foreach($query->result() as $data) {
-					$hasil[]=$data;	
-				}	
+				}
 			} else {
 				$hasil="";
 			}
@@ -42,7 +30,7 @@
 			$this->db->update('tbskema', $data);
 
 			$this->session->set_flashdata('pesan','Data Berhasil Diedit');
-			redirect(base_url('Controller_Admin/tableSkema'));
+			redirect(base_url('Controller_Admin/table/tbskema/skema_table'));
 		}
 
 		function simpanPegawai() {
