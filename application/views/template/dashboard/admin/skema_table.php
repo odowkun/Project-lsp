@@ -9,8 +9,7 @@
          return false
       } else {
          if (confirm("Data akan disimpan")) {
-            window.open("<?php echo base_url(); ?>
-            use LDAP\Result;Controller_Admin/updateSkema/" + kodeSkema, "_self")
+            window.open("<?php echo base_url(); ?>Controller_Admin/updateSkema/" + kodeSkema, "_self")
          }
       }
    }
@@ -41,7 +40,7 @@
             ?>
             <form action="<?php echo base_url('Controller_Admin/updateSkema/' . $data->kodeSkema) ?>" method="post">
                <tr>
-                  <td class="">
+                  <td>
                      <?php echo $data->namaSkema ?>
                   </td>
                   <td>
@@ -65,16 +64,16 @@
                   <td>
                      <?php echo $data->keterangan ?>
                   </td>
-                  <td class="">
+                  <td>
                      <select class="form-select px-3 py-0" name="verifikasiSkema" required>
                         <option value=''>Pilih</option>
-                        <option value='Terima' <?php echo (strcmp($data->verifikasiSkema, 'Terima')) ? '' : 'selected'; ?>>
+                        <option value='Terima' <?php echo ($data->verifikasiSkema === 'Terima') ?  'selected' : ''; ?>>
                            Terima</option>
-                        <option value='Tolak' <?php echo (strcmp($data->verifikasiSkema, 'Tolak')) ? '' : 'selected'; ?>>Tolak
+                        <option value='Tolak' <?php echo ($data->verifikasiSkema === 'Tolak') ? 'selected': ''; ?>>Tolak
                         </option>
                      </select>
                   </td>
-                  <td class="">
+                  <td>
                      <?php echo $data->nipAdmin ?>
                   </td>
                   <td>
