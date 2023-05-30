@@ -48,7 +48,8 @@
 </script>
 
 <div class="container mt-3">
-	<h4>Daftar Skema</h4>
+	<h2>Daftar Skema</h2>
+	<hr class="mb-4">
     <?php
         $pesan=$this->session->flashdata('pesan');
         if($pesan==""){
@@ -64,7 +65,7 @@
     ?>
   
   
-	<form name="formdaftarskema" id="formdaftarskema" method="post" action="<?php echo base_url('cskema/simpanskema') ?>">
+	<form name="formdaftarskema" id="formdaftarskema" method="post" action="<?php echo base_url('controller_pegawai/simpanskema') ?>">
 		<div class="mb-3 mt-3">
 			<label>Kode Skema</label>
 			<input type="text" class="form-control" name="kodeSkema" id="kodeSkema" >
