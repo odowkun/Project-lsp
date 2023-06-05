@@ -1,19 +1,25 @@
-window.onscroll = function () { navscroll() };
-
-let navlist = document.querySelector(".navlist");
-let menu = document.querySelector('#menu-icon');
-let sticky = navlist.offsetTop;
-
-function navscroll() {
-    if (window.pageYOffset >= sticky) {
-        navbar.classList.add("sticky")
+const togglebtn = document.getElementById("toggle");
+const menudropdown = document.getElementsByClassName("menudropdown");
+let click = 0;
+function matchmedia() {
+    if (windows.matches) {
+        togglebtn.onclick = function () {
+            if (click == 0) {
+                togglebtn.className = "fa-solid fa-x fa-xl";
+                menudropdown[0].style.display = 'flex';
+                click = 1;
+            } else {
+                togglebtn.className = "fa-solid fa-bars fa-xl";
+                menudropdown[0].style.display = 'none';
+                click = 0;
+            }
+        }
     } else {
-        navbar.classList.remove("sticky");
+        togglebtn.className = "fa-solid fa-bars fa-xl";
+        menudropdown[0].style.display = 'none';
+        click = 0;
     }
 }
-
-menu.onclick = () => {
-    menu.classList.toggle('bx-x');
-    navlist.classList.toggle('open');
-}
-
+let windows = window.matchMedia("(max-width: 1100px)")
+matchmedia(windows);
+windows.addListener(matchmedia)
