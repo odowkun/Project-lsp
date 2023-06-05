@@ -35,28 +35,16 @@
 
 		function simpanPegawai() {
 			$data=$_POST;
-			$Password =$this->password();
-			$data['password']=$Password;
-
-			// $sql = "select * from tbpegawai where nipPegawai = ".$data['nipPegawai'] ."";
-			// $query=$this->db->query($sql);
-			// if ($query->num_rows()>0) {
-			// 	//edit
-			// 	$data=$query->row();
-			// 	echo "<script>$('#nipPegawai').val('".$data->nipPegawai."');</script>";
-			// 	echo "<script>$('#namaPegawai').val('".$data->namaPegawai."');</script>";	
-			// 	echo "<script>$('#jenisKelamin').val('".$data->jenisKelamin."');</script>";
-			// 	echo "<script>$('#noHP').val('".$data->noHP."');</script>";
-			// 	echo "<script>$('#password').val('".$data->password."');</script>";
-			// 	echo "<script>$('#tempatLahir').val('".$data->tempatLahir."');</script>";
-			// 	echo "<script>$('#tanggalLahir').val('".$data->tanggalLahir."');</script>";
-			// 	var_dump($data);
-
-			// 	$this->session->set_flashdata('mode','edit');	
-			// 	$this->session->set_flashdata('pesan', "Data sudah ada, <a href='' class='alert-link'>Edit Data?</a>");
-			// } else {
-			// }
+			$password =$this->password();
+			$data['password']=$password;
 			$this->db->insert('tbpegawai',$data);
+
+			$dataLogin = array(
+				'username' => $data['nipPegawai'],
+				'password' => $password,
+				'level' => '1'
+			);
+			$this->db->insert('tblogin',$dataLogin);
 			$this->session->set_flashdata('pesan','Data Berhasil Disimpan!');	
 
 		}
