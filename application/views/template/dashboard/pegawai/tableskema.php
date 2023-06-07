@@ -10,6 +10,10 @@
 		load("controller_pegawai/editskema/"+kodeSkema,"#script");	
 	}
 
+    function daftarunit(kodeSkema){
+        window.open("<?php echo base_url(); ?>controller_pegawai/formdaftarunit/"+kodeSkema,"_self");
+    }
+
 	
 </script>
 
@@ -54,9 +58,8 @@
                 </tr>
                 <tr>
                     <td colspan="6">
-                        <a href="<?php echo base_url('controller_pegawai/formdaftarunit') ?>">
-                            <button type="button" class="btn btn-success btn-sm">Tambahkan Unit Skema</button>
-                        </a>
+                            <button type="button" class="btn btn-success btn-sm" onclick="daftarunit(<?php echo $data->kodeSkema ?>)">Tambahkan Unit Skema</button>
+                        
                     </td>
                 </tr>
                 <?php

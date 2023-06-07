@@ -1,9 +1,34 @@
 <?php
     class Model_Pegawai extends CI_Model{
 
+        function datajurusan(){
+            $this->db->select('idJurusan, namaJurusan');
+            $query=$this->db->get('tbjurusan');
+            if($query->num_rows()>0){
+                foreach($query->result() as $data){
+                    $hasil[]=$data;
+                } 
+            } else{
+                $hasil="";
+            }
+            return $hasil;
+        }
+
+        function dataskema(){
+            $this->db->select('kodeSkema, namaSkema');
+            $query=$this->db->get('tbskema');
+            if($query->num_rows()>0){
+                foreach($query->result() as $data){
+                    $hasil[]=$data;
+                } 
+            } else{
+                $hasil="";
+            }
+            return $hasil;
+        }
+
         function tampilskema(){
-            $sql="select * from tbskema";
-            $query=$this->db->query($sql);
+            $query=$this->db->get('tbskema');
             if($query->num_rows()>0){
                 foreach($query->result() as $data){
                     $hasil[]=$data;
@@ -19,8 +44,7 @@
             $kodeSkema=$data['kodeSkema'];
             $data['nipPegawai']=$this->session->userdata('Username');
             
-            $sql="select * from tbskema where kodeSkema = '".$kodeSkema."'";
-            $query=$this->db->query($sql);
+            $query=$this->db->get_where('tbskema', array('kodeSkema' => $kodeSkema));
 
 			if($query->num_rows()==0){
                 $this->db->insert('tbskema',$data);
@@ -34,13 +58,12 @@
         }
 
         function hapusskema($kodeSkema){
-			$sql="delete from tbskema where kodeSkema='".$kodeSkema."'";
-			$this->db->query($sql);
+            $this->db->delete('tbunit', array('kodeSkema' => $kodeSkema));
+			$this->db->delete('tbskema', array('kodeSkema' => $kodeSkema));
 		}
         
 		function editskema($kodeSkema){
-			$sql="select * from tbskema where kodeSkema='".$kodeSkema."'";
-			$query=$this->db->query($sql);
+			$query=$this->db->get_where('tbskema', array('kodeSkema' => $kodeSkema));
 			if ($query->num_rows()>0){
 				$data=$query->row();
 				echo "<script>$('#kodeSkema').val('".$data->kodeSkema."');</script>";
@@ -52,9 +75,8 @@
 			}
 		}
 
-        function tampilunit(){
-            $sql="select * from tbunit";
-            $query=$this->db->query($sql);
+        function tampilunit($kodeSkema){
+            $query=$this->db->get_where('tbunit', array('kodeSkema' => $kodeSkema));
             if($query->num_rows()>0){
                 foreach($query->result() as $data){
                     $hasil[]=$data;
@@ -68,9 +90,9 @@
         function simpanunit(){
             $data=$_POST;
             $kodeUnit=$data['kodeUnit'];
+            $id=$data['kodeSkema'];
             
-            $sql="select * from tbunit where kodeUnit = '".$kodeUnit."'";
-            $query=$this->db->query($sql);
+            $query=$this->db->get_where('tbunit', array('kodeUnit' => $kodeUnit));
 
 			if($query->num_rows()==0){
                 $this->db->insert('tbunit',$data);
@@ -81,28 +103,22 @@
                 $this->db->update('tbunit',$data);
 				$this->session->set_flashdata('pesan','Data sudah diedit');
             }
+			redirect('controller_pegawai/formdaftarunit/'.$id.'');
+            
         }
-
-        function hapusunit($kodeUnit){
-			$sql="delete from tbunit where kodeUnit='".$kodeUnit."'";
-			$this->db->query($sql);
-		}
         
 		function editunit($kodeUnit){
-			$sql="select * from tbunit where kodeUnit='".$kodeUnit."'";
-			$query=$this->db->query($sql);
+			$query=$this->db->get_where('tbunit', array('kodeUnit' => $kodeUnit));
 			if ($query->num_rows()>0){
 				$data=$query->row();
 				echo "<script>$('#kodeUnit').val('".$data->kodeUnit."');</script>";
 				echo "<script>$('#judulUnit').val('".$data->judulUnit."');</script>";	
 				echo "<script>$('#jenisStandar').val('".$data->jenisStandar."');</script>";
-				echo "<script>$('#kodeSkema').val('".$data->kodeSkema."');</script>";
 			}
 		}
 
         function tampiljadwal(){
-            $sql="select * from tbjadwal";
-            $query=$this->db->query($sql);
+            $query=$this->db->get('tbjadwal');
             if($query->num_rows()>0){
                 foreach($query->result() as $data){
                     $hasil[]=$data;
@@ -117,9 +133,7 @@
             $data=$_POST;
             $idjadwal=$data['idjadwal'];
             
-            $sql="select * from tbjadwal where idjadwal = '".$idjadwal."'";
-            $query=$this->db->query($sql);
-
+            $query=$this->db->get_where('tbjadwal', array('idjadwal' => $idjadwal));
 			if($query->num_rows()==0){
                 $this->db->insert('tbjadwal',$data);
 				$this->session->set_flashdata('pesan','Data sudah disimpan');
@@ -132,13 +146,11 @@
         }
 
         function hapusjadwal($idjadwal){
-			$sql="delete from tbjadwal where idjadwal='".$idjadwal."'";
-			$this->db->query($sql);
+			$this->db->delete('tbjadwal', array('idjadwal' => $idjadwal));
 		}
         
 		function editjadwal($idjadwal){
-			$sql="select * from tbjadwal where idjadwal='".$idjadwal."'";
-			$query=$this->db->query($sql);
+			$query=$this->db->get_where('tbjadwal', array('idjadwal' => $idjadwal));
 			if ($query->num_rows()>0){
 				$data=$query->row();
 				echo "<script>$('#idjadwal').val('".$data->idjadwal."');</script>";

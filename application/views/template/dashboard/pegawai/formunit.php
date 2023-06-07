@@ -1,5 +1,6 @@
 <script language="javascript">
 	function simpanunit(){
+
         var kodeUnit=$('#kodeUnit').val();
 		if (kodeUnit==""){
 			alert ("Kode Unit masih kosong");
@@ -20,6 +21,7 @@
 			$('#jenisStandar').focus();
 			return false;	
 		}
+
         var kodeSkema=$('#kodeSkema').val();
 		if (kodeSkema==""){
 			alert ("Kode Skema masih kosong");
@@ -65,7 +67,7 @@
 		</div>
 		<div class="mb-3 mt-3">
 			<label>Kode Skema</label>
-			<input type="text" class="form-control" id="kodeSkema" name="kodeSkema">
+			<input type="text" class="form-control bg-light" id="kodeSkema" name="kodeSkema" value="<?php echo $kode ?>" readonly>
 		</div>
 		<button type="button" class="btn btn-primary" onclick="simpanunit()">Daftar</button>
 		<button type="reset" class="btn btn-danger">Reset</button>

@@ -68,14 +68,12 @@
 			<select class="form-control" name="kodeSkema" id="kodeSkema">
 				<option value="">PILIH</option>
 				<?php
-                    $sql="select kodeSkema, namaSkema from tbskema";
-                    $query=$this->db->query($sql);
-                    if($query->num_rows()>0){
-                        foreach($query->result() as $data){
+                    if(!empty($hasil)){
+						foreach($hasil as $data):
                             ?>
                                 <option value="<?php echo $data->kodeSkema?>"><?php echo $data->namaSkema?></option>
                             <?php
-                        }
+                        endforeach;
                     }
                 ?>
 			</select>

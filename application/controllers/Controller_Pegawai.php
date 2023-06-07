@@ -3,27 +3,32 @@
 
         public function __construct(){
             parent::__construct();
+            $this->load->model('Model_Validasi');
+            $this->Model_Validasi->validasi();
             $this->load->model('model_pegawai');
         }
 
         function formdaftarskema(){
-            $data['konten']=$this->load->view('template/dashboard/pegawai/formskema','',TRUE);
+            $datajurusan['hasil']=$this->model_pegawai->datajurusan();
+            $data['konten']=$this->load->view('template/dashboard/pegawai/formskema',$datajurusan,TRUE);
             $dataskema['hasil']=$this->model_pegawai->tampilskema();
             $data['table']=$this->load->view('template/dashboard/pegawai/tableskema',$dataskema,TRUE);
             $this->load->view('template/dashboard/pegawai/dashboardpegawai',$data);
         }
 
-        function formdaftarunit(){
-            $data['konten']=$this->load->view('template/dashboard/pegawai/formunit','',TRUE);
-            $dataunit['hasil']=$this->model_pegawai->tampilunit();
+        function formdaftarunit($kodeSkema){
+            $kode['kode']=$kodeSkema;
+            $data['konten']=$this->load->view('template/dashboard/pegawai/formunit',$kode,TRUE);
+            $dataunit['hasil']=$this->model_pegawai->tampilunit($kodeSkema);
             $data['table']=$this->load->view('template/dashboard/pegawai/tableunit',$dataunit,TRUE);
             $this->load->view('template/dashboard/pegawai/dashboardpegawai',$data);
         }
         
         function formdaftarjadwal(){
-            $data['konten']=$this->load->view('template/dashboard/pegawai/formjadwal','',TRUE);
-            $dataunit['hasil']=$this->model_pegawai->tampiljadwal();
-            $data['table']=$this->load->view('template/dashboard/pegawai/tablejadwal',$dataunit,TRUE);
+            $dataskema['hasil']=$this->model_pegawai->dataskema();
+            $data['konten']=$this->load->view('template/dashboard/pegawai/formjadwal',$dataskema,TRUE);
+            $datajadwal['hasil']=$this->model_pegawai->tampiljadwal();
+            $data['table']=$this->load->view('template/dashboard/pegawai/tablejadwal',$datajadwal,TRUE);
             $this->load->view('template/dashboard/pegawai/dashboardpegawai',$data);
         }
 
@@ -34,7 +39,6 @@
 
         function simpanunit(){
             $this->model_pegawai->simpanunit();
-			redirect('controller_pegawai/formdaftarunit');
         }
 
         function simpanjadwal(){
@@ -45,11 +49,6 @@
         function hapusskema($kodeSkema){
 			$this->model_pegawai->hapusskema($kodeSkema);
 			redirect('controller_pegawai/formdaftarskema');
-		}
-
-        function hapusunit($kodeUnit){
-			$this->model_pegawai->hapusunit($kodeUnit);
-			redirect('controller_pegawai/formdaftarunit');
 		}
 
         function hapusjadwal($idjadwal){

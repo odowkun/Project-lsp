@@ -1,3 +1,15 @@
+<script language="javascript">
+    function hapusjadwal(idJadwal){
+        if(confirm("Apakah yakin menghapus jadwal ini?")){
+            window.open("<?php echo base_url(); ?>controller_pegawai/hapusjadwal/"+idJadwal,"_self");
+        }
+    }
+
+    function editjadwal(idJadwal){
+        load("controller_pegawai/editjadwal/"+idJadwal,"#script");
+    }
+</script>
+
 <div class="container mt-3">
     <br>
     <h2>Data Jadwal</h2>

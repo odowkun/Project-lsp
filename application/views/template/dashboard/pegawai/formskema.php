@@ -78,12 +78,17 @@
 			<label>Jurusan</label>
 			<select class="form-control" name="idJurusan" id="idJurusan">
 				<option value="">PILIH</option>
-				<option value="1">Teknik Elektro</option>
-				<option value="2">Teknik Mesin</option>
-				<option value="3">Teknik Sipil</option>
-				<option value="4">Pariwisata</option>
-				<option value="5">Akutansi</option>
-				<option value="6">Administrasi Bisnis</option>
+				<?php
+					if(empty($hasil)){
+						
+					} else{
+						foreach ($hasil as $data):
+							?>
+								<option value="<?php echo $data->idJurusan; ?>"><?php echo $data->namaJurusan; ?></option>
+							<?php
+						endforeach;
+					}
+				?>
 			</select>
 		</div>
 		<div class="mb-3 mt-3">
