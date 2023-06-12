@@ -1,7 +1,7 @@
 <!-- submit -->
 <script>
-   document.getElementById("sidebar-skema").classList.add("sidebar-active")
-   document.getElementById("sidebar-skema-verifikasi").classList.add("sidebar-active-list")
+   document.getElementById("sidebar-lsp").classList.add("sidebar-active")
+   document.getElementById("sidebar-lsp-skema").classList.add("sidebar-active-list")
 
    function submit(kodeSkema) {
       if (document.getElementsByName("verifikasiSkema").values == null) {
@@ -15,13 +15,12 @@
    }
 </script>
 
-<!-- tabel -->
-<h2>Tabel Verifikasi Skema</h2>
-<hr class="mb-4">
+<h5>Kelola Data Skema</h5>
+<hr>
 
-<!-- <div class="table-responsive"> -->
-<table class="table table-striped table-bordered table-hover table-responsive">
-   <thead class="bg-dark text-white">
+<div class="table-responsive">
+<table class="table">
+   <thead>
       <tr>
          <th>Nama Skema</th>
          <th>Jurusan</th>
@@ -47,11 +46,11 @@
                      <?php
                         $query = $this->db
                            ->select('namaJurusan')
-                           ->from('tbjurusan')
+                           ->from('tbJurusan')
                            ->where('idJurusan', $data->idJurusan)
                            ->get();
-                        foreach($query->result() as $jjj):
-                           echo $jjj->namaJurusan;
+                        foreach($query->result() as $namaJurusan):
+                           echo $namaJurusan->namaJurusan;
                         endforeach; 
                      ?>
                   </td>
@@ -65,7 +64,7 @@
                      <?php echo $data->keterangan ?>
                   </td>
                   <td>
-                     <select class="form-select px-3 py-0" name="verifikasiSkema" required>
+                     <select class="form-select" name="verifikasiSkema" required>
                         <option value=''>Pilih</option>
                         <option value='Terima' <?php echo ($data->verifikasiSkema === 'Terima') ?  'selected' : ''; ?>>
                            Terima</option>
@@ -80,7 +79,7 @@
                      <?php
                         if($this->session->Username == $data->nipAdmin || $data->nipAdmin == "") { 
                            echo "
-                           <button class='btn btn-secondary px-3 py-0' type='submit'>Submit</button> 
+                           <button class='btn btn-secondary' type='submit'>Submit</button> 
                            ";
                         } else {
                            echo "
@@ -90,8 +89,15 @@
                      ?>
                   </td>
                </tr>
+               </form>
+               <tr>
+                  <td colspan="8">
+                     <button class="btn btn-success">Tambah Skema Unit</button>
+                     <button class="btn btn-primary">Lampiran</button>
+                     <button class="btn btn-info">Detail Skema</button>
+                  </td>
+               </tr>
 
-            </form>
 
             <?php
          endforeach;
@@ -100,3 +106,4 @@
       ?>
    </tbody>
 </table>
+</div>

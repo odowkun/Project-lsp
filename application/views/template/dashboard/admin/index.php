@@ -10,173 +10,159 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
     crossorigin="anonymous"></script>
-
 </head>
 
 <body style="height: 100vh;">
-
-  <!-- navbar -->
-  <nav
-    class="navbar navbar-expand-sm navbar-dark sticky-top bg-dark bg-body-dark d-flex justify-content-between w-100 position-fixed"
-    data-bs-theme="dark">
+<!-- NAVBAR -->
+  <nav class="navbar navbar-expand-sm shadow bg-white sticky-top d-flex justify-content-between w-100 position-fixed">
     <div class="container-fluid d-flex justify-content-between">
-      <a class="navbar-brand" href="<?php echo base_url("Controller_Dashboard/admin") ?>">Admin SIM LSP</a>
+      <a class="navbar-brand" href="<?php echo base_url("controller_admin/home") ?>">Admin SIM LSP</a>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar"
-        aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <!-- NAVBAR-SM-HAMBURGER-BUTTON -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
+      <!-- NAVBAR-CONTENT -->
       <div class="collapse navbar-collapse justify-content-end" id="navbar">
         <div class="navbar-nav">
           <li class="nav-item dropdown d-lg-none">
-            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="" aria-expanded="false">Skema</a>
+            <a class="nav-link dropdown-toggle hover" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">Kelola LSP</a>
             <ul class="dropdown-menu" id="navbar-skema">
-              <li><a class="dropdown-item" href="<?php echo base_url("Controller_Admin/table/tbskema/skema_table") ?>">Verifikasi</a>
-              </li>
-              <li><a class="dropdown-item" href="<?php echo base_url("Controller_Admin/grafik") ?>">Grafik</a>
-              <li>
+              <li><a class="dropdown-item" href="<?php echo base_url("controller_admin/jurusan") ?>">Data Jurusan</a></li>
+              <li><a class="dropdown-item" href="<?php echo base_url("controller_admin/prodi") ?>">Data Program Studi</a><li>
+              <li><a class="dropdown-item" href="<?php echo base_url("controller_admin/skema") ?>">Data Skema</a><li>
             </ul>
           </li>
           <li class="nav-item dropdown d-lg-none">
-            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Pegawai LSP</a>
+            <a class="nav-link dropdown-toggle hover" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">Kelola User</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="<?php echo base_url("Controller_Admin/table/tbpegawai/pegawai_table") ?>">DataPegawai</a></li>
-              <li><a class="dropdown-item" href="<?php echo base_url("Controller_Admin/formPegawai") ?>">Tambah</a></li>
+              <li><a class="dropdown-item" href="<?php echo base_url("controller_admin/pegawai") ?>">Kelola Pegawai</a></li>
+              <li><a class="dropdown-item" href="<?php echo base_url("controller_admin/asesi") ?>">Kelola Asesi</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown d-lg-none">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Asesi</a>
+            <a class="nav-link dropdown-toggle hover" data-bs-toggle="dropdown" data-bs-auto-close="outside"aria-expanded="false">Asesi</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="<?php echo base_url("Controller_Admin/table/tbasesi/asesi_table") ?>">Verifikasi</a></li>
-              <li><a class="dropdown-item" href="<?php echo base_url("Controller_Admin/table/tbasesi/asesi_table") ?>">Berkas</a></li>
+              <li><a class="dropdown-item" href="<?php echo base_url("controller_admin/home") ?>">Verifikasi</a></li>
+              <li><a class="dropdown-item" href="<?php echo base_url("controller_admin/home") ?>">Berkas</a></li>
             </ul>
           </li>
           <a class="nav-link hover" style="" onclick="logout()">Logout</a>
         </div>
       </div>
-
     </div>
   </nav>
-
-  <!-- sidebar-style -->
-  <style>
-    .hover:hover {cursor: pointer;}
-    .sidebar-hover:hover {
-      background-color: #ccc;
-      cursor: pointer;
-      color: black;
-    }
-    .sidebar-active {
-      background-color: #ddd;
-      cursor: pointer;
-    }
-    .sidebar-active-list {
-      background-color: #eaeaea;
-      cursor: pointer;
-      color: black;
-    }
-  </style>
+  <!-- END-OF-NAVBAR -->
 
   <!-- SIDEBAR -->
-  <main class="d-none d-lg-flex  position-fixed h-100" style="width: 18%; padding-top: 56px;">
+  <main class="d-none d-lg-flex position-fixed h-100 border-end" style="width: 18%; padding-top: 56px;">
     <ul class="nav flex-column w-100">
-      <!-- SIDEBAR-SKEMA -->
+
+      <!-- SIDEBAR-LSP -->
       <li class="sidebar-hover nav-item icon-link icon-link-hover d-flex justify-content-between w-100 pe-4"
-        data-bs-target="#sidebar-skema-list" data-bs-toggle="collapse" id="sidebar-skema">
-        <a class="navbar-toggle text-reset nav-link">
-          Skema </a>
+        data-bs-target="#sidebar-lsp-list" data-bs-toggle="collapse" id="sidebar-lsp">
+        <a class="navbar-toggle text-reset nav-link fw-semibold">
+          Kelola LSP</a>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class=" bi-chevron-down"
           viewBox="0 0 16 16">
           <path fill-rule="evenodd"
             d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+        </svg>
+      </li>
+      <!-- SIDEBAR-LSP-LIST -->
+      <div class="show" id="sidebar-lsp-list">
+        <li class="sidebar-hover nav-item" id="sidebar-lsp-jurusan">
+          <a class="nav-link active text-reset d-flex align-items-center justify-content-between ps-4 pe-4"
+            href="<?php echo base_url("controller_admin/jurusan") ?>">
+            Data Jurusan
+          </a>
+        </li>
+        <li class="sidebar-hover nav-item" id="sidebar-lsp-prodi">
+          <a class="nav-link text-reset ps-4" href="<?php echo base_url("controller_admin/prodi") ?>">
+            Data Program Studi
+          </a>
+        </li>
+        <li class="sidebar-hover nav-item" id="sidebar-lsp-skema">
+          <a class="nav-link text-reset ps-4" href="<?php echo base_url("controller_admin/skema") ?>">
+            Data Skema
+
+            <?php
+            $this->db->where('verifikasiSkema', null);
+            $this->db->from('tbskema');
+
+            $result = $this->db->count_all_results();
+            if ($result > 0) {
+              echo "<span class='badge bg-primary rounded-pill'>" . $result . "</span>";
+            }
+            ?>
+          </a>
+        </li>
+      </div>
+      <!-- END-OF-LSP-LIST -->
+
+      <!-- SIDEBAR-USER -->
+      <li class="sidebar-hover nav-item icon-link d-flex justify-content-between w-100 pe-4" id="sidebar-user"
+        data-bs-target="#sidebar-user-list" data-bs-toggle="collapse">
+        <a class="navbar-toggle text-reset nav-link fw-semibold">
+          Kelola User</a>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class=" bi-chevron-down"
+          viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+        </svg>
+      </li>
+      <!-- SIDEBAR-USER-LIST -->
+      <div class="show" id="sidebar-user-list">
+        <li class="sidebar-hover nav-item" id="sidebar-user-pegawai">
+          <a class="ps-4 nav-link text-reset"
+            href="<?php echo base_url("controller_admin/pegawai") ?>">
+            Kelola Pegawai
+          </a>
+        </li>
+        <li class="sidebar-hover nav-item" id="sidebar-user-asesi">
+          <a class="ps-4 nav-link text-reset" href="<?php echo base_url("controller_admin/asesi") ?>">
+            Kelola Asesi
+          </a>
+        </li>
+      </div>
+      <!-- ENDOF-SIDEBAR-USER-LIST -->
+
+      <!-- SIDEBAR-SKEMA -->
+      <li class="sidebar-hover nav-item icon-link d-flex justify-content-between w-100 pe-4" id="sidebar-asesi"
+        data-bs-target="#sidebar-asesi-list" data-bs-toggle="collapse">
+        <a class="navbar-toggle text-reset nav-link fw-semibold">Kelola Skema</a>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class=" bi-chevron-down" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
         </svg>
       </li>
       <!-- SIDEBAR-SKEMA-LIST -->
-      <div class="show" id="sidebar-skema-list">
-        <li class="sidebar-hover nav-item" id="sidebar-skema-verifikasi">
-          <a class="nav-link active text-reset d-flex align-items-center justify-content-between ps-4 pe-4"
-            href="<?php echo base_url("Controller_Admin/table/tbskema/skema_table") ?>">
-            Verifikasi
-
-            <?php
-                $this->db->where('verifikasiSkema', null);
-                $this->db->from('tbskema');
-                
-                $result = $this->db->count_all_results();
-                if ($result > 0 ) {
-                echo "<span class='badge bg-primary rounded-pill'>".$result."</span>"; 
-                }
-              ?>
-          </a>
-        </li>
-        <li class="sidebar-hover nav-item" id="sidebar-skema-grafik">
-          <a class="nav-link text-reset ps-4" style="" href="<?php echo base_url("Controller_Admin/grafik") ?>">
-            Grafik
-          </a>
-        </li>
-      </div>
-      <!-- SIDEBAR-PEGAWAI -->
-      <li class="sidebar-hover nav-item icon-link d-flex justify-content-between w-100 pe-4" id="sidebar-pegawai"
-        data-bs-target="#sidebar-pegawai-list" data-bs-toggle="collapse">
-        <a class="navbar-toggle text-reset nav-link">
-          Pegawai LSP </a>
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class=" bi-chevron-down"
-          viewBox="0 0 16 16">
-          <path fill-rule="evenodd"
-            d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
-        </svg>
-      </li>
-      <div class="show" id="sidebar-pegawai-list">
-        <li class="sidebar-hover nav-item" id="sidebar-pegawai-data">
-          <a class="ps-4 nav-link text-reset" href="<?php echo base_url("Controller_Admin/table/tbpegawai/pegawai_table") ?>">
-            Data Pegawai
-          </a>
-        </li>
-        <li class="sidebar-hover nav-item" id="sidebar-pegawai-tambah">
-          <a class="ps-4 nav-link text-reset" href="<?php echo base_url("Controller_Admin/formPegawai") ?>">
-            Tambah
-          </a>
-        </li>
-      </div>
-      <!-- SIDEBAR-ASESI -->
-      <li class="sidebar-hover nav-item icon-link d-flex justify-content-between w-100 pe-4" id="sidebar-asesi"
-        data-bs-target="#sidebar-asesi-list" data-bs-toggle="collapse">
-        <a class="navbar-toggle text-reset nav-link">Asesi</a>
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class=" bi-chevron-down"
-          viewBox="0 0 16 16">
-          <path fill-rule="evenodd"
-            d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
-        </svg>
-      </li>
-      <!-- SIDEBAR-ASESI-LIST -->
       <div class="show" id="sidebar-asesi-list">
         <li class="sidebar-hover nav-item" id="sidebar-asesi-verifikasi">
-          <a class="ps-4 nav-link text-reset" href="<?php echo base_url("Controller_Admin/table/tbasesi/asesi_table") ?>">
-            Verifikasi
-          </a>
+          <a class="ps-4 nav-link text-reset" href="<?php echo base_url("controller_admin/home") ?>">Jadwal Skema</a>
         </li>
         <li class="sidebar-hover nav-item" id="sidebar-asesi-berkas">
-          <a class="ps-4 nav-link text-reset" href="<?php echo base_url("Controller_Admin/table/tbasesi/asesi_table") ?>">
-            Berkas
-          </a>
+          <a class="ps-4 nav-link text-reset" href="<?php echo base_url("controller_admin/home") ?>">Berkas</a>
         </li>
+      </div>
+      <!-- END-OF-SIDEBAR-ASESI-LIST -->
+
     </ul>
   </main>
-
+<!-- END-OF-SIDEBAR -->
 
   <div class="container-fluid row " style="padding-top: 5rem;">
     <div class="col-auto d-none d-lg-block" style="width: 18%;"></div>
-    <main class="col ps-4">
+    <main class="col ps-5">
       <?php
       if (!empty($table)) {
         echo $table;
       } else if (!empty($formPegawai)) {
         echo $formPegawai;
-      } else if (!empty($grafik)) {
-        echo $grafik;
+      } else if (!empty($home)) {
+        echo $home;
       } else {
-        echo $card;
+        echo "tes";
       }
       ?>
     </main>
@@ -190,7 +176,38 @@
       }
     }
   </script>
+
+  <!-- style -->
+  <style>
+    .hover:hover {
+      cursor: pointer;
+    }
+
+    .sidebar-hover:hover {
+      background-color: #ccc;
+      cursor: pointer;
+      color: black;
+    }
+
+    .sidebar-active {
+      background-color: #ddd;
+      cursor: pointer;
+    }
+
+    .sidebar-active-list {
+      background-color: #eaeaea;
+      cursor: pointer;
+      color: black;
+    }
+  </style>
+
   <!-- ajax -->
+  <div id="script"></div>
+    <script src="http://localhost/LSP/jquery/app.js"></script>
+    <script language="javascript">
+        var site = "http://localhost/LSP/index.php/";
+        var loading_image_large = "http://localhost/LSP/gambar/loading_large.gif";
+    </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
 </body>

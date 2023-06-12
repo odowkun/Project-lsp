@@ -23,8 +23,8 @@
 				);
 				$this->session->set_userdata($session);
 				
-                if($level == "0"){
-                    redirect('Controller_Dashboard/admin');
+                if($level == "0") {
+                    redirect('controller_admin/home');
                 }else if($level == "1"){
                     redirect('Controller_Dashboard/pegawai');  
                 }else if($level == "2"){
