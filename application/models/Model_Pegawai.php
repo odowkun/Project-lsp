@@ -58,6 +58,7 @@
         }
 
         function hapusskema($kodeSkema){
+            $this->db->delete('tbjadwal', array('kodeSkema' => $kodeSkema));
             $this->db->delete('tbunit', array('kodeSkema' => $kodeSkema));
 			$this->db->delete('tbskema', array('kodeSkema' => $kodeSkema));
 		}
@@ -106,6 +107,13 @@
 			redirect('controller_pegawai/formdaftarunit/'.$id.'');
             
         }
+
+        function hapusunit($kodeUnit){
+            $query=$this->db->get_where('tbunit', array('kodeUnit' => $kodeUnit));
+            $id=$query->row('kodeSkema');
+            $this->db->delete('tbunit', array('kodeUnit' => $kodeUnit));
+            redirect('controller_pegawai/formdaftarunit/'.$id.'');
+		}
         
 		function editunit($kodeUnit){
 			$query=$this->db->get_where('tbunit', array('kodeUnit' => $kodeUnit));
@@ -114,6 +122,7 @@
 				echo "<script>$('#kodeUnit').val('".$data->kodeUnit."');</script>";
 				echo "<script>$('#judulUnit').val('".$data->judulUnit."');</script>";	
 				echo "<script>$('#jenisStandar').val('".$data->jenisStandar."');</script>";
+				echo "<script>$('#kodeSkema').val('".$data->kodeSkema."');</script>";
 			}
 		}
 

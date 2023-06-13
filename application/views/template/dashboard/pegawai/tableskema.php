@@ -58,7 +58,7 @@
                 </tr>
                 <tr>
                     <td colspan="6">
-                            <button type="button" class="btn btn-success btn-sm" onclick="daftarunit(<?php echo $data->kodeSkema ?>)">Tambahkan Unit Skema</button>
+                            <button type="button" class="btn btn-success btn-sm" onclick="daftarunit('<?php echo $data->kodeSkema; ?>');">Tambahkan Unit Skema</button>
                         
                     </td>
                 </tr>

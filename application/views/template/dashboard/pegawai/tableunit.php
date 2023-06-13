@@ -1,4 +1,9 @@
 <script language="javascript">
+    function hapusunit(kodeUnit){
+        if(confirm("Apakah yakin menghapus unit ini?")){
+			window.open("<?php echo base_url(); ?>controller_pegawai/hapusunit/"+kodeUnit,"_self");
+        }
+    }
 	
 	function editunit(kodeUnit){
 		load("controller_pegawai/editunit/"+kodeUnit,"#script");	
@@ -38,7 +43,8 @@
                 <td><?php echo $data->jenisStandar;  ?></td>
                 <td><?php echo $data->kodeSkema;  ?></td>
                 <td>
-                    <button type="button" class="btn btn-primary btn-sm" onclick="editunit(<?php echo $data->kodeUnit; ?>)">Edit</button>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="editunit('<?php echo $data->kodeUnit; ?>');">Edit</button>
+                    <button type="button" class="btn btn-danger btn-sm" onclick="hapusunit('<?php echo $data->kodeUnit; ?>');">Hapus</button>
                 </td>
             </tr>
             <?php

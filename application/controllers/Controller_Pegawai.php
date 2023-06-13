@@ -51,6 +51,10 @@
 			redirect('controller_pegawai/formdaftarskema');
 		}
 
+        function hapusunit($kodeUnit){
+			$this->model_pegawai->hapusunit($kodeUnit);
+		}
+
         function hapusjadwal($idjadwal){
 			$this->model_pegawai->hapusjadwal($idjadwal);
 			redirect('controller_pegawai/formdaftarjadwal');
