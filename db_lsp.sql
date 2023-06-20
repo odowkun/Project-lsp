@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 14 Bulan Mei 2023 pada 11.55
+-- Waktu pembuatan: 20 Jun 2023 pada 06.53
 -- Versi server: 10.4.27-MariaDB
 -- Versi PHP: 8.1.12
 
@@ -110,7 +110,8 @@ CREATE TABLE `tbjadwal` (
   `kodeSkema` varchar(20) NOT NULL,
   `periodeMulai` date NOT NULL,
   `periodeSelesai` date NOT NULL,
-  `tempat` varchar(255) NOT NULL
+  `tempat` varchar(255) NOT NULL,
+  `limit` smallint(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -154,12 +155,12 @@ CREATE TABLE `tblogin` (
 --
 
 INSERT INTO `tblogin` (`username`, `password`, `level`) VALUES
+('197801112002121003', '12345', '0'),
+('197801112002121005', '12345', '0'),
 ('2115354066', 'XQLB', '2'),
-('2115354070', 'MD86', '2'),
 ('admin', '12345', '0'),
 ('asesi', '12345', '2'),
-('pegawai', '12345', '1'),
-('197801112002121003', '12345', '0');
+('pegawai', '12345', '1');
 
 -- --------------------------------------------------------
 
@@ -222,7 +223,8 @@ CREATE TABLE `tbskema` (
 --
 
 INSERT INTO `tbskema` (`kodeSkema`, `namaSkema`, `idJurusan`, `biaya`, `kapasitasPeserta`, `keterangan`, `nipAdmin`, `verifikasiSkema`, `nipPegawai`, `templateFile`) VALUES
-('1', 'gaje', 1, 2000000, 200, 'gatau', NULL, NULL, '197801112002121000', 'a');
+('1', 'gaje', 1, 2000000, 200, 'gatau', '197801112002121003', NULL, '197801112002121000', 'a'),
+('2', 'gaktau', 4, 2000000, 100, 'males', '197801112002121003', 'Terima', '122223233', 'a');
 
 -- --------------------------------------------------------
 
@@ -233,6 +235,7 @@ INSERT INTO `tbskema` (`kodeSkema`, `namaSkema`, `idJurusan`, `biaya`, `kapasita
 CREATE TABLE `tbujian` (
   `idUjian` tinyint(4) NOT NULL,
   `idjadwal` tinyint(4) NOT NULL,
+  `verifikasiDaftar` enum('Daftar','Batal') DEFAULT NULL,
   `nim` char(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
