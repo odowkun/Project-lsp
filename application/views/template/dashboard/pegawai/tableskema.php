@@ -11,7 +11,7 @@
 	}
 
     function daftarunit(kodeSkema){
-        window.open("<?php echo base_url(); ?>controller_pegawai/formdaftarunit/"+kodeSkema,"_self");
+        window.open("<?php echo base_url(); ?>controller_pegawai/unit/"+kodeSkema,"_self");
     }
 
 	
@@ -25,11 +25,13 @@
         <table class="table table-hover table-responsive">
             <thead class="bg-info">
                 <tr>
-                    <th width="150">Nama Skema</th>
+                    <th>No</th>
+                    <th>Nama Skema</th>
                     <th>ID Jurusan</th>
                     <th>Biaya</th>
-                    <th width="75">Kapasitas Peserta</th>
+                    <th>Kapasitas</th>
                     <th>Keterangan</th>
+                    <th>Status</th>
                     <th width="120">Aksi</th>
                 </tr>
             </thead>
@@ -38,7 +40,7 @@
                     if(empty($hasil)){
                         ?>
                             <tr>
-                                <td colspan="10" align="center">Data Kosong</td>
+                                <td colspan="8" align="center">Data Kosong</td>
                             </tr>
                         <?php
                     } else{
@@ -46,23 +48,33 @@
                         foreach($hasil as $data):
                 ?>
                 <tr>
+                    <td><?php echo $no;  ?></td>
                     <td><?php echo $data->namaSkema;  ?></td>
                     <td><?php echo $data->idJurusan;  ?></td>
                     <td><?php echo $data->biaya;  ?></td>
                     <td><?php echo $data->kapasitasPeserta;  ?></td>
                     <td><?php echo $data->keterangan;  ?></td>
                     <td>
+                        <select class="form-select" name="verifikasiSkema" id="verifikasiSkema" disabled>
+                            <option value=''>Pilih</option>
+                            <option value='Terima'  <?php echo ($data->verifikasiSkema === 'Terima') ?  'selected' : ''; ?>>Aktif</option>
+                            <option value='Terima'  <?php echo ($data->verifikasiSkema === 'Tolak') ?  'selected' : ''; ?>>Tolak</option>
+                        </select>
+                    </td>
+                    <td>
                         <button type="button" class="btn btn-primary btn-sm" onclick="editskema('<?php echo $data->kodeSkema; ?>');">Edit</button>
                         <button type="button" class="btn btn-danger btn-sm" onclick="hapusskema('<?php echo $data->kodeSkema; ?>');">Hapus</button>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="6">
+                    <td colspan="8">
                             <button type="button" class="btn btn-success btn-sm" onclick="daftarunit('<?php echo $data->kodeSkema; ?>');">Tambahkan Unit Skema</button>
-                        
+                            <button type="button" class="btn btn-info btn-sm">Lampiran</button>
+                            <button type="button" class="btn btn-primary btn-sm">Detail Skema</button>
                     </td>
                 </tr>
                 <?php
+                        $no++;
                         endforeach;
                     }
                 ?>

@@ -58,7 +58,7 @@
                      <?php echo $data->biaya ?>
                   </td>
                   <td>
-                     <?php echo $data->kapasitasPeserta ?>
+                     <?php //echo $data->kapasitasPeserta ?>
                   </td>
                   <td>
                      <?php echo $data->keterangan ?>
