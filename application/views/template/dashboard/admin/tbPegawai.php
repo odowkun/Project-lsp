@@ -9,6 +9,7 @@
       }   }
 
    function editPegawai(nipPegawai) {
+      $(window).scrollTop(0)
       load("controller_admin/editpegawai/"+nipPegawai, "#script")
    }
 </script>
@@ -97,13 +98,13 @@
             foreach ($hasil as $data):
                $date=date_create($data->tanggalLahir);
          ?>
-            <tr>
-               <td><?php echo $data->nipPegawai ?></td>
+            <tr ondblclick="editPegawai(<?php echo $data->nipPegawai ?>)">
+               <td><?php echo $data->nipPegawai?></td>
                <td><?php echo $data->namaPegawai?></td>
                <td><?php echo $data->jenisKelamin?></td>
                <td><?php echo $data->noHP?></td>
                <td><?php echo $data->tempatLahir?></td>
-               <td><?php echo date_format($date,"d M Y");?></td>
+               <td><?php echo date_format($date,"d M Y")?></td>
                <td>
                   <button class="btn btn-success" onclick="editPegawai(<?php echo $data->nipPegawai ?>)">Edit</button>
                   <button class="btn btn-danger" onclick="hapusPegawai(<?php echo $data->nipPegawai ?>, '<?php echo $data->namaPegawai ?>')">Hapus</button>

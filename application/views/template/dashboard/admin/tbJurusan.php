@@ -9,6 +9,7 @@
    }
 
    function editJurusan(idJurusan){
+      $(window).scrollTop(0)
       load("Controller_Admin/editJurusan/"+idJurusan,"#script");
    }
 </script>
@@ -71,7 +72,7 @@ if (!empty($pesan)) {
       if (!empty($hasil)) {
          $i = 1;
          foreach ($hasil as $data): ?>
-      <tr>
+      <tr ondblclick="editJurusan(<?php echo $data->idJurusan ?>)">
          <td><?php echo $i?></td>
          <td><?php echo $data->namaJurusan?></td>
          <td>

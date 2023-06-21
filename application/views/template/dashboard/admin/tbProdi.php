@@ -9,6 +9,7 @@
    }
    
    function editProdi(idProdi){
+      $(window).scrollTop(0)
       load("Controller_Admin/editProdi/"+idProdi,"#script")
    }
 </script>
@@ -86,7 +87,7 @@ if (!empty($pesan)) {
          <th>ID</th>
          <th>Nama Prodi</th>
          <th>Jurusan</th>
-         <th>Aksi</th>
+         <th></th>
       </tr>
    </thead>
    <tbody>
@@ -94,7 +95,7 @@ if (!empty($pesan)) {
          if (!empty($hasil)) {
             $i=1;
             foreach ($hasil as $data) : ?>
-      <tr>
+      <tr ondblclick="editProdi(<?php echo $data->idProdi ?>)">
          <td>
             <?php echo $i?>
          </td>
@@ -110,10 +111,9 @@ if (!empty($pesan)) {
                ->select('namaJurusan')
                ->from('tbJurusan')
                ->where('idJurusan', $data->idJurusan)
-               ->get();
-            foreach($query->result() as $namaJurusan):
-               echo $namaJurusan->namaJurusan;
-            endforeach;            
+               ->get()
+               ->result();
+               echo $query[0]->namaJurusan;         
             ?>
          </td>
          <td>

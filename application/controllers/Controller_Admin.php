@@ -28,6 +28,12 @@
          $data['table'] = $this->table("tbskema");
          $this->load->view('template/dashboard/admin/index', $data);
       }
+      function detail($kodeSkema) {
+         $tabel['unit'] = $this->Model_Admin->tableWhere("tbUnit", array("kodeSkema"=>$kodeSkema));
+         $tabel['skema'] = $this->Model_Admin->tableWhere("tbSkema", array("kodeSkema"=>$kodeSkema));
+         $data['table'] = $this->load->view("template/dashboard/admin/detailskema", $tabel, TRUE);
+         $this->load->view('template/dashboard/admin/index', $data);
+      }
       function pegawai() {
          $data['table'] = $this->table("tbpegawai");
          $this->load->view('template/dashboard/admin/index', $data);
@@ -40,21 +46,27 @@
       // =============================================== TABEL
       
       function home() {
-         $this->table("tbskema");
-         $this->table("tbasesi");
-         $data['home']=$this->load->view('template/dashboard/admin/home', '', TRUE);
+         $tabel['skema'] = $this->Model_Admin->tableSkema();
+         $tabel['asesi'] = $this->Model_Admin->table("tbasesi");
+         $tabel['lgrafik'] = $this->Model_Admin->lgrafik();
+         $tabel['dgrafik'] = $this->Model_Admin->dgrafik();
+         $data['home']=$this->load->view('template/dashboard/admin/home', $tabel, TRUE);
          $this->load->view('template/dashboard/admin/index', $data);
       }
       
-      function updateSkema($kodeSkema) {
-         $this->Model_Admin->updateSkema($kodeSkema);
+      function updateSkema($kodeSkema, $pilih) {
+         $this->Model_Admin->updateSkema($kodeSkema, $pilih);
+      }
+
+      function fileSkema($kodeSkema) {
+         echo "File Pendukung";
       }
       
       // =============================================== PEGAWAI
       function submitPegawai() {
          $pass = $this->Model_Regis->password();
          $this->Model_Admin->submitPegawai($pass);
-         redirect('controller_admin/pegawai');
+         $this->pegawai();
       }
 
       function editPegawai($nipPegawai) {
@@ -63,12 +75,20 @@
       
       function hapusPegawai($nipPegawai) {
          $this->Model_Admin->hapuspegawai($nipPegawai);
-         redirect("controller_admin/pegawai");
+         $this->pegawai();
       }
 
       // ============================================== ASESI
-      function editAsesi($nim) {
-         $this->Model_Admin->editAsesi($nim);
+      function submitAsesi() {
+         $pass = $this->Model_Regis->password();
+         $this->Model_Admin->submitAsesi();
+         $this->asesi();
+      }
+      function detailAsesi($nim) {
+         $tabel['skema'] = $this->Model_Admin->detailAsesi($nim);
+         $tabel['asesi'] = $this->Model_Admin->tableWhere('tbasesi', array('nim'=>$nim));
+         $data['table'] = $this->load->view("template/dashboard/admin/detailAsesi", $tabel, TRUE);
+         $this->load->view("template/dashboard/admin/index", $data);
       }
 
       // ============================================== JURUSAN
@@ -102,8 +122,10 @@
          $this->Model_Admin->editProdi($idProdi);
       }
 
-      function tes($idProdi) {
-         $this->Model_Admin->tes($idProdi);
+      function tes($nim) {
+         $tabel['asesi'] = $this->Model_Admin->detailAsesi($nim);
+         // $data['table'] = $this->load->view("template/dashboard/admin/detailAsesi", $tabel, TRUE);
+         // $this->load->view("template/dashboard/admin/index", $data);
       }
    }
 ?>

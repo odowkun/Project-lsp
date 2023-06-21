@@ -88,8 +88,7 @@
             Data Skema
 
             <?php
-            $this->db->where('verifikasiSkema', null);
-            $this->db->from('tbskema');
+            $this->db->where('verifikasiSkema', null)->from('tbskema');
 
             $result = $this->db->count_all_results();
             if ($result > 0) {
@@ -161,9 +160,7 @@
         echo $formPegawai;
       } else if (!empty($home)) {
         echo $home;
-      } else {
-        echo "tes";
-      }
+      } 
       ?>
     </main>
   </div>

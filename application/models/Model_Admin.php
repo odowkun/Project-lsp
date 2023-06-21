@@ -3,30 +3,54 @@
 	{
    
    	function table($namaTabel)	{
-			$sql="select * from ". $namaTabel;
-			$query=$this->db->query($sql);
-			if ($query->num_rows() > 0) {
-				foreach($query->result() as $data) {
-					$hasil[]=$data;	
-				}
-			} else {
-				$hasil="";
+			return $this->db->get($namaTabel)->result();
+		}
+		function tableWhere($namaTabel, $where) {
+			return $this->db->get_where($namaTabel, $where)->result();
+		}
+   	function tableSkema()	{
+			return $this->db
+			->select("count(tbskema.idJurusan) as jumlah, namaJurusan")
+			->from("tbSkema")
+			->join("tbjurusan", "tbskema.idJurusan = tbJurusan.idJurusan")
+			->group_by("tbskema.idJurusan")
+			->get()
+			->result();
+		}
+		function grafik() {
+			return $this->db
+			->select();
+		}
+
+		function lgrafik() {
+			$query = $this->tableSkema();
+			$string = "";
+			foreach ($query as $data) {
+				$string .= "'".$data->namaJurusan."', ";
 			}
-			return $hasil;	
+			return $string;
+		}
+		function dgrafik() {
+			$query = $this->tableSkema();
+			$string = "";
+			foreach ($query as $data) {
+				$string .= "'".$data->jumlah."', ";
+			}
+			return $string;
 		}
 
 		// ============================ SKEMA ============================
 
-		function updateSkema($kodeSkema) {
+		function updateSkema($kodeSkema, $pilih) {
 			//data yang diedit
 			$data['nipAdmin'] = $this->session->userdata('Username');
-			$data['verifikasiSkema']= $_POST['verifikasiSkema'];
+			$data['verifikasiSkema']= $pilih;
 
 			//update tbskema set $data where 
 			$this->db->where('kodeSkema', $kodeSkema);
 			$this->db->update('tbskema', $data);
 
-			$this->session->set_flashdata('pesan','Data Berhasil Diedit');
+			$this->session->set_flashdata('pesan','Data Berhasil Disimpan!');
 			redirect(base_url('controller_admin/skema'));
 		}
 
@@ -72,18 +96,47 @@
 		}
 		
 		// ============================ ASESI =============================
-		function editAsesi($nim) {
-			$query=$this->db->get_where('tbasesi', array('nim'=>$nim));
-			if ($query->num_rows()>0){
-				$data=$query->row();
-				echo "<script>$('#nim').val('".$data->nim."');</script>";
-				echo "<script>$('#namaAsesi').val('".$data->namaAsesi."');</script>";	
-				echo "<script>$('#smester').val('".$data->smester."');</script>";
-				echo "<script>$('#email').val('".$data->email."');</script>";
-				echo "<script>$('#jurusan').val('".$data->jurusan."');</script>";
-				echo "<script>$('#prodi').val('".$data->prodi."');</script>";
+		function submitAsesi($pass) {
+			$data=$_POST;
+			$master = $this->db->get_where('masterdata', array('nim'=>$data['nim']));
+			if ($master->num_rows() > 0) {
+				$login = $this->db->get_where('tblogin', array('nim'=>$data['nim']));
+				if (!$login->num_rows()>0) {
+					if($master[0]->smester > 7) {
+						$data['password']=$pass;
+						$this->db->insert('tbasesi',$data);
+			
+						$dataLogin = array(
+							'username' => $data['nim'],
+							'password' => $data['password'],
+							'level' => '2'
+						);
+						// $this->db->insert('tblogin',$dataLogin);
+						$this->session->set_flashdata('pesan','Data Berhasil Ditambahkan! Password : '.$pass);
+					} else {
+						$this->session->set_flashdata('pesan', 'Mahasiswa harus semester 7 keatas!');
+					}
+				} else {
+					$this->session->set_flashdata('pesan', 'NIM Sudah mendaftar');
+				}
+			} else {
+				$this->session->set_flashdata('pesan', 'NIM Tidak Terdaftar!');
 			}
 		}
+
+		function detailAsesi($nim) {
+			return  $this->db
+			->select('tbskema.kodeSkema, namaSkema, periodeMulai, periodeSelesai, tempat, verifikasiDaftar')
+			->from("tbdatakelengkapan")
+			->join('tbujian', 'tbujian.idujian = tbdatakelengkapan.idujian')
+			->join('tbjadwal', 'tbjadwal.idjadwal = tbujian.idjadwal')
+			->join('tbskema', 'tbskema.kodeSkema = tbjadwal.kodeSkema')
+			->where('tbujian.nim', $nim)
+			->get()
+			->result();
+			var_dump($query);
+		}
+
 
 		// ============================ JURUSAN ============================
 		function submitJurusan() {

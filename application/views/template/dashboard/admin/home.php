@@ -1,3 +1,9 @@
+<script>
+   function cek(nim) {
+      window.open("<?php echo base_url(); ?>controller_admin/detailasesi/"+nim,"_self");
+   }
+</script>
+
 <div class="bg-primary-subtle p-2 rounded mb-4 ps-3" style="margin-left: -15px;">
    Selamat Datang, Admin
 </div>
@@ -23,11 +29,20 @@
             <td>Nama Jurusan</td>
             <td>Jumlah Skema</td>
          </tr>
-         <tr>
-            <td>1</td>
-            <td>Akutansi</td>
-            <td>10 Skema</td>
-         </tr>
+         <?php
+         if (!empty($skema)) {
+            $i = 1;
+            foreach ($skema as $data): ?>
+            <tr>
+               <td><?php echo $i ?></td>
+               <td><?php echo $data->namaJurusan ?></td>
+               <td><?php echo $data->jumlah ?></td>
+            </tr>
+         <?php
+            $i++;
+            endforeach;
+         }
+         ?>
       </table>
    </div>
 
@@ -40,9 +55,9 @@
    var myChart = new Chart(ctx, {
    type: 'bar',
    data: {
-      labels: ["Skema1", "Skema2", "Skema3", "Skema4", "Skema5", "Skema6"],
+      labels: [<?php echo $lgrafik?>],
       datasets: [{
-         data: [10, 32, 17, 21, 12, 23],
+         data: [<?php echo $dgrafik ?>],
          lineTension: 2,
          backgroundColor: '#007bff',
       }]
@@ -75,18 +90,23 @@
             <th>Nama Skema</th>
             <th>Status FR.APL.01</th>
          </tr>
-         <tr>
+         <?php
+         $i = 1;
+         if(!empty($asesi)) {
+            foreach ($asesi as $data) : ?>
+         <tr ondblclick="cek(<?php echo $data->nim?>)">
+            <td><?php echo $i ?></td>
+            <td><?php echo $data->nim?></td>
+            <td><?php echo $data->namaAsesi?></td>
+            <td><?php echo $data->jurusan?></td>
+            <td><?php echo ""?></td>
+            <td><span class="badge bg-secondary fw-normal">Belum Dicek</span></td>
          </tr>
-         <tr>
-            <td>1</td>
-            <td>21123123123</td>
-            <td>Anan</td>
-            <td>Teknik Elektro</td>
-            <td>Web Programming</td>
-            <td>
-               <span class="badge bg-success fw-semibold">Diterima</span>
-            </td>
-         </tr>
+         <?php
+         $i++;
+            endforeach;
+         }
+         ?>
       </table>
    </div>
 </div>
