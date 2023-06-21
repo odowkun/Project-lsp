@@ -16,7 +16,7 @@ class Controller_Dashboard extends CI_Controller
         }	
         function pegawai()
         {
-            $this->load->view('template/dashboard/pegawai/dashboardpegawai');	
+            $this->load->view('template/dashboard/pegawai/index');	
         }	
         function asesi()
         {

@@ -17,14 +17,14 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown">Skema</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="<?php echo base_url('controller_pegawai/formdaftarskema'); ?>">Kelola Skema</a></li>
+                                <li><a class="dropdown-item" href="<?php echo base_url('controller_pegawai/skema'); ?>">Kelola Skema</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown">Sertifikasi</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="<?php echo base_url('controller_pegawai/formdaftarjadwal'); ?>">Jadwal Sertifikasi</a></li>
-                                <li><a class="dropdown-item" href="">Pendaftaran Sertifikasi</a></li>
+                                <li><a class="dropdown-item" href="<?php echo base_url('controller_pegawai/jadwal'); ?>">Jadwal Sertifikasi</a></li>
+                                <li><a class="dropdown-item" href="<?php echo base_url('controller_pegawai/verifikasi'); ?>">Verifikasi Sertifikasi</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">

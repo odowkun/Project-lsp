@@ -17,7 +17,7 @@
     <table class="table table-hover">
         <thead class="bg-info">
             <tr>
-                <th width="50">ID Jadwal</th>
+                <th width="50">ID</th>
                 <th>Kode Skema</th>
                 <th>Periode Mulai</th>
                 <th>Periode Selesai</th>

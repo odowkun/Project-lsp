@@ -1,6 +1,7 @@
 <?php
     class Model_Pegawai extends CI_Model{
 
+        //============================== DATA ==============================
         function datajurusan(){
             $this->db->select('idJurusan, namaJurusan');
             $query=$this->db->get('tbjurusan');
@@ -16,6 +17,7 @@
 
         function dataskema(){
             $this->db->select('kodeSkema, namaSkema');
+            $this->db->where('verifikasiSkema', 'Terima');
             $query=$this->db->get('tbskema');
             if($query->num_rows()>0){
                 foreach($query->result() as $data){
@@ -26,7 +28,9 @@
             }
             return $hasil;
         }
+        //==================================================================
 
+        //============================== SKEMA ==============================
         function tampilskema(){
             $query=$this->db->get('tbskema');
             if($query->num_rows()>0){
@@ -58,8 +62,8 @@
         }
 
         function hapusskema($kodeSkema){
-            $this->db->delete('tbjadwal', array('kodeSkema' => $kodeSkema));
             $this->db->delete('tbunit', array('kodeSkema' => $kodeSkema));
+            $this->db->delete('tbjadwal', array('kodeSkema' => $kodeSkema));
 			$this->db->delete('tbskema', array('kodeSkema' => $kodeSkema));
 		}
         
@@ -71,11 +75,12 @@
 				echo "<script>$('#namaSkema').val('".$data->namaSkema."');</script>";	
 				echo "<script>$('#idJurusan').val('".$data->idJurusan."');</script>";
 				echo "<script>$('#biaya').val('".$data->biaya."');</script>";
-				echo "<script>$('#kapasitasPeserta').val('".$data->kapasitasPeserta."');</script>";
 				echo "<script>$('#keterangan').val('".$data->keterangan."');</script>";
 			}
 		}
+        //===================================================================
 
+        //============================== UNIT ==============================
         function tampilunit($kodeSkema){
             $query=$this->db->get_where('tbunit', array('kodeSkema' => $kodeSkema));
             if($query->num_rows()>0){
@@ -104,7 +109,7 @@
                 $this->db->update('tbunit',$data);
 				$this->session->set_flashdata('pesan','Data sudah diedit');
             }
-			redirect('controller_pegawai/formdaftarunit/'.$id.'');
+			redirect('controller_pegawai/unit/'.$id.'');
             
         }
 
@@ -112,7 +117,7 @@
             $query=$this->db->get_where('tbunit', array('kodeUnit' => $kodeUnit));
             $id=$query->row('kodeSkema');
             $this->db->delete('tbunit', array('kodeUnit' => $kodeUnit));
-            redirect('controller_pegawai/formdaftarunit/'.$id.'');
+            redirect('controller_pegawai/unit/'.$id.'');
 		}
         
 		function editunit($kodeUnit){
@@ -125,7 +130,9 @@
 				echo "<script>$('#kodeSkema').val('".$data->kodeSkema."');</script>";
 			}
 		}
+        //==================================================================
 
+        //============================== JADWAL ==============================
         function tampiljadwal(){
             $query=$this->db->get('tbjadwal');
             if($query->num_rows()>0){
@@ -169,6 +176,57 @@
 				echo "<script>$('#tempat').val('".$data->tempat."');</script>";
 			}
 		}
+        //====================================================================
+
+        //============================== VERIFIKASI ASESI ==============================
+        function tampilpendaftar(){
+            $this->db->from('tbasesi');
+            $this->db->join('tbujian', 'tbasesi.nim=tbujian.nim');
+            $this->db->join('tbdatakelengkapan', 'tbujian.idUjian=tbdatakelengkapan.idUjian');
+            $this->db->where('verifikasiData', null);
+            $query=$this->db->get();
+            if($query->num_rows()>0){
+                foreach($query->result() as $data){
+                    $hasil[]=$data;
+                }
+            } else{
+                $hasil="";
+            }
+            return $hasil;
+        }
+
+        function datadiri($nim){
+            $query=$this->db->get_where('tbasesi', array('nim' => $nim));
+            if($query->num_rows()>0){
+                $hasil=$query->row();
+            } else{
+                $hasil="";
+            }
+            return $hasil;
+        }
+
+        function datasertifikasi($idUjian){
+            $query=$this->db->get_where('tbujian', array('idUjian' => $idUjian));
+            if($query->num_rows()>0){
+                $this->db->from('tbskema');
+                $this->db->join('tbjadwal', 'tbskema.kodeSkema=tbjadwal.kodeSkema');
+                $this->db->join('tbujian', 'tbjadwal.idjadwal=tbujian.idjadwal');
+                $this->db->where('idUjian', $idUjian);
+                $data=$this->db->get();
+                $hasil['namaSkema']=$data->row('namaSkema');
+                $hasil['kodeSkema']=$data->row('kodeSkema');
+                $hasil['tujuan']="Sertifikasi";
+            } else{
+                $hasil="";
+            }
+            return $hasil;
+        }
+
+        function hapuspendaftar($idUjian){
+            $this->db->delete('tbdatakelengkapan', array('idUjian' => $idUjian));
+            $this->db->delete('tbujian', array('idUjian' => $idUjian));
+		}
+        //==============================================================================
 
     }
 ?>
