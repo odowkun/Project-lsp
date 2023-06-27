@@ -20,7 +20,8 @@ class Controller_Dashboard extends CI_Controller
         }	
         function asesi()
         {
-            $this->load->view('template/dashboard/asesi/daftarSkema');	
+            $data['home']=$this->load->view('template/dashboard/asesi/home', '', TRUE);
+            $this->load->view('template/dashboard/asesi/index', $data);	
         }
     }
 ?>

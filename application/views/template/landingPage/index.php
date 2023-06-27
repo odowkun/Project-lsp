@@ -57,8 +57,8 @@
                             <h5 class="text-white text-uppercase mb-3 ">Sistem Informasi Manajemen</h5>
                             <h1 class="display-1 text-white mb-md-4 ">Lembaga Sertifikasi Profesi<br>Politeknik Negeri
                                 Bali</h1>
-                            <a href="quote.html" class="btn btn-primary py-md-3 px-md-5 me-3">Informasi Skema</a>
-                            <a href="" class="btn btn-outline-light py-md-3 px-md-5">Login</a>
+                            <a href="#" class="btn btn-primary py-md-3 px-md-5 me-3">Informasi Skema</a>
+                            <a href="<?= base_url('Controller_Pendaftaran/pendaftaran') ?>" class="btn btn-outline-light py-md-3 px-md-5">Login</a>
                         </div>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                             <h5 class="text-white text-uppercase mb-3">Sistem Informasi Manajemen</h5>
                             <h1 class="display-1 text-white mb-md-4">Lembaga Sertifikasi Profesi<br>Politeknik Negeri
                                 Bali</h1>
-                            <a href="" class="btn btn-primary py-md-3 px-md-5 me-3">Informasi Skema</a>
+                            <a href="#" class="btn btn-primary py-md-3 px-md-5 me-3">Informasi Skema</a>
                             <a href="<?= base_url('Controller_Pendaftaran/pendaftaran') ?>" class="btn btn-outline-light py-md-3 px-md-5">Login</a>
                         </div>
                     </div>
