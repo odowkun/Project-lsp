@@ -37,7 +37,7 @@
                 <h5 class="fw-bold text-primary text-uppercase">Informasi</h5>
                 <h2 class="mb-0">Skema Jurusan <?= $tbSkema[0]->namaJurusan?></h2>
             </div>
-            <div class="row g-5">
+            <div class="row g-5 d-flex justify-content-center">
                 <?php 
                 $i = 0;
                 foreach ($tbSkema as $data):

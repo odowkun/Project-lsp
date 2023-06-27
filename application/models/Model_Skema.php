@@ -33,6 +33,8 @@
 		->from('tbskema')
 		->join('tbjurusan', 'tbskema.idJurusan = tbjurusan.idJurusan', 'LEFT')
 		->where('tbskema.idJurusan', $dataIdJurusan)
+		->where('verifikasiSkema', 'Terima')
+		->or_where('verifikasiSkema IS NULL')
 		->get()
 		->result();	
 	}

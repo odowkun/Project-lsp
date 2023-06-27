@@ -70,7 +70,7 @@
                             <h1 class="display-1 text-white mb-md-4">Lembaga Sertifikasi Profesi<br>Politeknik Negeri
                                 Bali</h1>
                             <a href="" class="btn btn-primary py-md-3 px-md-5 me-3">Informasi Skema</a>
-                            <a href="" class="btn btn-outline-light py-md-3 px-md-5">Login</a>
+                            <a href="<?= base_url('Controller_Pendaftaran/pendaftaran') ?>" class="btn btn-outline-light py-md-3 px-md-5">Login</a>
                         </div>
                     </div>
                 </div>
@@ -165,12 +165,6 @@
         <p>© Copyright LSP Politeknik Negeri Bali<br>Designed by TIM LSP PNB - 2023</p>
     </footer>
 
-
-    // <script language="javascript">
-    //     function skema(namaJurusan){
-    //         window.open("<?php echo base_url()?>Controller_LandingPage/Skema"+namaJurusan,"_self")
-    //     }
-    // </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>
