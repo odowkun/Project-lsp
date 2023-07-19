@@ -1,9 +1,3 @@
-<script>
-   function cek(nim, id) {
-      window.open("<?php echo base_url(); ?>controller_admin/fileasesi/"+nim+"/"+id,"_self");
-   }
-</script>
-
 <div class="bg-primary-subtle p-2 rounded mb-4 ps-3" style="margin-left: -15px;">
    Selamat Datang, Admin
 </div>
@@ -22,26 +16,33 @@
    </div>
    <div class="col-4">
       <h6>Jumlah Skema / Jurusan</h6>
-      <table class="d-flex table table-hover">
+      <table class="d-flex table">
          <tr>
-            <td>No</td>
-            <td>Nama Jurusan</td>
-            <td>Jumlah Skema</td>
+            <th>No</th>
+            <th>Nama Jurusan</th>
+            <th>Jumlah Skema</th>
          </tr>
          <?php
+         $total = 0;
          if (!empty($skema)) {
             $i = 1;
             foreach ($skema as $data): ?>
             <tr>
                <td><?php echo $i ?></td>
                <td><?php echo $data->namaJurusan ?></td>
-               <td><?php echo $data->jumlah ?></td>
+               <td><?php echo $data->jumlah?> Skema</td>
             </tr>
          <?php
+            $total = $data->jumlah + $total;
             $i++;
             endforeach;
          }
          ?>
+
+         <tr>
+            <td colspan="2"><b>Total</b></td>
+            <td><?= $total?> Skema<td>
+         </tr>
       </table>
    </div>
 
@@ -71,27 +72,40 @@
 <div>
    <h6>Data Asesi</h6>
    <div class="table-responsive">
-      <table class="table table-hover">
+      <table class="table">
          <tr>
             <th>No</th>
             <th>NIM</th>
             <th>Nama Asesi</th>
             <th>Nama Skema</th>
             <th>Status FR.APL.01</th>
+            <th>Status Pembayaran</th>
          </tr>
          <?php
          $i = 1;
          if(!empty($asesi)) {
             foreach ($asesi as $data) : ?>
-         <tr ondblclick="cek(<?php echo $data->nim . ', ' . $data->idUjian?>)">
+         <tr >
             <td><?php echo $i ?></td>
             <td><?php echo $data->nim?></td>
             <td><?php echo $data->namaAsesi?></td>
             <td><?php echo $data->namaSkema?></td>
             <td>
-               
             <?php 
             switch ($data->verifikasiKelengkapan) {
+               case "Terima" : 
+                  echo "<span class='badge bg-success fw-normal'>Diterima"; break;
+               case "Tolak" : 
+                  echo "<span class='badge bg-danger fw-normal'>Ditolak"; break;
+               default : 
+               echo "<span class='badge bg-secondary fw-normal'>Belum Dicek";
+            } 
+            ?>
+               </span>
+            </td>
+            <td>
+            <?php 
+            switch ($data->verifikasiBayar) {
                case "Terima" : 
                   echo "<span class='badge bg-success fw-normal'>Diterima"; break;
                case "Tolak" : 

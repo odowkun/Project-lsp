@@ -80,7 +80,7 @@
         </li>
         <li class="sidebar-hover nav-item" id="sidebar-lsp-prodi">
           <a class="nav-link text-reset ps-4" href="<?php echo base_url("controller_admin/prodi") ?>">
-            Data Program Studi
+            Data Prodi
           </a>
         </li>
         <li class="sidebar-hover nav-item" id="sidebar-lsp-skema">

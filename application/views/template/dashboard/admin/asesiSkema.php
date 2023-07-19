@@ -1,17 +1,13 @@
-<script>
-   function detail(nim, id) {
-      window.open("<?php echo base_url('controller_admin/fileasesi/')?>" + nim + "/" + id, "_self")
-   }
-</script>
-<h5>Skema Yang Didaftar</h5>
+<h5>Skema Yang Didaftarkan</h5>
 <hr>
-<table class="table table-hover">
+<table class="table">
    <thead>
       <tr>
          <th>Nama Skema</th>
          <th>Periode</th>
          <th>Tempat</th>
-         <th></th>
+         <th>Berkas Kelengkapan</th>
+         <th>Bukti Pembayaran</th>
       </tr>
    </thead>
    <tbody>
@@ -19,22 +15,36 @@
       if (!empty($skema)) {
          foreach($skema as $data) :
       ?>
-      <tr ondblclick="detail('<?php echo $data->nim?>', '<?php echo $data->idUjian?>')">
+      <tr>
          <td><?php echo $data->namaSkema?></td>
          <td><?php echo date_format(date_create($data->periodeMulai),"d M Y") . " - " . date_format(date_create($data->periodeSelesai), "d M Y")?></td>
          <td><?php echo $data->tempat?></td>
-         <td><?php 
-            if (!empty($data->verifikasiBayar)) {
-               if ($data->verifikasiBayar === "Daftar") {
-                  echo "<span class='badge bg-success fw-normal'>Terdaftar</span>";
-               } else {
-                  echo "<span class='badge bg-success fw-normal'>Batal</span>";
-               }
-            } else {
-               echo "<span class='badge bg-secondary fw-normal'>Belum Divalidasi</span>";
-            }
-         ?>
-         </td>
+         <td>
+            <?php 
+            switch ($data->verifikasiKelengkapan) {
+               case "Terima" : 
+                  echo "<span class='badge bg-success fw-normal'>Diterima"; break;
+               case "Tolak" : 
+                  echo "<span class='badge bg-danger fw-normal'>Ditolak"; break;
+               default : 
+               echo "<span class='badge bg-secondary fw-normal'>Belum Dicek";
+            } 
+            ?>
+               </span>
+            </td>
+            <td>
+            <?php 
+            switch ($data->verifikasiBayar) {
+               case "Terima" : 
+                  echo "<span class='badge bg-success fw-normal'>Diterima"; break;
+               case "Tolak" : 
+                  echo "<span class='badge bg-danger fw-normal'>Ditolak"; break;
+               default : 
+               echo "<span class='badge bg-secondary fw-normal'>Belum Dicek";
+            } 
+            ?>
+               </span>
+            </td>
       </tr>
          <?php
             endforeach;

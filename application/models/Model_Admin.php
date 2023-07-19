@@ -25,6 +25,8 @@
 			->join("tbjadwal", "tbskema.kodeskema = tbjadwal.kodeskema")
 			->join("tbujian", "tbujian.idjadwal = tbjadwal.idjadwal")
 			->join("tbJurusan", "tbJurusan.idJurusan = tbSkema.idJurusan")
+			->where("verifikasiKelengkapan", "Terima")
+			->where("verifikasiBayar", "Terima")
 			->group_by("tbujian.idJadwal")
 			->order_by("asesi", 'DESC')
 			->get();
@@ -32,10 +34,13 @@
 
 		function grafikChart() {
 			$query = $this->grafik();
-			$data = $this->grafik()->result();
 			$string = "";
-			for ($i = 0; $i < $query->num_rows(); $i++) {
-				$string .= "['" . $query->result()[$i]->namaJurusan . "', " . $query->result()[$i]->asesi . "], ";
+			if($query->num_rows() != 0) {
+				for ($i = 0; $i < $query->num_rows(); $i++) {
+					$string .= "['" . $query->result()[$i]->namaJurusan . "', " . $query->result()[$i]->asesi . "], ";
+				}
+			} else {
+				$string = "['',0]";
 			}
 			return $string;
 		}
@@ -129,7 +134,7 @@
 
 		function detailAsesi($nim) {
 			return  $this->db
-			->select('tbujian.nim, idUjian, namaAsesi, jurusan, namaSkema, periodeMulai, periodeSelesai, tempat, verifikasiKelengkapan')
+			->select('tbujian.nim, idUjian, namaAsesi, jurusan, namaSkema, periodeMulai, periodeSelesai, tempat, verifikasiKelengkapan, verifikasiBayar')
 			->from('tbujian')
 			->join('tbasesi', 'tbujian.nim = tbasesi.nim')
 			->join('tbjadwal', 'tbjadwal.idjadwal = tbujian.idjadwal')
@@ -140,12 +145,11 @@
 		}
 		function home() {
 			return $this->db
-			->select('tbujian.nim, idUjian, namaAsesi, namaSkema, verifikasiKelengkapan')
+			->select('tbujian.nim, idUjian, namaAsesi, namaSkema, verifikasiKelengkapan, verifikasiBayar')
 			->from('tbujian')
 			->join('tbasesi', 'tbujian.nim = tbasesi.nim')
 			->join('tbjadwal', 'tbjadwal.idjadwal = tbujian.idjadwal')
 			->join('tbskema', 'tbskema.kodeSkema = tbjadwal.kodeSkema')
-			->order_by('verifikasiKelengkapan', 'asc')
 			->order_by('namaSkema', 'asc')
 			->get()
 			->result();

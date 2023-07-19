@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 19, 2023 at 05:51 AM
+-- Generation Time: Jul 19, 2023 at 10:06 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -98,7 +98,7 @@ CREATE TABLE `tbasesi` (
 --
 
 INSERT INTO `tbasesi` (`nim`, `namaAsesi`, `smester`, `password`, `jurusan`, `prodi`, `email`, `nomor`, `tempatLahir`, `tanggalLahir`, `jenisKelamin`, `kebangsaan`, `alamatRumah`, `kodePos`, `noTelp`, `kualifikasiPendidikan`, `namaPerusahaan`, `jabatan`, `alamatPerusahaan`, `kodPosPerusahaan`, `emailPerusahaan`, `noTelpPerusahaan`) VALUES
-('2115354066', ' Kadek Dwika Ananda', '8', 'XQLB', 'Teknik Mesin', 'Mesin Berat', 'asd@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+('2115354066', ' Kadek Dwika Ananda', '8', 'XQLB', 'Teknik Mesin', 'Mesin Berat', 'asd@gmail.com', '5103051201231', 'Negara', '2023-07-09', 'Laki-laki', 'Indonesia', 'Perumahan Jimbaran No 29, Kuta Selatan, Badung, Bali', '80361', '08123232323', 'SMA Sederajat', 'Politeknik Negeri Bali', 'Mahasiswa', 'Kampus Bukit Jimbaran, Kuta Selatan, Badung, Bali', '80361', 'poltek@pnb.ac.id', '0361-701981'),
 ('2115354070', 'Kadek Yudha Ananda Putra', '7', 'MD86', 'Teknik Elektro', 'TRPL', 'anan@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
@@ -167,7 +167,6 @@ CREATE TABLE `tblogin` (
 --
 
 INSERT INTO `tblogin` (`username`, `password`, `level`) VALUES
-('129312', '3FPY', '1'),
 ('197801112002121000', '12345', '1'),
 ('197801112002121003', '12345', '0'),
 ('197801112002121010', 'KRF9', '1'),
@@ -194,9 +193,8 @@ CREATE TABLE `tbpegawai` (
 --
 
 INSERT INTO `tbpegawai` (`nipPegawai`, `namaPegawai`, `jenisKelamin`, `noHP`, `password`, `tempatLahir`, `tanggalLahir`) VALUES
-('129312', 'Dwika', 'Laki-laki', '08775676330', '', 'Singaraja', '2016-04-16'),
-('197801112002121000', 'Anan', 'Laki-laki', '08775676330', '12345', 'Singaraja', '2016-04-16'),
-('197801112002121010', 'Yuda', 'Laki-laki', '0812317237', 'KRF9', 'Denpasar', '2016-02-16');
+('197801112002121000', 'Pegawai 00', 'Laki-laki', '08775676330', '12345', 'Singaraja', '2016-04-16'),
+('197801112002121010', 'Pegawai 10', 'Laki-laki', '0812317237', 'KRF9', 'Denpasar', '2016-02-16');
 
 -- --------------------------------------------------------
 
@@ -273,8 +271,8 @@ CREATE TABLE `tbujian` (
 INSERT INTO `tbujian` (`idUjian`, `idjadwal`, `nim`, `tujuanAsesmen`, `fileKelengkapan`, `verifikasiKelengkapan`, `fileBayar`, `verifikasiBayar`, `nipPegawai`) VALUES
 (1, 0, '2115354066', b'0000', NULL, NULL, NULL, NULL, NULL),
 (2, 1, '2115354066', b'0000', NULL, NULL, NULL, NULL, NULL),
-(3, 1, '2115354070', b'0000', NULL, 'Terima', NULL, 'Tolak', NULL),
-(4, 3, '2115354070', b'0000', NULL, 'Terima', NULL, NULL, NULL);
+(4, 3, '2115354070', b'0000', NULL, 'Terima', NULL, 'Tolak', NULL),
+(5, 1, '2115354070', b'0000', NULL, NULL, NULL, 'Terima', NULL);
 
 -- --------------------------------------------------------
 
@@ -294,8 +292,15 @@ CREATE TABLE `tbunit` (
 --
 
 INSERT INTO `tbunit` (`kodeUnit`, `judulUnit`, `jenisStandar`, `kodeSkema`) VALUES
-('1', 'Pengenalan', 'ISO', '1'),
-('2', 'Pemrograman Dasar', 'ISO', '1');
+('J.88218.001', 'Pengenalan', 'SKKNI', '1'),
+('J.88218.001.01', 'Dasar-dasar penggunaan software', 'SKKNI', '3'),
+('J.88218.001.02', 'Pengenalan Kepada Desain', 'SKKNI', '3'),
+('J.88218.001.03', 'Cara Penggunaan Tools', 'SKKNI', '3'),
+('J.88218.002', 'Pemrograman Dasar', 'SKKNI', '1'),
+('J.88218.002.01', 'Pengenalan', 'SKKNI', '4'),
+('J.88218.002.02', 'Teknik Cepat Dalam Menghitung', 'SKKNI', '4'),
+('J.88218.003', 'Pemrograman Lanjut', 'SKKNI', '1'),
+('J.88218.003.01', 'Mengenali Pentingnya Hospitality', 'SKKNI', '2');
 
 --
 -- Indexes for dumped tables
@@ -398,7 +403,7 @@ ALTER TABLE `tbprodi`
 -- AUTO_INCREMENT for table `tbujian`
 --
 ALTER TABLE `tbujian`
-  MODIFY `idUjian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idUjian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables

@@ -90,6 +90,12 @@
          $data['table'] .= $this->load->view("template/dashboard/admin/asesiSkema", $tabel, TRUE);
          $this->load->view("template/dashboard/admin/index", $data);
       }
+      function dataDiri($nim) {
+         $tabel['asesi'] = $this->Model_Admin->tableWhere('tbasesi', array('nim'=>$nim));
+         $data['table'] = $this->load->view("template/dashboard/admin/dataDiri", $tabel, TRUE);
+         $this->load->view("template/dashboard/admin/index", $data);
+
+      }
       
       function fileAsesi($nim, $id) {
          $tabel['asesi'] = $this->Model_Admin->tableWhere('tbasesi', array('nim'=>$nim));
