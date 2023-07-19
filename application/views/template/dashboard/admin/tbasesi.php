@@ -15,7 +15,7 @@
 </script>
 
 <!-- tabel -->
-<h5>Kelola Data Asesi</h5>
+<h5>Data Asesi LSP Politeknik Negeri Bali</h5>
 <hr>
 <div class="table-responsive">
    <table class="table table-hover">

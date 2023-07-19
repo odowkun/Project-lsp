@@ -13,7 +13,7 @@
       load("controller_admin/editpegawai/"+nipPegawai, "#script")
    }
 </script>
-<h5>Kelola Data Pegawai LSP</h5>
+<h5>Kelola Data Pegawai LSP Politeknik Negeri Bali</h5>
 <hr class="mb-4">
 <?php
 	$pesan=$this->session->flashdata('pesan');
@@ -98,7 +98,7 @@
             foreach ($hasil as $data):
                $date=date_create($data->tanggalLahir);
          ?>
-            <tr ondblclick="editPegawai(<?php echo $data->nipPegawai ?>)">
+            <tr ondblclick="editPegawai('<?php echo $data->nipPegawai ?>')">
                <td><?php echo $data->nipPegawai?></td>
                <td><?php echo $data->namaPegawai?></td>
                <td><?php echo $data->jenisKelamin?></td>
@@ -106,8 +106,8 @@
                <td><?php echo $data->tempatLahir?></td>
                <td><?php echo date_format($date,"d M Y")?></td>
                <td>
-                  <button class="btn btn-success" onclick="editPegawai(<?php echo $data->nipPegawai ?>)">Edit</button>
-                  <button class="btn btn-danger" onclick="hapusPegawai(<?php echo $data->nipPegawai ?>, '<?php echo $data->namaPegawai ?>')">Hapus</button>
+                  <button class="btn btn-success" onclick="editPegawai('<?php echo $data->nipPegawai ?>')">Edit</button>
+                  <button class="btn btn-danger" onclick="hapusPegawai('<?php echo $data->nipPegawai ?>', '<?php echo $data->namaPegawai ?>')">Hapus</button>
                </td>
             </tr>
          <?php

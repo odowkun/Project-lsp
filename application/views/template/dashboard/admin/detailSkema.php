@@ -29,7 +29,7 @@
          <?php
             if(!empty($skema[0]->verifikasiSkema)) {
                 if($skema[0]->verifikasiSkema === "Terima") {
-                  echo "<span class='badge bg-success fw-semibold'>Diterima</span>";
+                  echo "<span class='badge bg-success fw-semibold'>Sudah Diverifikasi</span>";
                } else {
                   echo "<span class='badge bg-danger fw-semibold'>Ditolak</span>";
                }
@@ -41,7 +41,7 @@
    </div>
    <div>
    <?php
-      if(empty($skema[0]->verifikasiSkema) || $skema[0]->nipAdmin === $this->session->userdata('Username')) {
+      if($skema[0]->verifikasiSkema == null) {
          echo "
          <button class='btn btn-success' onclick='submit(".$skema[0]->kodeSkema.", 1)'>Terima</button>
          <button class='btn btn-danger' onclick='submit(".$skema[0]->kodeSkema.", 0)'>Tolak</button>

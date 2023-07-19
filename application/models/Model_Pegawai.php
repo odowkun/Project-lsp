@@ -47,6 +47,8 @@
             $data=$_POST;
             $kodeSkema=$data['kodeSkema'];
             $data['nipPegawai']=$this->session->userdata('Username');
+            $data['verifikasiSKema']=null;
+            $data['nipAdmin']=null;
             
             $query=$this->db->get_where('tbskema', array('kodeSkema' => $kodeSkema));
 
@@ -75,6 +77,7 @@
 				echo "<script>$('#namaSkema').val('".$data->namaSkema."');</script>";	
 				echo "<script>$('#idJurusan').val('".$data->idJurusan."');</script>";
 				echo "<script>$('#biaya').val('".$data->biaya."');</script>";
+				echo "<script>$('#kapasitasPeserta').val('".$data->kapasitasPeserta."');</script>";
 				echo "<script>$('#keterangan').val('".$data->keterangan."');</script>";
 			}
 		}
@@ -182,8 +185,7 @@
         function tampilpendaftar(){
             $this->db->from('tbasesi');
             $this->db->join('tbujian', 'tbasesi.nim=tbujian.nim');
-            $this->db->join('tbdatakelengkapan', 'tbujian.idUjian=tbdatakelengkapan.idUjian');
-            $this->db->where('verifikasiData', null);
+            $this->db->where('verifikasiKelengkapan', null);
             $query=$this->db->get();
             if($query->num_rows()>0){
                 foreach($query->result() as $data){
@@ -223,7 +225,6 @@
         }
 
         function hapuspendaftar($idUjian){
-            $this->db->delete('tbdatakelengkapan', array('idUjian' => $idUjian));
             $this->db->delete('tbujian', array('idUjian' => $idUjian));
 		}
         //==============================================================================

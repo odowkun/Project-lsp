@@ -47,9 +47,8 @@
       
       function home() {
          $tabel['skema'] = $this->Model_Admin->tableSkema();
-         $tabel['asesi'] = $this->Model_Admin->table("tbasesi");
-         $tabel['lgrafik'] = $this->Model_Admin->lgrafik();
-         $tabel['dgrafik'] = $this->Model_Admin->dgrafik();
+         $tabel['asesi'] = $this->Model_Admin->home();
+         $tabel['grafik'] = $this->Model_Admin->grafikChart();
          $data['home']=$this->load->view('template/dashboard/admin/home', $tabel, TRUE);
          $this->load->view('template/dashboard/admin/index', $data);
       }
@@ -66,7 +65,7 @@
       function submitPegawai() {
          $pass = $this->Model_Regis->password();
          $this->Model_Admin->submitPegawai($pass);
-         $this->pegawai();
+         redirect(base_url("controller_admin/pegawai"));
       }
 
       function editPegawai($nipPegawai) {
@@ -75,7 +74,7 @@
       
       function hapusPegawai($nipPegawai) {
          $this->Model_Admin->hapuspegawai($nipPegawai);
-         $this->pegawai();
+         redirect(base_url("controller_admin/pegawai"));
       }
 
       // ============================================== ASESI
@@ -85,10 +84,20 @@
          $this->asesi();
       }
       function detailAsesi($nim) {
-         $tabel['skema'] = $this->Model_Admin->detailAsesi($nim);
          $tabel['asesi'] = $this->Model_Admin->tableWhere('tbasesi', array('nim'=>$nim));
          $data['table'] = $this->load->view("template/dashboard/admin/detailAsesi", $tabel, TRUE);
+         $tabel['skema'] = $this->Model_Admin->detailAsesi($nim);
+         $data['table'] .= $this->load->view("template/dashboard/admin/asesiSkema", $tabel, TRUE);
          $this->load->view("template/dashboard/admin/index", $data);
+      }
+      
+      function fileAsesi($nim, $id) {
+         $tabel['asesi'] = $this->Model_Admin->tableWhere('tbasesi', array('nim'=>$nim));
+         $data['table'] = $this->load->view("template/dashboard/admin/detailAsesi", $tabel, TRUE);
+         $tabel['file'] = $this->Model_Admin->fileasesi($nim, $id);
+         $data['table'] .= $this->load->view("template/dashboard/admin/fileasesi", $tabel, TRUE);
+         $this->load->view("template/dashboard/admin/index", $data);
+
       }
 
       // ============================================== JURUSAN
@@ -122,10 +131,10 @@
          $this->Model_Admin->editProdi($idProdi);
       }
 
-      function tes($nim) {
-         $tabel['asesi'] = $this->Model_Admin->detailAsesi($nim);
-         // $data['table'] = $this->load->view("template/dashboard/admin/detailAsesi", $tabel, TRUE);
-         // $this->load->view("template/dashboard/admin/index", $data);
+      function tes() {
+         var_dump( $this->Model_Admin->home());
+         // $tabel['asesi'] = $this->Model_Admin->detailAsesi($nim);
+         // $this->load->view("template/dashboard/admin/tes", true);
       }
    }
 ?>

@@ -1,8 +1,8 @@
 <?php
 	class Model_Admin extends CI_Model
 	{
-   
-   	function table($namaTabel)	{
+		
+		function table($namaTabel)	{
 			return $this->db->get($namaTabel)->result();
 		}
 		function tableWhere($namaTabel, $where) {
@@ -12,6 +12,7 @@
 			return $this->db
 			->select("count(tbskema.idJurusan) as jumlah, namaJurusan")
 			->from("tbSkema")
+			->where("verifikasiSkema", "terima")
 			->join("tbjurusan", "tbskema.idJurusan = tbJurusan.idJurusan")
 			->group_by("tbskema.idJurusan")
 			->get()
@@ -19,22 +20,22 @@
 		}
 		function grafik() {
 			return $this->db
-			->select();
+			->select("namaJurusan, count(tbujian.idjadwal) as asesi")
+			->from("tbskema")
+			->join("tbjadwal", "tbskema.kodeskema = tbjadwal.kodeskema")
+			->join("tbujian", "tbujian.idjadwal = tbjadwal.idjadwal")
+			->join("tbJurusan", "tbJurusan.idJurusan = tbSkema.idJurusan")
+			->group_by("tbujian.idJadwal")
+			->order_by("asesi", 'DESC')
+			->get();
 		}
 
-		function lgrafik() {
-			$query = $this->tableSkema();
+		function grafikChart() {
+			$query = $this->grafik();
+			$data = $this->grafik()->result();
 			$string = "";
-			foreach ($query as $data) {
-				$string .= "'".$data->namaJurusan."', ";
-			}
-			return $string;
-		}
-		function dgrafik() {
-			$query = $this->tableSkema();
-			$string = "";
-			foreach ($query as $data) {
-				$string .= "'".$data->jumlah."', ";
+			for ($i = 0; $i < $query->num_rows(); $i++) {
+				$string .= "['" . $query->result()[$i]->namaJurusan . "', " . $query->result()[$i]->asesi . "], ";
 			}
 			return $string;
 		}
@@ -57,21 +58,23 @@
 		// ============================ PEGAWAI ============================
 		function submitPegawai($pass) {
 			$data=$_POST;
-			$nip = $this->db->get_where('tbPegawai', array('nipPegawai'=>$data['nipPegawai']));
-			if (!empty($nip)) {
+			$nipPegawai = $data['nipPegawai'];
+			$nip = $this->db->get_where('tbPegawai', array('nipPegawai'=>$nipPegawai));
+			if ($nip->num_rows() == 0) {
 				$data['password']=$pass;
 				$this->db->insert('tbpegawai',$data);
-	
+
 				$dataLogin = array(
 					'username' => $data['nipPegawai'],
 					'password' => $data['password'],
 					'level' => '1'
 				);
 				$this->db->insert('tblogin',$dataLogin);
+
 				$this->session->set_flashdata('pesan','Data Berhasil Ditambahkan! Password : '.$pass);
 			} else {
-				$this->db->where('nipPegawai', array('nipPegawai'=>$data['nipPegawai']))
-				->update('tbPegawai', $data);
+				$this->db->where('nipPegawai', $nipPegawai);
+				$this->db->update('tbPegawai', $data);
 				$this->session->set_flashdata('pesan','Data Berhasil Diedit!');
 			}
 		}
@@ -126,15 +129,34 @@
 
 		function detailAsesi($nim) {
 			return  $this->db
-			->select('tbskema.kodeSkema, namaSkema, periodeMulai, periodeSelesai, tempat, verifikasiDaftar')
-			->from("tbdatakelengkapan")
-			->join('tbujian', 'tbujian.idujian = tbdatakelengkapan.idujian')
+			->select('tbujian.nim, idUjian, namaAsesi, jurusan, namaSkema, periodeMulai, periodeSelesai, tempat, verifikasiKelengkapan')
+			->from('tbujian')
+			->join('tbasesi', 'tbujian.nim = tbasesi.nim')
 			->join('tbjadwal', 'tbjadwal.idjadwal = tbujian.idjadwal')
 			->join('tbskema', 'tbskema.kodeSkema = tbjadwal.kodeSkema')
 			->where('tbujian.nim', $nim)
 			->get()
 			->result();
-			var_dump($query);
+		}
+		function home() {
+			return $this->db
+			->select('tbujian.nim, idUjian, namaAsesi, namaSkema, verifikasiKelengkapan')
+			->from('tbujian')
+			->join('tbasesi', 'tbujian.nim = tbasesi.nim')
+			->join('tbjadwal', 'tbjadwal.idjadwal = tbujian.idjadwal')
+			->join('tbskema', 'tbskema.kodeSkema = tbjadwal.kodeSkema')
+			->order_by('verifikasiKelengkapan', 'asc')
+			->order_by('namaSkema', 'asc')
+			->get()
+			->result();
+		}
+
+		function fileAsesi($nim, $id) {
+			return $this->db
+			->select('verifikasiKelengkapan, verifikasiBayar')
+			->from('tbujian')
+			->get()
+			->result();
 		}
 
 

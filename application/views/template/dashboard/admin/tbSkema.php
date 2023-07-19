@@ -55,7 +55,7 @@ if (!empty($pesan)) {
          </td>
          <td>
             <?php
-               if(!empty($data->nipAdmin)) { 
+               if(!empty($data->verifikasiSkema)) { 
                   if ($data->verifikasiSkema === "Terima") {
                      echo "
                      <span class='badge bg-success fw-normal'>Diterima ($data->nipAdmin)</span>

@@ -94,8 +94,8 @@
           <a class="ps-4 nav-link text-reset" href="<?php echo base_url("controller_pegawai/verifikasi") ?>">
             Verifikasi Asesi
             <?php
-            $this->db->where('verifikasiData', null);
-            $this->db->from('tbdatakelengkapan');
+            $this->db->where('verifikasiKelengkapan', null);
+            $this->db->from('tbujian');
 
             $result = $this->db->count_all_results();
             if ($result > 0) {

@@ -127,25 +127,6 @@
       </div>
       <!-- ENDOF-SIDEBAR-USER-LIST -->
 
-      <!-- SIDEBAR-SKEMA -->
-      <li class="sidebar-hover nav-item icon-link d-flex justify-content-between w-100 pe-4" id="sidebar-asesi"
-        data-bs-target="#sidebar-asesi-list" data-bs-toggle="collapse">
-        <a class="navbar-toggle text-reset nav-link fw-semibold">Kelola Skema</a>
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class=" bi-chevron-down" viewBox="0 0 16 16">
-          <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
-        </svg>
-      </li>
-      <!-- SIDEBAR-SKEMA-LIST -->
-      <div class="show" id="sidebar-asesi-list">
-        <li class="sidebar-hover nav-item" id="sidebar-asesi-verifikasi">
-          <a class="ps-4 nav-link text-reset" href="<?php echo base_url("controller_admin/home") ?>">Jadwal Skema</a>
-        </li>
-        <li class="sidebar-hover nav-item" id="sidebar-asesi-berkas">
-          <a class="ps-4 nav-link text-reset" href="<?php echo base_url("controller_admin/home") ?>">Berkas</a>
-        </li>
-      </div>
-      <!-- END-OF-SIDEBAR-ASESI-LIST -->
-
     </ul>
   </main>
 <!-- END-OF-SIDEBAR -->
