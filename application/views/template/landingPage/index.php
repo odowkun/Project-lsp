@@ -92,7 +92,7 @@
                 <h5 class="fw-bold text-primary text-uppercase">Informasi</h5>
                 <h1 class="mb-0">Skema Jurusan</h1>
             </div>
-            <div class="row g-5">
+            <div class="row g-5 ">
                 <?php 
                 $i = 0;
                 foreach ($jumlahVerifikasi as $data):
@@ -106,8 +106,8 @@
                         </div>
                         <div class="p-4">
                             <h4 class="mb-3"><?php echo $data->jumlahverifikasi ?> Skema Aktif</h4>
-                            <p>Klik pada tombol next untuk mengetahui lebih jelas terkait skema yang aktif! </p>
-                            <a class="text-uppercase btn btn-outline-dark " href="<?= base_url('Controller_LandingPage/Skema?data=') ?> <?= $data->idJurusan?>">next</a>
+                            <?php if($data->jumlahverifikasi > 0){echo "<p> Klik pada tombol next untuk mengetahui lebih jelas terkait skema yang aktif!</p>";}else{echo "<p> Maaf Jurusan $data->namaJurusan belum memiliki skema, silahkan kembali nanti!</p>";}?>
+                            <a class="text-uppercase btn btn-outline-dark <?php if($data->jumlahverifikasi == 0){echo "disabled";}?>" href="<?= base_url('Controller_LandingPage/Skema?data=') ?> <?= $data->idJurusan?>" >next</a>
                         </div>
                     </div>
                 </div>

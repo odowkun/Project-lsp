@@ -1,3 +1,7 @@
+<?php
+    $limit;
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -23,7 +27,7 @@
 
             <div class="collapse navbar-collapse justify-content-end" id="navbar">
                 <div class="navbar-nav">
-                    <a class="nav-link hover" onclick="logout()">Login</a>
+                    <a class="nav-link hover" href="<?= base_url('Controller_Pendaftaran/pendaftaran') ?>">Login</a>
                 </div>
             </div>
         </div>
@@ -31,6 +35,7 @@
     <!-- END-OF-NAVBAR -->
 
     <!-- content -->
+    <?php if(!empty($tbSkema)){ ?>
     <div class="container-fluid py-5" style="height:90%">
         <div class="container py-5">
             <div class="text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
@@ -46,14 +51,15 @@
                 <div class="mt-4 mx-5 shadow">
                     <div class="card bg-light">
                         <div class="row g-0">
-                            <div class="col-md-6">
-                                <img src="<?php echo base_url() ?>asset/img/blog-1.jpg" class="img-fluid rounded-start" alt="...">
+                            <div class="col-md-1" style="background-color:#0d6efd;">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-11">
                                 <div class="card-body">
-                                    <h5 class="card-title"><?php echo $data->namaSkema ?></h5>
-                                    <p class="card-text"><?php echo $data->keterangan ?></p>
-                                    <a class="position-absolute bottom-0 end-0 text-uppercase btn btn-outline-dark mb-1 mx-1 "
+                                    <h4 class="card-title"><b><?php echo $data->namaSkema ?></b></h4>
+                                    <p class="card-text">Pendaftaran <br> <?php echo date('d F Y', strtotime($data->periodeMulai))." hingga ".date('d F Y', strtotime($data->periodeSelesai))?></p>
+                                    <p class="card-text">Lokasi : <?php echo $data->tempat?></p>
+                                    <p class="card-text mb-0">Sisa Kuota : <?php $limit=($data->limit-220); if($limit < 0){echo "0";}else{echo $limit;}?></p>
+                                    <a class="position-absolute bottom-0 end-0 text-uppercase btn btn-outline-dark mb-1 mx-1 <?php if($limit <= 0){echo "disabled";}?>"
                                     href="<?= base_url('Controller_LandingPage/detailSkema?datajurusan=') ?> <?= $data->idJurusan.'&dataskema='.$data->kodeSkema?>">next</a>
                                 </div>
                             </div>
@@ -68,6 +74,16 @@
             </div>
         </div>
     </div>
+    <?php }else{ ?>
+     <div class="container-fluid py-5" style="height:90%">
+        <div class="container py-5">
+            <div class="text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+                <h5 class="fw-bold text-primary text-uppercase">Informasi</h5>
+                <h2 class="mb-0">Belum Ada Skema Terdaftar</h2>
+            </div>
+        </div>
+    </div>
+    <?php }?>
 
     <div class="container-fluid py-5" style="height:10%">
         <a class="text-uppercase btn btn-outline-dark " href="<?= base_url('Controller_LandingPage/tampilawal') ?>">Back!</a>
