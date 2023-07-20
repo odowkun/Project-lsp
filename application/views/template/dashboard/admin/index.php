@@ -124,6 +124,11 @@
             Kelola Asesi
           </a>
         </li>
+        <li class="sidebar-hover nav-item" id="sidebar-user-berkas">
+          <a class="ps-4 nav-link text-reset" href="<?php echo base_url("controller_admin/berkas") ?>">
+            Kelola Berkas
+          </a>
+        </li>
       </div>
       <!-- ENDOF-SIDEBAR-USER-LIST -->
 

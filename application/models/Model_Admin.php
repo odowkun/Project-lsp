@@ -143,15 +143,20 @@
 			->get()
 			->result();
 		}
-		function home() {
-			return $this->db
+		function berkas($bol) {
+			$this->db
 			->select('tbujian.nim, idUjian, namaAsesi, namaSkema, verifikasiKelengkapan, verifikasiBayar')
 			->from('tbujian')
 			->join('tbasesi', 'tbujian.nim = tbasesi.nim')
 			->join('tbjadwal', 'tbjadwal.idjadwal = tbujian.idjadwal')
 			->join('tbskema', 'tbskema.kodeSkema = tbjadwal.kodeSkema')
-			->order_by('namaSkema', 'asc')
-			->get()
+			->order_by('namaSkema', 'asc');
+			// FILTER UNTUK HOMEPAGE
+			if($bol) {
+				$this->db->where('verifikasiKelengkapan', 'terima');
+				$this->db->where('verifikasiBayar', 'terima');
+			}
+			return $this->db->get()
 			->result();
 		}
 

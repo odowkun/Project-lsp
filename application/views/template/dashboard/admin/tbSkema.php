@@ -4,7 +4,7 @@
    document.getElementById("sidebar-lsp-skema").classList.add("sidebar-active-list")
 
    function detail(kodeSkema) {
-      window.open("<?php echo base_url("controller_admin/detail/")?>" + kodeSkema, "_self");
+      window.open("<?php echo base_url("controller_admin/detailskema/")?>" + kodeSkema, "_self");
    }
 </script>
 

@@ -40,8 +40,8 @@
          ?>
 
          <tr>
-            <td colspan="2"><b>Total</b></td>
-            <td><?= $total?> Skema<td>
+            <td colspan="2" align="right"><b>Total : </b></td>
+            <td><?= $total?> Skema Aktif<td>
          </tr>
       </table>
    </div>
@@ -78,8 +78,7 @@
             <th>NIM</th>
             <th>Nama Asesi</th>
             <th>Nama Skema</th>
-            <th>Status FR.APL.01</th>
-            <th>Status Pembayaran</th>
+            <th>Status</th>
          </tr>
          <?php
          $i = 1;
@@ -90,32 +89,7 @@
             <td><?php echo $data->nim?></td>
             <td><?php echo $data->namaAsesi?></td>
             <td><?php echo $data->namaSkema?></td>
-            <td>
-            <?php 
-            switch ($data->verifikasiKelengkapan) {
-               case "Terima" : 
-                  echo "<span class='badge bg-success fw-normal'>Diterima"; break;
-               case "Tolak" : 
-                  echo "<span class='badge bg-danger fw-normal'>Ditolak"; break;
-               default : 
-               echo "<span class='badge bg-secondary fw-normal'>Belum Dicek";
-            } 
-            ?>
-               </span>
-            </td>
-            <td>
-            <?php 
-            switch ($data->verifikasiBayar) {
-               case "Terima" : 
-                  echo "<span class='badge bg-success fw-normal'>Diterima"; break;
-               case "Tolak" : 
-                  echo "<span class='badge bg-danger fw-normal'>Ditolak"; break;
-               default : 
-               echo "<span class='badge bg-secondary fw-normal'>Belum Dicek";
-            } 
-            ?>
-               </span>
-            </td>
+            <td></td>
          </tr>
          <?php
          $i++;

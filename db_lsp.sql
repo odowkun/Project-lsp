@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 19, 2023 at 10:06 AM
+-- Generation Time: Jul 20, 2023 at 08:38 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -72,7 +72,6 @@ CREATE TABLE `tbasesi` (
   `nim` char(10) NOT NULL,
   `namaAsesi` varchar(60) NOT NULL,
   `smester` enum('1','2','3','4','5','6','7','8') NOT NULL,
-  `password` varchar(25) NOT NULL,
   `jurusan` varchar(50) NOT NULL,
   `prodi` varchar(50) NOT NULL,
   `email` varchar(254) NOT NULL,
@@ -84,22 +83,16 @@ CREATE TABLE `tbasesi` (
   `alamatRumah` varchar(100) DEFAULT NULL,
   `kodePos` char(5) DEFAULT NULL,
   `noTelp` varchar(15) DEFAULT NULL,
-  `kualifikasiPendidikan` varchar(30) DEFAULT NULL,
-  `namaPerusahaan` varchar(30) DEFAULT NULL,
-  `jabatan` varchar(20) DEFAULT NULL,
-  `alamatPerusahaan` varchar(100) DEFAULT NULL,
-  `kodPosPerusahaan` char(5) DEFAULT NULL,
-  `emailPerusahaan` varchar(30) DEFAULT NULL,
-  `noTelpPerusahaan` varchar(15) DEFAULT NULL
+  `kualifikasiPendidikan` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbasesi`
 --
 
-INSERT INTO `tbasesi` (`nim`, `namaAsesi`, `smester`, `password`, `jurusan`, `prodi`, `email`, `nomor`, `tempatLahir`, `tanggalLahir`, `jenisKelamin`, `kebangsaan`, `alamatRumah`, `kodePos`, `noTelp`, `kualifikasiPendidikan`, `namaPerusahaan`, `jabatan`, `alamatPerusahaan`, `kodPosPerusahaan`, `emailPerusahaan`, `noTelpPerusahaan`) VALUES
-('2115354066', ' Kadek Dwika Ananda', '8', 'XQLB', 'Teknik Mesin', 'Mesin Berat', 'asd@gmail.com', '5103051201231', 'Negara', '2023-07-09', 'Laki-laki', 'Indonesia', 'Perumahan Jimbaran No 29, Kuta Selatan, Badung, Bali', '80361', '08123232323', 'SMA Sederajat', 'Politeknik Negeri Bali', 'Mahasiswa', 'Kampus Bukit Jimbaran, Kuta Selatan, Badung, Bali', '80361', 'poltek@pnb.ac.id', '0361-701981'),
-('2115354070', 'Kadek Yudha Ananda Putra', '7', 'MD86', 'Teknik Elektro', 'TRPL', 'anan@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `tbasesi` (`nim`, `namaAsesi`, `smester`, `jurusan`, `prodi`, `email`, `nomor`, `tempatLahir`, `tanggalLahir`, `jenisKelamin`, `kebangsaan`, `alamatRumah`, `kodePos`, `noTelp`, `kualifikasiPendidikan`) VALUES
+('2115354066', ' Kadek Dwika Ananda', '8', 'Teknik Mesin', 'Mesin Berat', 'asd@gmail.com', '5103051201231', 'Negara', '2023-07-09', 'Laki-laki', 'Indonesia', 'Perumahan Jimbaran No 29, Kuta Selatan, Badung, Bali', '80361', '08123232323', 'SMA Sederajat'),
+('2115354070', 'Kadek Yudha Ananda Putra', '7', 'Teknik Elektro', 'TRPL', 'anan@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -121,10 +114,10 @@ CREATE TABLE `tbjadwal` (
 --
 
 INSERT INTO `tbjadwal` (`idjadwal`, `kodeSkema`, `periodeMulai`, `periodeSelesai`, `tempat`, `limit`) VALUES
-(0, '2', '2023-07-04', '2023-07-05', 'PNB', 100),
-(1, '1', '2023-06-21', '2023-06-28', 'Politeknik Negeri Bali', 100),
+(1, '2', '2023-07-04', '2023-07-05', 'PNB', 100),
 (2, '2', '2023-07-04', '2023-07-05', 'PNB', 100),
-(3, '4', '2023-07-17', '2023-07-18', 'Gedung K', 100);
+(3, '4', '2023-07-17', '2023-07-18', 'Gedung K', 100),
+(4, '1', '2023-07-19', '2023-07-26', 'Politeknik Negeri Bali', 30);
 
 -- --------------------------------------------------------
 
@@ -158,7 +151,7 @@ INSERT INTO `tbjurusan` (`idJurusan`, `namaJurusan`, `nipAdmin`) VALUES
 
 CREATE TABLE `tblogin` (
   `username` varchar(18) NOT NULL,
-  `password` varchar(25) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `level` char(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -269,7 +262,7 @@ CREATE TABLE `tbujian` (
 --
 
 INSERT INTO `tbujian` (`idUjian`, `idjadwal`, `nim`, `tujuanAsesmen`, `fileKelengkapan`, `verifikasiKelengkapan`, `fileBayar`, `verifikasiBayar`, `nipPegawai`) VALUES
-(1, 0, '2115354066', b'0000', NULL, NULL, NULL, NULL, NULL),
+(1, 4, '2115354066', b'0000', NULL, NULL, NULL, NULL, NULL),
 (2, 1, '2115354066', b'0000', NULL, NULL, NULL, NULL, NULL),
 (4, 3, '2115354070', b'0000', NULL, 'Terima', NULL, 'Tolak', NULL),
 (5, 1, '2115354070', b'0000', NULL, NULL, NULL, 'Terima', NULL);
@@ -388,6 +381,12 @@ ALTER TABLE `tbunit`
 --
 
 --
+-- AUTO_INCREMENT for table `tbjadwal`
+--
+ALTER TABLE `tbjadwal`
+  MODIFY `idjadwal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `tbjurusan`
 --
 ALTER TABLE `tbjurusan`
@@ -440,8 +439,8 @@ ALTER TABLE `tbskema`
 --
 ALTER TABLE `tbujian`
   ADD CONSTRAINT `FK_asesi` FOREIGN KEY (`nim`) REFERENCES `tbasesi` (`nim`),
-  ADD CONSTRAINT `tbujian_ibfk_2` FOREIGN KEY (`idjadwal`) REFERENCES `tbjadwal` (`idjadwal`),
-  ADD CONSTRAINT `tbujian_ibfk_3` FOREIGN KEY (`nipPegawai`) REFERENCES `tbpegawai` (`nipPegawai`);
+  ADD CONSTRAINT `tbujian_ibfk_3` FOREIGN KEY (`nipPegawai`) REFERENCES `tbpegawai` (`nipPegawai`),
+  ADD CONSTRAINT `tbujian_ibfk_4` FOREIGN KEY (`idjadwal`) REFERENCES `tbjadwal` (`idjadwal`);
 
 --
 -- Constraints for table `tbunit`

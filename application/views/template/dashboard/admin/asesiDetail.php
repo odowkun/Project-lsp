@@ -11,7 +11,7 @@
       <?php echo $asesi[0]->namaAsesi?>
    </div>
    <div>
-      <a class="btn btn-success" href="<?= base_url()?>controller_admin/datadiri/<?= $asesi[0]->nim?>">Detail Asesi</a>
+      <a class="btn btn-success" href="<?= base_url()?>controller_admin/datadiri/<?= $asesi[0]->nim?>">Data Diri</a>
    </div>
 </h5>
 <hr>

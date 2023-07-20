@@ -37,7 +37,7 @@
             $i = 1;
             foreach ($hasil as $data):
          ?>
-         <tr ondblclick="detail(<?php echo $data->nim?>)">
+         <tr ondblclick="detail('<?php echo $data->nim?>')">
             <td><?php echo $i ?></td>
             <td><?php echo $data->nim ?></td>
             <td><?php echo $data->namaAsesi?></td>
@@ -46,8 +46,8 @@
             <td><?php echo $data->jurusan?></td>
             <td><?php echo $data->prodi?></td>
             <td>
-               <button class="btn btn-success" onclick="detail(<?php echo $data->nim?>)">Detail</button>
-               <button class="btn btn-danger" onclick="hapusAsesi(<?php echo $data->nim?>, '<?php echo $data->namaAsesi?> ?')">Delete</button>
+               <button class="btn btn-success" onclick="detail('<?php echo $data->nim?>')">Detail</button>
+               <button class="btn btn-danger" onclick="hapusAsesi('<?php echo $data->nim?>', '<?php echo $data->namaAsesi?> ?')">Delete</button>
             </td>
          </tr>
                

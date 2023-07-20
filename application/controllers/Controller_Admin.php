@@ -8,13 +8,12 @@
          $this->load->model("Model_Regis");
       }
 
-      // ================================================ TABEL
+      // ================================================ SIDEBAR
       function table($namaTabel) {
 			$hasiltable['hasil']=$this->Model_Admin->table($namaTabel);
 			$table=$this->load->view('template/dashboard/admin/'.$namaTabel, $hasiltable, TRUE);
          return $table;
 		}
-
       function jurusan() {
          $data['table'] = $this->table("tbjurusan");
          $this->load->view('template/dashboard/admin/index', $data);
@@ -28,12 +27,6 @@
          $data['table'] = $this->table("tbskema");
          $this->load->view('template/dashboard/admin/index', $data);
       }
-      function detail($kodeSkema) {
-         $tabel['unit'] = $this->Model_Admin->tableWhere("tbUnit", array("kodeSkema"=>$kodeSkema));
-         $tabel['skema'] = $this->Model_Admin->tableWhere("tbSkema", array("kodeSkema"=>$kodeSkema));
-         $data['table'] = $this->load->view("template/dashboard/admin/detailskema", $tabel, TRUE);
-         $this->load->view('template/dashboard/admin/index', $data);
-      }
       function pegawai() {
          $data['table'] = $this->table("tbpegawai");
          $this->load->view('template/dashboard/admin/index', $data);
@@ -43,24 +36,27 @@
          $this->load->view('template/dashboard/admin/index', $data);
       }
 
-      // =============================================== TABEL
-      
-      function home() {
-         $tabel['skema'] = $this->Model_Admin->tableSkema();
-         $tabel['asesi'] = $this->Model_Admin->home();
-         $tabel['grafik'] = $this->Model_Admin->grafikChart();
-         $data['home']=$this->load->view('template/dashboard/admin/home', $tabel, TRUE);
+      // =============================================== SKEMA
+      function detailSkema($kodeSkema) {
+         $tabel['unit'] = $this->Model_Admin->tableWhere("tbUnit", array("kodeSkema"=>$kodeSkema));
+         $tabel['skema'] = $this->Model_Admin->tableWhere("tbSkema", array("kodeSkema"=>$kodeSkema));
+         $data['table'] = $this->load->view("template/dashboard/admin/skemaDetail", $tabel, TRUE);
          $this->load->view('template/dashboard/admin/index', $data);
       }
-      
-      function updateSkema($kodeSkema, $pilih) {
-         $this->Model_Admin->updateSkema($kodeSkema, $pilih);
-      }
-
       function fileSkema($kodeSkema) {
          echo "File Pendukung";
       }
-      
+      function updateSkema($kodeSkema, $pilih) {
+         $this->Model_Admin->updateSkema($kodeSkema, $pilih);
+      }
+      // =============================================== HOME
+      function home() {
+         $tabel['skema'] = $this->Model_Admin->tableSkema();
+         $tabel['asesi'] = $this->Model_Admin->berkas(TRUE);
+         $tabel['grafik'] = $this->Model_Admin->grafikChart();
+         $data['home']=$this->load->view('template/dashboard/admin/home', $tabel, TRUE);
+         $this->load->view('template/dashboard/admin/index', $data);
+      }  
       // =============================================== PEGAWAI
       function submitPegawai() {
          $pass = $this->Model_Regis->password();
@@ -85,25 +81,21 @@
       }
       function detailAsesi($nim) {
          $tabel['asesi'] = $this->Model_Admin->tableWhere('tbasesi', array('nim'=>$nim));
-         $data['table'] = $this->load->view("template/dashboard/admin/detailAsesi", $tabel, TRUE);
+         $data['table'] = $this->load->view("template/dashboard/admin/asesiDetail", $tabel, TRUE);
          $tabel['skema'] = $this->Model_Admin->detailAsesi($nim);
          $data['table'] .= $this->load->view("template/dashboard/admin/asesiSkema", $tabel, TRUE);
          $this->load->view("template/dashboard/admin/index", $data);
       }
       function dataDiri($nim) {
          $tabel['asesi'] = $this->Model_Admin->tableWhere('tbasesi', array('nim'=>$nim));
-         $data['table'] = $this->load->view("template/dashboard/admin/dataDiri", $tabel, TRUE);
+         $data['table'] = $this->load->view("template/dashboard/admin/asesiDataDiri", $tabel, TRUE);
          $this->load->view("template/dashboard/admin/index", $data);
-
-      }
-      
-      function fileAsesi($nim, $id) {
-         $tabel['asesi'] = $this->Model_Admin->tableWhere('tbasesi', array('nim'=>$nim));
-         $data['table'] = $this->load->view("template/dashboard/admin/detailAsesi", $tabel, TRUE);
-         $tabel['file'] = $this->Model_Admin->fileasesi($nim, $id);
-         $data['table'] .= $this->load->view("template/dashboard/admin/fileasesi", $tabel, TRUE);
+      }  
+      // ============================================== BERKAS
+      function berkas() {
+         $tabel['asesi'] = $this->Model_Admin->berkas(FALSE);
+         $data['table'] = $this->load->view("template/dashboard/admin/berkasAsesi", $tabel, TRUE);
          $this->load->view("template/dashboard/admin/index", $data);
-
       }
 
       // ============================================== JURUSAN
