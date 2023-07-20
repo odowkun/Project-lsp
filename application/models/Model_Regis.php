@@ -58,24 +58,13 @@
 			$data->prodi;
 			$data->smester;
 			$data->email=$Email;
-			$data->password=$Password;
 			$this->db->insert('tbasesi',$data);
-			// masukkan data email dan password
-			// $dataasesi['email']=$Email;
-			// $dataasesi['password']=$Password;
-			// $this->db->insert('tbasesi',$dataasesi);
 
 			// masuk ke tblogin
 			$datalogin['username']=$Username;
 			$datalogin['password']=$Password;
 			$datalogin['level']=2;
 			$this->db->insert('tblogin',$datalogin);
-			// redirect('Controller_Pendaftaran/pendaftaran');
-
-			// $account=array(
-			// 	'Username'=>$Username,
-			// 	'Password'=>$Password
-			// );
 
 			$account = $Password;
 			

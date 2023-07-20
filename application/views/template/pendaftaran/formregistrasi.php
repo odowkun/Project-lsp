@@ -41,9 +41,10 @@
 
 </div>
 </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <!-- Custom JavaScript -->
-    <script type="text/javascript" >
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<!-- Custom JavaScript -->
+<script type="text/javascript" >
     let hide = $('.hide');
     let errorMessage = $('.errorMessage');
     let errorText = document.getElementById("errorText");
@@ -94,6 +95,7 @@
     }
 
     function runSubmit() {
+      
       let nim = $('#containNIM').val();
       let email = $('#email').val();
 
@@ -133,7 +135,7 @@
 
     }
 
-    </script>
+</script>
 
     <!-- emailjs -->
     <script type="text/javascript"

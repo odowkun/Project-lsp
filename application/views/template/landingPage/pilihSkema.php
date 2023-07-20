@@ -58,7 +58,7 @@
                                     <h4 class="card-title"><b><?php echo $data->namaSkema ?></b></h4>
                                     <p class="card-text">Pendaftaran <br> <?php echo date('d F Y', strtotime($data->periodeMulai))." hingga ".date('d F Y', strtotime($data->periodeSelesai))?></p>
                                     <p class="card-text">Lokasi : <?php echo $data->tempat?></p>
-                                    <p class="card-text mb-0">Sisa Kuota : <?php $limit=($data->limit-220); if($limit < 0){echo "0";}else{echo $limit;}?></p>
+                                    <p class="card-text mb-0">Sisa Kuota : <?php $limit=($data->limit-0); if($limit < 0){echo "0";}else{echo $limit;}?></p>
                                     <a class="position-absolute bottom-0 end-0 text-uppercase btn btn-outline-dark mb-1 mx-1 <?php if($limit <= 0){echo "disabled";}?>"
                                     href="<?= base_url('Controller_LandingPage/detailSkema?datajurusan=') ?> <?= $data->idJurusan.'&dataskema='.$data->kodeSkema?>">next</a>
                                 </div>

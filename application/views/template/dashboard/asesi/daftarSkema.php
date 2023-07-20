@@ -1,0 +1,126 @@
+<style>
+    .hide {
+    display: none;
+    }
+</style>
+
+<h5>Daftar Skema</h5>
+<hr>
+<?php
+$pesan = $this->session->userdata('pesan');
+if (!empty($pesan)) {
+   echo "
+      <div class='alert alert-success alert-dismissable d-flex align-item-center justify-content-between'>
+         <div class='text'>".$pesan."</div>
+         <button type='button' class='btn-close' data-bs-dismiss='alert'></button>
+      </div>
+      ";
+}
+?>
+<form action="<?php echo base_url("controller_asesi/submitDaftar")?>" method="post" class="needs-validation">
+   <div class="mb-3 row">
+      <label for="idJurusan" class="col-sm-2 col-form-label">Pilih Skema</label>
+      <div class="col-sm-8">
+         <select name="idJadwal" id="idJadwal" class="form-select" required onchange="toggleButton()">
+            <option value="" disabled selected>Pilih</option>
+            <?php
+               foreach($dataSkema as $data):
+            ?>
+               <option value="<?php echo $data->idjadwal ?>"><?php echo $data->namaSkema?></option>
+            <?php
+                $namaSkema = $data->namaSkema;
+                $biaya = $data->biaya;
+                $tempat = $data->tempat;
+                $periodeMulai = $data->periodeMulai;
+                $periodeSelesai = $data->periodeSelesai;
+                $sisaSlot = $data->limit;
+                $panduan = $data->templateFile;
+               endforeach; 
+            ?>
+         </select>
+      </div>
+      <div class="col-sm-2">
+         <button class="btn btn-primary" type="button" id="onCheck" onclick="runCheck()" disabled>Check Detail</button>
+      </div>
+   </div>   
+   <div class="hide mb-3 row ">
+      <label for="" class="col-sm-2 col-form-label"></label>
+      <div class="col-sm-8">
+         <!-- <button class="btn btn-primary" type="submit">Daftar</button> -->
+         <div class="card">
+                  <div class="card-body">
+                          <h4 class="card-title mb-2 text-center">Detail Skema</h4>
+                          <hr>
+                           <div class="table-responsive">
+                              <table class="table table-hover text-center">
+                                <tr>
+                                    <th>Nama Skema</th>
+                                    <th>Biaya</th>
+                                    <th>Tempat</th>
+                                    <th>Periode Daftar</th> 
+                                    <th>Sisa Slot</th> 
+                                    <th>Panduan</th> 
+                                </tr>
+                                <tr>
+                                    <td><?php echo $namaSkema?></td>
+                                    <td><?php echo $biaya?></td>
+                                    <td><?php echo $tempat?></td>
+                                    <td><?php echo $periodeMulai." Sampai ".$periodeSelesai?></td>
+                                    <td><?php echo ($sisaSlot-0)?></td>
+                                    <td><a href="#" target="_blank">Click Here!</a></td>
+                                </tr>
+                              </table>
+                           </div>
+                  </div>
+               </div>
+      </div>
+   </div>
+   <div class="hide mb-3 row">
+      <label for="" class="col-sm-2 col-form-label"></label>
+      <div class="col-sm-1">
+         <button class="btn btn-warning" type="button" id="onBatal" onclick="runBatal()">Batal</button>
+      </div>
+      <div class="col-sm-1">
+         <button class="btn btn-primary" type="submit">Daftar</button>
+      </div>
+   </div>
+</form>
+<hr>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<!-- Custom JavaScript -->
+<script type="text/javascript" >
+    let hide = $('.hide');
+    
+    console.log("masuk pak eko!")
+
+    function toggleButton() {
+    var selectElement = document.getElementById('idJadwal');
+    var checkButton = document.getElementById('onCheck');
+
+    if (selectElement.value !== "") {
+      // Jika ada opsi yang dipilih, aktifkan tombol
+      checkButton.removeAttribute('disabled');
+    } else {
+      // Jika tidak ada opsi yang dipilih, nonaktifkan tombol
+      checkButton.setAttribute('disabled', 'disabled');
+    }
+  }
+
+    function runCheck() {
+          document.getElementById('onCheck').disabled = true;
+
+          for (var i = 0; i < hide.length; i += 1) {
+            hide[i].style.display = 'flex';
+          }
+    };
+
+    function runBatal() {
+          document.getElementById('onCheck').disabled = false;
+
+          for (var i = 0; i < hide.length; i += 1) {
+            hide[i].style.display = 'none';
+          }
+    };
+
+</script>

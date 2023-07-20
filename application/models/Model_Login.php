@@ -28,8 +28,7 @@
                 }else if($level == "1"){
                     redirect('Controller_Dashboard/pegawai');  
                 }else if($level == "2"){
-                    redirect('Controller_Dashboard/asesi');  
-
+                    redirect('Controller_asesi/home');  
                 }
 			}
 			else

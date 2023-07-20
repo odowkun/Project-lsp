@@ -16,7 +16,7 @@
 <!-- NAVBAR -->
   <nav class="navbar navbar-expand-sm shadow bg-white sticky-top d-flex justify-content-between w-100 position-fixed">
     <div class="container-fluid d-flex justify-content-between">
-      <a class="navbar-brand" href="#">SIM LSP</a>
+      <a class="navbar-brand" href="<?php echo base_url("controller_asesi/home") ?>">SIM LSP</a>
 
       <!-- NAVBAR-SM-HAMBURGER-BUTTON -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,8 +25,15 @@
 
       <!-- NAVBAR-CONTENT -->
       <div class="collapse navbar-collapse justify-content-end" id="navbar">
-        <!-- <a class="nav-item d-lg-none" style="" href="">Data Asesi</a>
-        <a class="nav-item d-lg-none" style="" href="">Daftar Skema</a> -->
+        <div class="navbar-nav">
+          <a class="nav-link hover d-lg-none" style="" href="<?php echo base_url("controller_asesi/home") ?>">Profile</a>
+          <li class="nav-item dropdown d-lg-none">
+            <a class="nav-link dropdown-toggle hover" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">Skema</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="<?php echo base_url("controller_asesi/informasi") ?>">Informasi Skema</a></li>
+              <li><a class="dropdown-item" href="<?php echo base_url("controller_asesi/daftar") ?>">Daftar Skema</a></li>
+            </ul>
+          </li>
           <a class="nav-link hover" style="" onclick="logout()">Logout</a>
         </div>
       </div>
@@ -38,10 +45,39 @@
   <main class="d-none d-lg-flex position-fixed h-100 border-end" style="width: 18%; padding-top: 56px;">
     <ul class="nav flex-column w-100">
 
-      <!-- SIDEBAR-Asesi -->
-          <a class="ps-4 nav-link text-reset" href="<?php echo base_url("Controller_Asesi/home") ?>">Data Asesi</a>
-          <a class="ps-4 nav-link text-reset" href="<?php echo base_url("Controller_Asesi/daftarSkema") ?>">Daftar Skema</a>
-      <!-- END-OF-SIDEBAR-ASESI-LIST -->
+      <li class="sidebar-hover nav-item" id="sidebar-lsp-jurusan">
+        <a class="nav-link active text-reset d-flex align-items-center justify-content-between fw-semibold"
+          href="<?php echo base_url("controller_asesi/home") ?>">
+          Profile
+        </a>
+      </li>
+
+      <!-- SIDEBAR-Skema -->
+      <li class="sidebar-hover nav-item icon-link d-flex justify-content-between w-100 pe-4" id="sidebar-user"
+        data-bs-target="#sidebar-user-list" data-bs-toggle="collapse">
+        <a class="navbar-toggle text-reset nav-link fw-semibold">
+          Skema</a>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class=" bi-chevron-down"
+          viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+        </svg>
+      </li>
+      <!-- SIDEBAR-skema-LIST -->
+      <div class="show" id="sidebar-user-list">
+        <li class="sidebar-hover nav-item" id="sidebar-user-pegawai">
+          <a class="ps-4 nav-link text-reset"
+            href="<?php echo base_url("controller_asesi/informasi") ?>">
+            Informasi Skema 
+          </a>
+        </li>
+        <li class="sidebar-hover nav-item" id="sidebar-user-asesi">
+          <a class="ps-4 nav-link text-reset" href="<?php echo base_url("controller_asesi/daftar") ?>">
+            Daftar Skema
+          </a>
+        </li>
+      </div>
+      <!-- ENDOF-SIDEBAR-Skema-LIST -->
 
     </ul>
   </main>
@@ -51,10 +87,12 @@
     <div class="col-auto d-none d-lg-block" style="width: 18%;"></div>
     <main class="col ps-5">
       <?php
-      if (!empty($table)) {
-        echo $table;
-      } else if (!empty($formPegawai)) {
-        echo $formPegawai;
+      if (!empty($daftar)) {
+        echo $daftar;
+      }else if (!empty($informasi)) {
+        echo $informasi;
+      } else if (!empty($editData)) {
+        echo $editData;
       } else if (!empty($home)) {
         echo $home;
       } 
