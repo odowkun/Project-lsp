@@ -59,7 +59,7 @@ if (!empty($pesan)) {
                                     <th>Tempat</th>
                                     <th>Periode Daftar</th> 
                                     <th>Sisa Slot</th> 
-                                    <th>Panduan</th> 
+                                    <th>Panduan</th>
                                 </tr>
                                 <tr>
                                     <td><?php echo $namaSkema?></td>
@@ -86,6 +86,65 @@ if (!empty($pesan)) {
    </div>
 </form>
 <hr>
+<div class="table-responsive">
+<table class="table table-hover">
+   <thead>
+      <tr>
+         <th>No</th>
+         <th>Nama Skema</th>
+         <th>Periode Daftar</th>
+         <th>Status</th>
+         <th>Aksi</th>
+      </tr>
+   </thead>
+   <tbody>
+      <?php
+        if (!empty($hasil)) {
+            $i=1;
+            foreach ($hasil as $data) : ?>
+                <tr>
+                    <td>
+                        <?php echo $i?>
+                    </td>
+                    <td>
+                        <?php echo $data->namaSkema?>
+                    </td>
+                    <td>
+                        <?php echo $data->periodeMulai." Sampai ".$data->periodeSelesai?>
+                    </td>
+                    <td>
+                        <?php
+                            if(!empty($data->verifikasiKelengkapan && $data->verifikasiBayar )) { 
+                                if ($data->verifikasiKelengkapan === "Terima" && $data->verifikasiBayar === "Terima" ) {
+                                    echo "
+                                    <span class='badge bg-success fw-normal'>Anda Diterima</span>
+                                    ";
+                                } else if ($data->verifikasiKelengkapan === "Tolak" || $data->verifikasiBayar === "Tolak") {
+                                    echo "
+                                    <span class='badge bg-danger fw-normal '>Data Ditolak, Silahkan di cek kembali!</span>
+                                    ";
+                                } 
+                            } else {
+                                echo "
+                                <span class='badge bg-primary fw-normal'>Anda Belum Melengkapi Data!</span>
+                                ";
+                            }
+                        ?>
+                    </td>
+                    <td>
+                        <button class="btn btn-success" >Detail</button>
+                        <button class="btn btn-danger" >Batal</button>
+                    </td>
+                </tr>
+      <?php
+            $i++;
+            endforeach;
+         }
+      ?>
+
+   </tbody>
+</table>
+</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <!-- Custom JavaScript -->

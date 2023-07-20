@@ -44,9 +44,16 @@
 		}
 
       function daftar(){
+         $nim = $this->session->userdata('Username');
          $data['dataSkema'] = $this->Model_Asesi->pilihSkema();
+         $data['hasil'] = $this->Model_Asesi->cekPendaftaran($nim);
          $data['daftar']=$this->load->view('template/dashboard/asesi/daftarSkema', $data, TRUE);
          $this->load->view('template/dashboard/asesi/index', $data);
+      }
+
+      function submitdaftar(){
+         $nim = $this->session->userdata('Username');
+         $this->Model_Asesi->submitDaftar($nim);
       }
    }
 ?>

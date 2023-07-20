@@ -43,5 +43,23 @@
 			->result();	
 		}
 
+		function submitDaftar($nim){
+			$data=$_POST;
+            $this->db->set("nim", $nim)->insert('tbujian',$data);
+			$this->session->set_flashdata('pesan','Data Berhasil Disimpan!');
+			redirect(base_url('controller_asesi/daftar'));
+        }
+
+		function cekPendaftaran($nim){
+			return $this->db
+			->select('*')
+			->from('tbujian')
+			->join('tbjadwal', 'tbujian.idjadwal = tbjadwal.idjadwal', 'LEFT')
+			->join('tbskema', 'tbjadwal.kodeSkema = tbskema.kodeSkema', 'LEFT')
+			->where('nim', $nim)
+			->get()
+			->result();
+        }
+
 	}
 ?>
