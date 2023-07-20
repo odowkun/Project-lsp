@@ -39,7 +39,7 @@
          }
          ?>
 
-         <tr>
+         <tr class="bg-secondary-subtle">
             <td colspan="2" align="right"><b>Total : </b></td>
             <td><?= $total?> Skema Aktif<td>
          </tr>
@@ -66,6 +66,7 @@
 
    const chart = new google.visualization.BarChart(document.getElementById('grafiks'));
    chart.draw(data, options);
+   
 }
 </script>
 

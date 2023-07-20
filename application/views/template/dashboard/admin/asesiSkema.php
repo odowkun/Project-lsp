@@ -1,10 +1,15 @@
+<script>
+   function detail(id) {
+      window.open("<?=base_url()?>controller_admin/detailberkas/"+id, "_self")
+   }
+</script>
 <h5>Skema Yang Didaftarkan</h5>
 <hr>
-<table class="table">
+<table class="table table-hover">
    <thead>
       <tr>
+         <th>No</th>
          <th>Nama Skema</th>
-         <th>Periode</th>
          <th>Tempat</th>
          <th>Berkas Kelengkapan</th>
          <th>Bukti Pembayaran</th>
@@ -12,12 +17,13 @@
    </thead>
    <tbody>
       <?php
+      $i = 1;
       if (!empty($skema)) {
          foreach($skema as $data) :
       ?>
-      <tr>
+      <tr ondblclick="detail('<?=$data->idUjian?>')">
+         <td><?=$i?></td>
          <td><?php echo $data->namaSkema?></td>
-         <td><?php echo date_format(date_create($data->periodeMulai),"d M Y") . " - " . date_format(date_create($data->periodeSelesai), "d M Y")?></td>
          <td><?php echo $data->tempat?></td>
          <td>
             <?php 
@@ -47,6 +53,7 @@
             </td>
       </tr>
          <?php
+            $i++;
             endforeach;
          } else {
             echo "<td colspan='4'>Asesi Belum Mendaftar</td>";

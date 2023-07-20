@@ -104,33 +104,6 @@
 		}
 		
 		// ============================ ASESI =============================
-		function submitAsesi($pass) {
-			$data=$_POST;
-			$master = $this->db->get_where('masterdata', array('nim'=>$data['nim']));
-			if ($master->num_rows() > 0) {
-				$login = $this->db->get_where('tblogin', array('nim'=>$data['nim']));
-				if (!$login->num_rows()>0) {
-					if($master[0]->smester > 7) {
-						$data['password']=$pass;
-						$this->db->insert('tbasesi',$data);
-			
-						$dataLogin = array(
-							'username' => $data['nim'],
-							'password' => $data['password'],
-							'level' => '2'
-						);
-						// $this->db->insert('tblogin',$dataLogin);
-						$this->session->set_flashdata('pesan','Data Berhasil Ditambahkan! Password : '.$pass);
-					} else {
-						$this->session->set_flashdata('pesan', 'Mahasiswa harus semester 7 keatas!');
-					}
-				} else {
-					$this->session->set_flashdata('pesan', 'NIM Sudah mendaftar');
-				}
-			} else {
-				$this->session->set_flashdata('pesan', 'NIM Tidak Terdaftar!');
-			}
-		}
 
 		function detailAsesi($nim) {
 			return  $this->db
@@ -145,11 +118,13 @@
 		}
 		function berkas($bol) {
 			$this->db
-			->select('tbujian.nim, idUjian, namaAsesi, namaSkema, verifikasiKelengkapan, verifikasiBayar')
+			->select('tbujian.nim, tbujian.idUjian, namaAsesi, namaSkema, verifikasiKelengkapan, verifikasiBayar')
 			->from('tbujian')
 			->join('tbasesi', 'tbujian.nim = tbasesi.nim')
 			->join('tbjadwal', 'tbjadwal.idjadwal = tbujian.idjadwal')
 			->join('tbskema', 'tbskema.kodeSkema = tbjadwal.kodeSkema')
+			->order_by('verifikasiKelengkapan', 'asc')
+			->order_by('verifikasiBayar', 'asc')
 			->order_by('namaSkema', 'asc');
 			// FILTER UNTUK HOMEPAGE
 			if($bol) {
@@ -160,14 +135,26 @@
 			->result();
 		}
 
-		function fileAsesi($nim, $id) {
+		// ============================ BERKAS ============================
+		function detailBerkas($id) {
 			return $this->db
-			->select('verifikasiKelengkapan, verifikasiBayar')
+			->select('fileBayar, fileKelengkapan, tbujian.nim, tbujian.idUjian')
 			->from('tbujian')
+			->join('tbasesi', 'tbujian.nim = tbasesi.nim')
+			->where("idUjian", $id)
 			->get()
 			->result();
 		}
-
+		function submitBerkas($id, $value) {
+			$data['verifikasiKelengkapan'] = $value;
+			$this->db->where("idUjian", $id);
+			$this->db->update('tbUjian', $data);
+		}
+		function submitBayar($id, $value) {
+			$data['verifikasiBayar'] = $value;
+			$this->db->where("idUjian", $id);
+			$this->db->update('tbUjian', $data);
+		}
 
 		// ============================ JURUSAN ============================
 		function submitJurusan() {

@@ -74,11 +74,6 @@
       }
 
       // ============================================== ASESI
-      function submitAsesi() {
-         $pass = $this->Model_Regis->password();
-         $this->Model_Admin->submitAsesi();
-         $this->asesi();
-      }
       function detailAsesi($nim) {
          $tabel['asesi'] = $this->Model_Admin->tableWhere('tbasesi', array('nim'=>$nim));
          $data['table'] = $this->load->view("template/dashboard/admin/asesiDetail", $tabel, TRUE);
@@ -96,6 +91,20 @@
          $tabel['asesi'] = $this->Model_Admin->berkas(FALSE);
          $data['table'] = $this->load->view("template/dashboard/admin/berkasAsesi", $tabel, TRUE);
          $this->load->view("template/dashboard/admin/index", $data);
+      }
+      function detailBerkas($id) {
+         $tabel['konten'] = $this->Model_Admin->detailBerkas($id);
+         $data['table'] = $this->load->view("template/dashboard/admin/berkasDetail", $tabel, TRUE);
+         $this->load->view("template/dashboard/admin/index", $data);
+      }
+
+      function submitBerkas($id, $value) {
+         $this->Model_Admin->submitBerkas($id, $value);
+         redirect(base_url("controller_admin/detailberkas/$id"));
+      }
+      function submitBayar($id, $value) {
+         $this->Model_Admin->submitBayar($id, $value);
+         redirect(base_url("controller_admin/detailberkas/$id"));
       }
 
       // ============================================== JURUSAN

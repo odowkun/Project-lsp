@@ -6,10 +6,10 @@
 
   <!-- Bootstrap core CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-    crossorigin="anonymous"></script>
+  integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+  crossorigin="anonymous"></script>
 </head>
 
 <body style="height: 100vh;">
@@ -64,14 +64,13 @@
         data-bs-target="#sidebar-lsp-list" data-bs-toggle="collapse" id="sidebar-lsp">
         <a class="navbar-toggle text-reset nav-link fw-semibold">
           Kelola LSP</a>
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class=" bi-chevron-down"
-          viewBox="0 0 16 16">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
           <path fill-rule="evenodd"
             d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
         </svg>
       </li>
       <!-- SIDEBAR-LSP-LIST -->
-      <div class="show" id="sidebar-lsp-list">
+      <div class="show bg-body-tertiary" id="sidebar-lsp-list">
         <li class="sidebar-hover nav-item" id="sidebar-lsp-jurusan">
           <a class="nav-link active text-reset d-flex align-items-center justify-content-between ps-4 pe-4"
             href="<?php echo base_url("controller_admin/jurusan") ?>">
@@ -88,9 +87,9 @@
             Data Skema
 
             <?php
-            $this->db->where('verifikasiSkema', null)->from('tbskema');
-
-            $result = $this->db->count_all_results();
+            $result = $this->db
+            ->where('verifikasiSkema', null)->from('tbskema')
+            ->count_all_results();
             if ($result > 0) {
               echo "<span class='badge bg-primary rounded-pill'>" . $result . "</span>";
             }
@@ -105,14 +104,13 @@
         data-bs-target="#sidebar-user-list" data-bs-toggle="collapse">
         <a class="navbar-toggle text-reset nav-link fw-semibold">
           Kelola User</a>
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class=" bi-chevron-down"
-          viewBox="0 0 16 16">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
           <path fill-rule="evenodd"
             d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
         </svg>
       </li>
       <!-- SIDEBAR-USER-LIST -->
-      <div class="show" id="sidebar-user-list">
+      <div class="show bg-body-tertiary" id="sidebar-user-list">
         <li class="sidebar-hover nav-item" id="sidebar-user-pegawai">
           <a class="ps-4 nav-link text-reset"
             href="<?php echo base_url("controller_admin/pegawai") ?>">
@@ -127,6 +125,16 @@
         <li class="sidebar-hover nav-item" id="sidebar-user-berkas">
           <a class="ps-4 nav-link text-reset" href="<?php echo base_url("controller_admin/berkas") ?>">
             Kelola Berkas
+            <?php
+            $result = $this->db
+            ->where('verifikasiKelengkapan', null)
+            ->or_where('verifikasiBayar', null)
+            ->from('tbujian')
+            ->count_all_results();
+            if ($result > 0) {
+              echo "<span class='badge bg-primary rounded-pill'>" . $result . "</span>";
+            }
+            ?>
           </a>
         </li>
       </div>
@@ -142,8 +150,6 @@
       <?php
       if (!empty($table)) {
         echo $table;
-      } else if (!empty($formPegawai)) {
-        echo $formPegawai;
       } else if (!empty($home)) {
         echo $home;
       } 

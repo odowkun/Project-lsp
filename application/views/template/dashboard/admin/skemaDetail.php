@@ -54,13 +54,13 @@
 </h5>
 <hr>
 <div>
-   <div class="mb-3 row">
+   <div class="row">
       <label class="col-sm-2 col-form-label">Kode Skema</label>
       <div class="col-sm-10 col-form-label">
          <div><?php echo $skema[0]->kodeSkema?></div>
       </div>
    </div>
-   <div class="mb-3 row">
+   <div class="row">
       <label class="col-sm-2 col-form-label">Jurusan</label>
       <div class="col-sm-10 col-form-label">
          <div>
@@ -74,25 +74,25 @@
          </div>
       </div>
    </div>
-   <div class="mb-3 row">
+   <div class="row">
       <label class="col-sm-2 col-form-label">Biaya Skema</label>
       <div class="col-sm-10 col-form-label">
          <div>Rp. <?php echo $skema[0]->biaya?></div>
       </div>
    </div>
-   <div class="mb-3 row">
+   <div class="row">
       <label class="col-sm-2 col-form-label">Kapasitas Peserta</label>
       <div class="col-sm-10 col-form-label">
          <div><?php echo $skema[0]->kapasitasPeserta?> Peserta</div>
       </div>
    </div>
-   <div class="mb-3 row">
+   <div class="row">
       <label class="col-sm-2 col-form-label">Keterangan Skema</label>
       <div class="col-sm-10 col-form-label">
          <div><?php echo $skema[0]->keterangan?></div>
       </div>
    </div>
-   <div class="mb-3 row">
+   <div class="row">
       <label class="col-sm-2 col-form-label">Diinput Oleh</label>
       <div class="col-sm-10 col-form-label">
          <div><?php echo $skema[0]->nipPegawai?></div>
