@@ -76,6 +76,19 @@ if (!empty($pesan)) {
       </div>
    </div>
    <div class="hide mb-3 row">
+      <label for="tujuanAsesmen" class="col-sm-2 col-form-label">Tujuan Assesment</label>
+      <div class="col-sm-8">
+         <select name="tujuanAsesmen" id="tujuanAsesmen" class="form-select" required>
+            <option value="" disabled selected>Pilih</option>
+               <option value="0">Sertifikasi</option>
+               <option value="1">Sertifikasi Ulang</option>
+               <option value="2">Pengakuan Kompetensi Terkini (PKT)</option>
+               <option value="3">Rekognisi Pembelajaran Lampau</option>
+               <option value="4">Lainnya</option>
+         </select>
+      </div>
+   </div>
+   <div class="hide mb-3 row">
       <label for="" class="col-sm-2 col-form-label"></label>
       <div class="col-sm-1">
          <button class="btn btn-warning" type="button" id="onBatal" onclick="runBatal()">Batal</button>
@@ -124,16 +137,20 @@ if (!empty($pesan)) {
                                     <span class='badge bg-danger fw-normal '>Data Ditolak, Silahkan di cek kembali!</span>
                                     ";
                                 } 
-                            } else {
+                            } else if(!empty($data->fileKelengkapan && $data->fileBayar )) { 
+                              echo "
+                              <span class='badge bg-primary fw-normal'>File anda sedang diproses!</span>
+                              ";
+                           }else {
                                 echo "
-                                <span class='badge bg-primary fw-normal'>Anda Belum Melengkapi Data!</span>
+                                <span class='badge bg-warning fw-normal'>Anda Belum Melengkapi Data!</span>
                                 ";
                             }
                         ?>
                     </td>
                     <td>
-                        <button class="btn btn-success" >Detail</button>
-                        <button class="btn btn-danger" >Batal</button>
+                        <button class="btn btn-success" onclick="detail(<?php echo $data->idUjian?>)">Detail</button>
+                        <button class="btn btn-danger" onclick="batal(<?php echo $data->idUjian?>)">Batal</button>
                     </td>
                 </tr>
       <?php
@@ -182,4 +199,16 @@ if (!empty($pesan)) {
           }
     };
 
+    function detail(idujian) {
+       window.open("<?php echo base_url(); ?>Controller_asesi/detailDaftar?data="+idujian, "_self");
+    }
+
+    function batal(idujian) {
+      if (confirm("Apakah yakin membatalkan pendaftaran skema ?")) {
+        window.open("<?php echo base_url(); ?>Controller_asesi/batal?data="+idujian, "_self");
+      }
+    }
+  
+
 </script>
+

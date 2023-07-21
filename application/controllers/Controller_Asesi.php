@@ -55,5 +55,83 @@
          $nim = $this->session->userdata('Username');
          $this->Model_Asesi->submitDaftar($nim);
       }
-   }
+
+      function detailDaftar(){
+			$idujian = $this->input->get('data');
+         $data['detailDaftar'] = $this->Model_Asesi->detailDaftar($idujian);
+         $data['daftar']=$this->load->view('template/dashboard/asesi/detailDaftar', $data, TRUE);
+         $this->load->view('template/dashboard/asesi/index', $data);
+      }
+
+      function batal(){
+			$idujian = $this->input->get('data');
+         $this->Model_Asesi->batal($idujian);
+      }
+
+      function uploadFile()
+		{
+         $nim = $this->session->userdata('Username');
+			$NamaDokumen=$nim;
+			$NamaFileKelengkapan=$this->uploadKelengkapan($_FILES['fileKelengkapan'],'fileKelengkapan',$NamaDokumen."_FileKelengkapan");
+			$NamaFileBayar=$this->uploadPembayaran($_FILES['fileBayar'],'fileBayar',$NamaDokumen."_FilePembayaran");
+			
+			$data=array(
+            'fileKelengkapan' => $NamaFileKelengkapan,
+            'fileBayar' => $NamaFileBayar,
+			);	
+			
+			
+			$this->db->update('tbujian',$data);
+			$this->session->set_flashdata('pesan','Data sudah simpan');
+			redirect('Controller_asesi/daftar','refresh');
+			
+		}
+		
+		function uploadKelengkapan($uploadFile,$field,$nama)
+		{
+			$NamaFile=str_replace(' ', '', $nama);
+			$extractFile = pathinfo($uploadFile['name']);	
+			$ekst = $extractFile['extension'];
+			$newName = $NamaFile.".".$ekst; 
+			$config['upload_path']				= FCPATH.'Asset/file/dokumenKelengkapan';
+			$config['allowed_types']			= 'pdf|jpg|png|jpeg';
+			$config['max_size']         		= 5000;
+			$config['overwrite'] 				= true;
+			$config['file_name'] 				= $newName;
+			$this->upload->initialize($config);
+			if (!$this->upload->do_upload($field)){
+				$error = array('error' => $this->upload->display_errors());
+				print_r($error);
+				
+				return "";
+				
+			}else{
+				
+				return $newName;
+			}
+		 }
+       function uploadPembayaran($uploadFile,$field,$nama)
+       {
+          $NamaFile=str_replace(' ', '', $nama);
+          $extractFile = pathinfo($uploadFile['name']);	
+          $ekst = $extractFile['extension'];
+          $newName = $NamaFile.".".$ekst; 
+          $config['upload_path']				= FCPATH.'Asset/file/dokumenPembayaran';
+          $config['allowed_types']			= 'pdf|jpg|png|jpeg';
+          $config['max_size']         		= 5000;
+          $config['overwrite'] 				= true;
+          $config['file_name'] 				= $newName;
+          $this->upload->initialize($config);
+          if (!$this->upload->do_upload($field)){
+             $error = array('error' => $this->upload->display_errors());
+             print_r($error);
+             
+             return "";
+             
+          }else{
+             
+             return $newName;
+          }
+        }
+      }
 ?>

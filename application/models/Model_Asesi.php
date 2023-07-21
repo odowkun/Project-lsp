@@ -61,5 +61,22 @@
 			->result();
         }
 
+		function batal($idujian){
+			$this->db->delete('tbujian', array('idujian'=>$idujian));
+			$this->session->set_flashdata('pesan', 'Data Berhasil Dihapus!');
+			redirect(base_url('controller_asesi/daftar'));
+        }
+		
+		function detailDaftar($idujian){
+			return $this->db
+			->select('*')
+			->from('tbujian')
+			->join('tbjadwal', 'tbujian.idjadwal = tbjadwal.idjadwal', 'LEFT')
+			->join('tbskema', 'tbjadwal.kodeSkema = tbskema.kodeSkema', 'LEFT')
+			->where('idUjian', $idujian)
+			->get()
+			->result();
+        }
+
 	}
 ?>
