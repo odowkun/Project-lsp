@@ -136,15 +136,6 @@
 		}
 
 		// ============================ BERKAS ============================
-		function detailBerkas($id) {
-			return $this->db
-			->select('fileBayar, fileKelengkapan, tbujian.nim, tbujian.idUjian')
-			->from('tbujian')
-			->join('tbasesi', 'tbujian.nim = tbasesi.nim')
-			->where("idUjian", $id)
-			->get()
-			->result();
-		}
 		function submitBerkas($id, $value) {
 			$data['verifikasiKelengkapan'] = $value;
 			$this->db->where("idUjian", $id);

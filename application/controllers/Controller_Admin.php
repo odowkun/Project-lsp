@@ -93,7 +93,7 @@
          $this->load->view("template/dashboard/admin/index", $data);
       }
       function detailBerkas($id) {
-         $tabel['konten'] = $this->Model_Admin->detailBerkas($id);
+         $tabel['konten'] = $this->Model_Admin->tableWhere('tbUjian', array('idUjian'=>$id));
          $data['table'] = $this->load->view("template/dashboard/admin/berkasDetail", $tabel, TRUE);
          $this->load->view("template/dashboard/admin/index", $data);
       }
