@@ -39,13 +39,7 @@
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="<?php echo base_url("controller_admin/pegawai") ?>">Kelola Pegawai</a></li>
               <li><a class="dropdown-item" href="<?php echo base_url("controller_admin/asesi") ?>">Kelola Asesi</a></li>
-            </ul>
-          </li>
-          <li class="nav-item dropdown d-lg-none">
-            <a class="nav-link dropdown-toggle hover" data-bs-toggle="dropdown" data-bs-auto-close="outside"aria-expanded="false">Asesi</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="<?php echo base_url("controller_admin/home") ?>">Verifikasi</a></li>
-              <li><a class="dropdown-item" href="<?php echo base_url("controller_admin/home") ?>">Berkas</a></li>
+              <li><a class="dropdown-item" href="<?php echo base_url("controller_admin/berkas") ?>">Kelola Berkas</a></li>
             </ul>
           </li>
           <a class="nav-link hover" style="" onclick="logout()">Logout</a>
