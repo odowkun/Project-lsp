@@ -212,6 +212,25 @@
 			$this->session->set_flashdata('pesan', 'Data Berhasil Dihapus!');
 		}
 		
+		// ============================ PRODI =============================
+		function ubahPassword() {
+			$data = $_POST;
+			$old = $this->db
+			->get_where('tblogin', array('username'=>$this->session->userdata('Username')))
+			->result();
+			if ($data['oldpassword'] === $old[0]->password) {
+				if ($data['password'] === $data['newpassword']) {
+					$this->db
+					->where('username', $this->session->userdata('Username'))
+					->update('tblogin', array('password'=>$data['password']));
+					$this->session->set_flashdata('pesan', 'Password Berhasil Diubah!');
+				} else {
+					$this->session->set_flashdata('pesan', 'Password Tidak Sama!');
+				}
+			} else {
+				$this->session->set_flashdata('pesan', 'Password Lama Salah!');
+			}
+		}
 		function tes($idProdi) {
 			$query=$this->db
          ->select('*')

@@ -132,8 +132,25 @@
           </a>
         </li>
       </div>
+      <!-- SIDEBAR-ADMIN -->
+      <li class="sidebar-hover nav-item icon-link d-flex justify-content-between w-100 pe-4" id="sidebar-user"
+        data-bs-target="#sidebar-admin-list" data-bs-toggle="collapse">
+        <a class="navbar-toggle text-reset nav-link fw-semibold">
+          Admin</a>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+        </svg>
+      </li>
+        <div class="show bg-body-tertiary" id="sidebar-user-list">
+        <li class="sidebar-hover nav-item" id="sidebar-user-pegawai">
+          <a class="ps-4 nav-link text-reset"
+            href="<?php echo base_url("controller_admin/password") ?>">
+            Ubah Password
+          </a>
+        </li>
+        </div>
       <!-- ENDOF-SIDEBAR-USER-LIST -->
-
     </ul>
   </main>
 <!-- END-OF-SIDEBAR -->

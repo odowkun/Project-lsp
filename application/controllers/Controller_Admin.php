@@ -138,6 +138,17 @@
          $this->Model_Admin->editProdi($idProdi);
       }
 
+      // =============================================== PASSWORD
+      function password() {
+         $data['table'] = $this->load->view("template/dashboard/admin/ubahpassword", '',TRUE);
+         $this->load->view("template/dashboard/admin/index", $data);
+      }
+
+      function ubahPassword() {
+         $this->Model_Admin->ubahPassword();
+         redirect('controller_admin/password');
+      }
+
       function tes() {
          var_dump( $this->Model_Admin->home());
          // $tabel['asesi'] = $this->Model_Admin->detailAsesi($nim);
