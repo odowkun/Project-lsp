@@ -41,6 +41,8 @@
         //==================================================================
 
         //============================== SKEMA ==============================
+        
+
         function simpanskema(){
             $this->model_pegawai->simpanskema();
 			redirect('controller_pegawai/skema');
@@ -87,11 +89,6 @@
         //====================================================================
 
         //============================== VERIFIKASI ASESI ==============================
-        /*function hapuspendaftar($idUjian){
-			$this->model_pegawai->hapuspendaftar($idUjian);
-			redirect('controller_pegawai/verifikasi');
-		}*/
-
         function datadiri($nim){
             $datadiri['hasil']=$this->model_pegawai->datadiri($nim);
             $data['konten']=$this->load->view('template/dashboard/pegawai/datadiri',$datadiri,TRUE);
@@ -106,6 +103,23 @@
             $datapendaftar['hasil']=$this->model_pegawai->tampilpendaftar();
             $data['table']=$this->load->view('template/dashboard/pegawai/tablependaftarsertifikasi',$datapendaftar,TRUE);
             $this->load->view('template/dashboard/pegawai/index',$data);
+        }
+
+        function buktikelengkapan($idUjian){
+            $datakelengkapan['hasil']=$this->model_pegawai->datakelengkapan($idUjian);
+            $data['konten']=$this->load->view('template/dashboard/pegawai/buktikelengkapan',$datakelengkapan,TRUE);
+            $datapendaftar['hasil']=$this->model_pegawai->tampilpendaftar();
+            $data['table']=$this->load->view('template/dashboard/pegawai/tablependaftarsertifikasi',$datapendaftar,TRUE);
+            $this->load->view('template/dashboard/pegawai/index',$data);
+        }
+
+        function verifikasiKelengkapan($idUjian){
+            $this->model_pegawai->verifikasiKelengkapan($idUjian);
+        }
+
+        function verifikasiBayar($idUjian){
+            $this->model_pegawai->verifikasiBayar($idUjian);
+            redirect('controller_pegawai/verifikasi');
         }
         //==============================================================================
 

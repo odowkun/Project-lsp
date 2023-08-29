@@ -66,6 +66,12 @@
 							<input type="text" class="form-control" id="tempat" name="tempat">	
 						</div>
 					</div>
+					<div class="row mb-3">
+						<label class="col-sm-2 col-form-label">Kapasitas</label>
+						<div class="col-sm-10">
+							<input type="number" class="form-control" id="limit" name="limit">	
+						</div>
+					</div>
 					<button type="submit" class="btn btn-primary" onclick="simpanjadwal()">Daftar</button>
 					<button type="reset" class="btn btn-danger">Reset</button>
 				</form>

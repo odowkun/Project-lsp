@@ -185,7 +185,8 @@
         function tampilpendaftar(){
             $this->db->from('tbasesi');
             $this->db->join('tbujian', 'tbasesi.nim=tbujian.nim');
-            $this->db->where('verifikasiKelengkapan', null);
+            $this->db->where('verifikasiBayar', null);
+            $this->db->order_by('idjadwal', 'DESC');
             $query=$this->db->get();
             if($query->num_rows()>0){
                 foreach($query->result() as $data){
@@ -222,6 +223,33 @@
                 $hasil="";
             }
             return $hasil;
+        }
+
+        function datakelengkapan($idUjian){
+            $query=$this->db->get_where('tbujian', array('idUjian' => $idUjian));
+            if($query->num_rows()>0){
+                $hasil=$query->row();
+            } else{
+                $hasil="";
+            }
+            return $hasil;
+        }
+
+        function verifikasiKelengkapan($idUjian){
+            $data=$_POST;
+            $id=array('idUjian'=>$idUjian);
+            $this->db->where($id);
+            $this->db->update('tbujian',$data);
+            $this->session->set_flashdata('pesan','Data Terverifikasi');
+            redirect('controller_pegawai/buktikelengkapan/'.$idUjian.'');
+        }
+
+        function verifikasiBayar($idUjian){
+            $data=$_POST;
+            $id=array('idUjian'=>$idUjian);
+            $this->db->where($id);
+            $this->db->update('tbujian',$data);
+            $this->session->set_flashdata('pesan','Data Terverifikasi');
         }
 
         function hapuspendaftar($idUjian){

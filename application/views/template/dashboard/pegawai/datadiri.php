@@ -13,45 +13,50 @@
                     <tr>
                         <td>NIK</td>
                         <td>:</td>
-                        <td><?php //echo $hasil->nik ?></td>
+                        <td><?php echo $hasil->nomor ?></td>
                     </tr>
                     <tr>
                         <td>Tempat/Tanggal Lahir</td>
                         <td>:</td>
-                        <td><?php //echo $hasil->TempatLahir ?>/<?php //echo $hasil->tanggalLahir ?></td>
+                        <td><?php echo $hasil->tempatLahir ?>/<?php echo $hasil->tanggalLahir ?></td>
                     </tr>
                     <tr>
                         <td>Jenis Kelamin</td>
                         <td>:</td>
-                        <td><?php //echo $hasil->jk ?></td>
+                        <td><?php echo $hasil->jenisKelamin ?></td>
                     </tr>
                     <tr>
                         <td>Kebangsaan</td>
                         <td>:</td>
-                        <td><?php //echo $hasil->kebangsaan ?></td>
+                        <td><?php echo $hasil->kebangsaan ?></td>
                     </tr>
                     <tr>
                         <td>Alamat Rumah</td>
                         <td>:</td>
-                        <td><?php //echo $hasil->alamatRumah ?></td>
+                        <td><?php echo $hasil->alamatRumah ?></td>
                     </tr>
                     <tr>
                         <td>No. Telp</td>
                         <td>:</td>
-                        <td><?php //echo $hasil->telpP ?></td>
+                        <td><?php echo $hasil->noTelp ?></td>
                     </tr>
                     <tr>
                         <td>Email </td>
                         <td>:</td>
-                        <td><?php //echo $hasil->emailP ?></td>
+                        <td><?php echo $hasil->email ?></td>
                     </tr>
                     <tr>
                         <td>Kode Pos </td>
                         <td>:</td>
-                        <td><?php //echo $hasil->kpp ?></td>
+                        <td><?php echo $hasil->kodePos ?></td>
+                    </tr>
+                    <tr>
+                        <td>Pendidikan </td>
+                        <td>:</td>
+                        <td><?php echo $hasil->kualifikasiPendidikan ?></td>
                     </tr>
                 </table>
-                
+                <?php /*
                 <br/>
                 <br/>
                 <h5>Data Pekerjaan Sekarang</h5>
@@ -60,29 +65,31 @@
                     <tr>
                         <td width="150px">Nama Institusi/ Perusahaan</td>
                         <td>:</td>
-                        <td><?php //echo $hasil->namaInstitusi ?></td>
+                        <td><?php echo $hasil->namaIns ?></td>
                     </tr>
                     <tr>
                         <td>Jabatan</td>
                         <td>:</td>
-                        <td><?php //echo $hasil->jabatan ?></td>
+                        <td><?php echo $hasil->jabatan ?></td>
                     </tr>
                     <tr>
                         <td>Alamat Kantor</td>
                         <td>:</td>
-                        <td><?php //echo $hasil->alamatKantor ?></td>
+                        <td><?php echo $hasil->alamatKantor ?></td>
                     </tr>
                     <tr>
                         <td>No. Telp/Fax/Email</td>
                         <td>:</td>
-                        <td><?php //echo $hasil->telpK ?>/<?php //echo $hasil->fax ?>/<?php //echo $hasil->emailK ?></td>
+                        <td><?php echo $hasil->telpKantor ?>/<?php echo $hasil->emailKantor ?></td>
                     </tr>
                     <tr>
                         <td>Kode Pos</td>
                         <td>:</td>
-                        <td><?php //echo $hasil->kpk ?></td>
+                        <td><?php echo $hasil->kodePos ?></td>
                     </tr>
                 </table>
+                */
+                ?>
             </div>
         </div>
     </div>

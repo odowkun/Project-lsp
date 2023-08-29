@@ -4,46 +4,46 @@
 			<div class="rounded h-100 p-4 border border-dark">
 				<h2>Data Kelengkapan</h2>
 				<hr class="mb-4">
-				<div class="table-responsive">
-                    <table class="table table-hover table-responsive">
-                        <thead class="bg-warning">
-                            <tr>
-                                <th>No</th>
-                                <th>Jenis</th>
-                                <th>File</th>
-                                <th>Verifikasi</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                                if(empty($hasil)){
-                                    ?>
-                                        <tr>
-                                            <td colspan="5" align="center">Data Kosong</td>
-                                        </tr>
-                                    <?php
-                                } else{
-                                    $no=1;
-                                    foreach($hasil as $data):
+                <table width=100%>
+                    <tr>
+                        <td width="50px">No</td>
+                        <td>File</td>
+                        <td>Verifikasi</td>
+                        <td>Aksi</td>
+                    </tr>
+                    <?php
+                        if(empty($hasil)){
                             ?>
                             <tr>
-                                <td><?php echo $no;  ?></td>
-                                <td><?php echo $data->jenis;  ?></td>
-                                <td><?php echo $data->file;  ?></td>
-                                <td><?php echo $data->verifikasi;  ?></td>
-                                <td>
-                                    <button type="submit" class="btn btn-primary btn-sm" onclick="">Submit</button>-->
-                                </td>
+                                <td colspan="4" align="center">Data Kosong</td>
                             </tr>
                             <?php
-                                    $no++;
-                                    endforeach;
-                                }
-                            ?>
-                        </tbody>
-                    </table>
-                </div>
+                        } else{
+                            $no=1;
+                            $data=$hasil;
+                    ?>
+                    <tr>
+                        <td><?php echo $no;  ?></td>
+                        <td><?php echo $data->fileKelengkapan;  ?></td>
+                        <form name="verifikasiKelengkapan" id="verifikasiKelengkapan" method="post" action="<?php echo base_url('controller_pegawai/verifikasiKelengkapan/'.$data->idUjian.'') ?>">
+                            <td>
+                                <select class="form-select" name="verifikasiKelengkapan" id="verifikasiKelengkapan" required>
+                                    <option value=''>Pilih</option>
+                                    <option value='Terima'  <?php echo ($data->verifikasiKelengkapan === 'Terima') ?  'selected' : ''; ?>>Terima</option>
+                                    <option value='Tolak'  <?php echo ($data->verifikasiKelengkapan === 'Tolak') ?  'selected' : ''; ?>>Tolak</option>
+                                </select>
+                            </td>
+                            <td>
+                                <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                            </td>
+                        </form>
+                    </tr>
+                            
+                    
+                    <?php
+                        }
+                    ?>
+                </table>
 			</div>
 		</div>
 	</div>

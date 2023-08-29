@@ -16,6 +16,9 @@
         window.open("<?php echo base_url(); ?>controller_pegawai/datasertifikasi/"+idUjian,"_self");
     }
 
+    function buktikelengkapan(idUjian){
+        window.open("<?php echo base_url(); ?>controller_pegawai/buktikelengkapan/"+idUjian,"_self");
+    }
 </script>
 
 <div class="container mt-3">
@@ -55,16 +58,28 @@
                     <td><?php echo $data->email;  ?></td>
                     <td><?php echo $data->jurusan;  ?></td>
                     <td><?php echo $data->prodi;  ?></td>
-                    <td>
-                    <select class="form-select" name="verifikasi" id="verifikasi">
-                        <option value="">PILIH</option>
-                        <option value="Terima">Terima</option>
-                        <option value="Tolak">Tolak</option>
-                    </select>
-                    </td>
-                    <td>
-                        <button type="submit" class="btn btn-primary btn-sm">Submit</button>
-                    </td>
+                    <form name="verifikasiBayar" id="verifikasiBayar" method="post" action="<?php echo base_url('controller_pegawai/verifikasiBayar/'.$data->idUjian.'') ?>">
+                        <td>
+                            <?php
+                                if($data->verifikasiKelengkapan==null){
+                                    ?>
+                                        <select class="form-select" name="verifikasiBayar" id="verifikasiBayar" disabled>
+                                    <?php
+                                } else{
+                                    ?>
+                                        <select class="form-select" name="verifikasiBayar" id="verifikasiBayar" required>
+                                    <?php
+                                }
+                            ?>
+                                <option value="">PILIH</option>
+                                <option value="Terima"  <?php echo ($data->verifikasiBayar === 'Terima') ?  'selected' : ''; ?>>Terima</option>
+                                <option value="Tolak"  <?php echo ($data->verifikasiBayar === 'Tolak') ?  'selected' : ''; ?>>Tolak</option>
+                            </select>
+                        </td>
+                        <td>
+                            <button type="submit" class="btn btn-primary btn-sm" >Submit</button>
+                        </td>
+                    </form>
                 </tr>
                 <tr>
                     <td colspan="8">
