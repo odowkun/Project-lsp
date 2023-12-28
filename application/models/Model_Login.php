@@ -24,11 +24,11 @@
 				$this->session->set_userdata($session);
 				
                 if($level == "0") {
-                    redirect('controller_admin/home');
+                    redirect('Controller_Admin/home');
                 }else if($level == "1"){
                     redirect('Controller_Dashboard/pegawai');  
                 }else if($level == "2"){
-                    redirect('Controller_asesi/home');  
+                    redirect('Controller_Asesi/home');  
                 }
 			}
 			else

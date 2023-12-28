@@ -11,9 +11,9 @@
    	function tableSkema()	{
 			return $this->db
 			->select("count(tbskema.idJurusan) as jumlah, namaJurusan")
-			->from("tbSkema")
+			->from("tbskema")
 			->where("verifikasiSkema", "terima")
-			->join("tbjurusan", "tbskema.idJurusan = tbJurusan.idJurusan")
+			->join("tbjurusan", "tbskema.idJurusan = tbjurusan.idJurusan")
 			->group_by("tbskema.idJurusan")
 			->get()
 			->result();
@@ -24,7 +24,7 @@
 			->from("tbskema")
 			->join("tbjadwal", "tbskema.kodeskema = tbjadwal.kodeskema")
 			->join("tbujian", "tbujian.idjadwal = tbjadwal.idjadwal")
-			->join("tbJurusan", "tbJurusan.idJurusan = tbSkema.idJurusan")
+			->join("tbjurusan", "tbjurusan.idJurusan = tbskema.idJurusan")
 			->where("verifikasiKelengkapan", "Terima")
 			->where("verifikasiBayar", "Terima")
 			->group_by("tbujian.idJadwal")
@@ -57,14 +57,14 @@
 			$this->db->update('tbskema', $data);
 
 			$this->session->set_flashdata('pesan','Data Berhasil Disimpan!');
-			redirect(base_url('controller_admin/skema'));
+			redirect(base_url('Controller_Admin/skema'));
 		}
 
 		// ============================ PEGAWAI ============================
 		function submitPegawai($pass) {
 			$data=$_POST;
 			$nipPegawai = $data['nipPegawai'];
-			$nip = $this->db->get_where('tbPegawai', array('nipPegawai'=>$nipPegawai));
+			$nip = $this->db->get_where('tbpegawai', array('nipPegawai'=>$nipPegawai));
 			if ($nip->num_rows() == 0) {
 				$data['password']=$pass;
 				$this->db->insert('tbpegawai',$data);
@@ -79,7 +79,7 @@
 				$this->session->set_flashdata('pesan','Data Berhasil Ditambahkan! Password : '.$pass);
 			} else {
 				$this->db->where('nipPegawai', $nipPegawai);
-				$this->db->update('tbPegawai', $data);
+				$this->db->update('tbpegawai', $data);
 				$this->session->set_flashdata('pesan','Data Berhasil Diedit!');
 			}
 		}
@@ -139,12 +139,12 @@
 		function submitBerkas($id, $value) {
 			$data['verifikasiKelengkapan'] = $value;
 			$this->db->where("idUjian", $id);
-			$this->db->update('tbUjian', $data);
+			$this->db->update('tbujian', $data);
 		}
 		function submitBayar($id, $value) {
 			$data['verifikasiBayar'] = $value;
 			$this->db->where("idUjian", $id);
-			$this->db->update('tbUjian', $data);
+			$this->db->update('tbujian', $data);
 		}
 
 		// ============================ JURUSAN ============================
@@ -153,12 +153,12 @@
 			if (empty($data['nipAdmin'])) {
 				$this->session->set_flashdata('pesan', 'Anda Tidak Memiliki Akses!');
 			} else if (empty($data['idJurusan'])) {
-				$this->db->insert('tbJurusan', $data);
+				$this->db->insert('tbjurusan', $data);
 				$this->session->set_flashdata('pesan', 'Data Berhasil Ditambahkan!');
 			} else {
 				$this->db
 				->where('idJurusan', $data['idJurusan'])
-				->update('tbJurusan', $data);
+				->update('tbjurusan', $data);
 				$this->session->set_flashdata('pesan', 'Data Berhasil Diedit');
 			}
 		}
@@ -174,7 +174,7 @@
 			}
 		}
 		function hapusJurusan($idJurusan) {
-			$this->db->delete('tbJurusan', array('idJurusan'=>$idJurusan));
+			$this->db->delete('tbjurusan', array('idJurusan'=>$idJurusan));
 			$this->session->set_flashdata('pesan', 'Data Berhasil Dihapus!');
 		}
 		
@@ -183,21 +183,21 @@
 			$data = $_POST;
 			$idProdi = $data['idProdi'];
 			$query = $this->db
-			->get_where('tbProdi', array('idProdi'=>$idProdi))
+			->get_where('tbprodi', array('idProdi'=>$idProdi))
 			->row();
 			if (!empty($query)) {
 				$this->db
 				->where('idProdi', $data['idProdi'])
-				->update('tbProdi', $data);
+				->update('tbprodi', $data);
 				$this->session->set_flashdata('pesan', "Data Berhasil Diedit");
 			} else {
-				$this->db->insert('tbProdi', $data);
+				$this->db->insert('tbprodi', $data);
 				$this->session->set_flashdata('pesan', "Data Berhasil Ditambahkan!");
 			}
 		}
 
 		function editProdi($idProdi) {
-			$query=$this->db->get_where('tbProdi', array('idProdi'=>$idProdi));
+			$query=$this->db->get_where('tbprodi', array('idProdi'=>$idProdi));
 			if ($query->num_rows()>0){
 				$data=$query->row();
 				echo "<script>$('#idProdi').val('".$data->idProdi."');</script>";
@@ -208,7 +208,7 @@
 		}
 
 		function hapusProdi($idProdi) {
-			$this->db->delete('tbProdi', array('idProdi' => $idProdi));
+			$this->db->delete('tbprodi', array('idProdi' => $idProdi));
 			$this->session->set_flashdata('pesan', 'Data Berhasil Dihapus!');
 		}
 		
@@ -234,8 +234,8 @@
 		function tes($idProdi) {
 			$query=$this->db
          ->select('*')
-         ->from('tbProdi')
-         ->join('tbJurusan', 'tbJurusan.idJurusan = tbProdi.idJurusan')
+         ->from('tbprodi')
+         ->join('tbjurusan', 'tbjurusan.idJurusan = tbprodi.idJurusan')
          ->get();
 			var_dump($query->result());
 		}

@@ -16,7 +16,7 @@
 <!-- NAVBAR -->
   <nav class="navbar navbar-expand-sm shadow bg-white sticky-top d-flex justify-content-between w-100 position-fixed">
     <div class="container-fluid d-flex justify-content-between">
-      <a class="navbar-brand" href="<?php echo base_url("controller_admin/home") ?>">Admin SIM LSP</a>
+      <a class="navbar-brand" href="<?php echo base_url("Controller_Admin/home") ?>">Admin SIM LSP</a>
 
       <!-- NAVBAR-SM-HAMBURGER-BUTTON -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,17 +29,17 @@
           <li class="nav-item dropdown d-lg-none">
             <a class="nav-link dropdown-toggle hover" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">Kelola LSP</a>
             <ul class="dropdown-menu" id="navbar-skema">
-              <li><a class="dropdown-item" href="<?php echo base_url("controller_admin/jurusan") ?>">Data Jurusan</a></li>
-              <li><a class="dropdown-item" href="<?php echo base_url("controller_admin/prodi") ?>">Data Program Studi</a><li>
-              <li><a class="dropdown-item" href="<?php echo base_url("controller_admin/skema") ?>">Data Skema</a><li>
+              <li><a class="dropdown-item" href="<?php echo base_url("Controller_Admin/jurusan") ?>">Data Jurusan</a></li>
+              <li><a class="dropdown-item" href="<?php echo base_url("Controller_Admin/prodi") ?>">Data Program Studi</a><li>
+              <li><a class="dropdown-item" href="<?php echo base_url("Controller_Admin/skema") ?>">Data Skema</a><li>
             </ul>
           </li>
           <li class="nav-item dropdown d-lg-none">
             <a class="nav-link dropdown-toggle hover" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">Kelola User</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="<?php echo base_url("controller_admin/pegawai") ?>">Kelola Pegawai</a></li>
-              <li><a class="dropdown-item" href="<?php echo base_url("controller_admin/asesi") ?>">Kelola Asesi</a></li>
-              <li><a class="dropdown-item" href="<?php echo base_url("controller_admin/berkas") ?>">Kelola Berkas</a></li>
+              <li><a class="dropdown-item" href="<?php echo base_url("Controller_Admin/pegawai") ?>">Kelola Pegawai</a></li>
+              <li><a class="dropdown-item" href="<?php echo base_url("Controller_Admin/asesi") ?>">Kelola Asesi</a></li>
+              <li><a class="dropdown-item" href="<?php echo base_url("Controller_Admin/berkas") ?>">Kelola Berkas</a></li>
             </ul>
           </li>
           <a class="nav-link hover" style="" onclick="logout()">Logout</a>
@@ -67,17 +67,17 @@
       <div class="show bg-body-tertiary" id="sidebar-lsp-list">
         <li class="sidebar-hover nav-item" id="sidebar-lsp-jurusan">
           <a class="nav-link active text-reset d-flex align-items-center justify-content-between ps-4 pe-4"
-            href="<?php echo base_url("controller_admin/jurusan") ?>">
+            href="<?php echo base_url("Controller_Admin/jurusan") ?>">
             Data Jurusan
           </a>
         </li>
         <li class="sidebar-hover nav-item" id="sidebar-lsp-prodi">
-          <a class="nav-link text-reset ps-4" href="<?php echo base_url("controller_admin/prodi") ?>">
+          <a class="nav-link text-reset ps-4" href="<?php echo base_url("Controller_Admin/prodi") ?>">
             Data Prodi
           </a>
         </li>
         <li class="sidebar-hover nav-item" id="sidebar-lsp-skema">
-          <a class="nav-link text-reset ps-4" href="<?php echo base_url("controller_admin/skema") ?>">
+          <a class="nav-link text-reset ps-4" href="<?php echo base_url("Controller_Admin/skema") ?>">
             Data Skema
 
             <?php
@@ -107,17 +107,17 @@
       <div class="show bg-body-tertiary" id="sidebar-user-list">
         <li class="sidebar-hover nav-item" id="sidebar-user-pegawai">
           <a class="ps-4 nav-link text-reset"
-            href="<?php echo base_url("controller_admin/pegawai") ?>">
+            href="<?php echo base_url("Controller_Admin/pegawai") ?>">
             Kelola Pegawai
           </a>
         </li>
         <li class="sidebar-hover nav-item" id="sidebar-user-asesi">
-          <a class="ps-4 nav-link text-reset" href="<?php echo base_url("controller_admin/asesi") ?>">
+          <a class="ps-4 nav-link text-reset" href="<?php echo base_url("Controller_Admin/asesi") ?>">
             Kelola Asesi
           </a>
         </li>
         <li class="sidebar-hover nav-item" id="sidebar-user-berkas">
-          <a class="ps-4 nav-link text-reset" href="<?php echo base_url("controller_admin/berkas") ?>">
+          <a class="ps-4 nav-link text-reset" href="<?php echo base_url("Controller_Admin/berkas") ?>">
             Kelola Berkas
             <?php
             $result = $this->db
@@ -145,7 +145,7 @@
         <div class="show bg-body-tertiary" id="sidebar-user-list">
         <li class="sidebar-hover nav-item" id="sidebar-user-pegawai">
           <a class="ps-4 nav-link text-reset"
-            href="<?php echo base_url("controller_admin/password") ?>">
+            href="<?php echo base_url("Controller_Admin/password") ?>">
             Ubah Password
           </a>
         </li>
@@ -203,10 +203,10 @@
 
   <!-- ajax -->
   <div id="script"></div>
-    <script src="http://localhost/LSP/jquery/app.js"></script>
+    <script src="../../../../../jquery/app.js"></script>
     <script language="javascript">
-        var site = "http://localhost/LSP/index.php/";
-        var loading_image_large = "http://localhost/LSP/gambar/loading_large.gif";
+        var site = "../../../../../index.php/";
+        var loading_image_large = "../../../../../gambar/loading_large.gif";
     </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 

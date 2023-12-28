@@ -7,7 +7,7 @@
     <title>SIM LSP</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>asset/css/styleLandingPage.css">
+        <link rel="stylesheet" type="text/css" href="../../../../asset/css/styleLandingPage.css">
 </head>
 
 <body>
@@ -51,7 +51,7 @@
         <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="w-100" src="<?php echo base_url() ?>asset/img/carousel-1.jpg" alt="Image">
+                    <img class="w-100" src="../../../../asset/img/carousel-1.jpg" alt="Image">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
                             <h5 class="text-white text-uppercase mb-3 ">Sistem Informasi Manajemen</h5>
@@ -63,7 +63,7 @@
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img class="w-100" src="<?php echo base_url() ?>asset/img/carousel-1.jpg" alt="Image">
+                    <img class="w-100" src="../../../../asset/img/carousel-1.jpg" alt="Image">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
                             <h5 class="text-white text-uppercase mb-3">Sistem Informasi Manajemen</h5>
@@ -100,7 +100,7 @@
                 <div class="col-lg-4">
                     <div class="blog-item bg-light rounded overflow-hidden shadow">
                         <div class="blog-img position-relative overflow-hidden">
-                            <img class="img-fluid" src="<?php echo base_url() ?>asset/img/blog-1.jpg" alt="">
+                            <img class="img-fluid" src="../../../../asset/img/blog-1.jpg" alt="">
                             <a class="position-absolute end-0 bg-success text-white rounded-start py-2 px-4"
                                 href=""><?php echo $data->namaJurusan ?></a>
                         </div>

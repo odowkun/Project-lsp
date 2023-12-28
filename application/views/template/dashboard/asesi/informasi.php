@@ -24,7 +24,7 @@
                                     <p class="card-text">Lokasi : <?php echo $data->tempat?></p>
                                     <p class="card-text mb-0">Sisa Kuota : <?php $limit=($data->limit-0); if($limit < 0){echo "0";}else{echo $limit;}?></p>
                                     <a class="position-absolute bottom-0 end-0 text-uppercase btn btn-outline-dark mb-1 mx-1 <?php if($limit <= 0){echo "disabled";}?>"
-                                    href="<?= base_url('Controller_asesi/detailSkema?datajurusan=') ?> <?= $data->idJurusan.'&dataskema='.$data->kodeSkema?>">next</a>
+                                    href="<?= base_url('Controller_Asesi/detailSkema?datajurusan=') ?> <?= $data->idJurusan.'&dataskema='.$data->kodeSkema?>">next</a>
                                 </div>
                             </div>
                         </div>

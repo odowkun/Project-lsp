@@ -16,7 +16,7 @@
 <!-- NAVBAR -->
   <nav class="navbar navbar-expand-sm shadow bg-white sticky-top d-flex justify-content-between w-100 position-fixed">
     <div class="container-fluid d-flex justify-content-between">
-      <a class="navbar-brand" href="<?php echo base_url("controller_asesi/home") ?>">SIM LSP</a>
+      <a class="navbar-brand" href="<?php echo base_url("Controller_Asesi/home") ?>">SIM LSP</a>
 
       <!-- NAVBAR-SM-HAMBURGER-BUTTON -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,12 +26,12 @@
       <!-- NAVBAR-CONTENT -->
       <div class="collapse navbar-collapse justify-content-end" id="navbar">
         <div class="navbar-nav">
-          <a class="nav-link hover d-lg-none" style="" href="<?php echo base_url("controller_asesi/home") ?>">Profile</a>
+          <a class="nav-link hover d-lg-none" style="" href="<?php echo base_url("Controller_Asesi/home") ?>">Profile</a>
           <li class="nav-item dropdown d-lg-none">
             <a class="nav-link dropdown-toggle hover" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">Skema</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="<?php echo base_url("controller_asesi/informasi") ?>">Informasi Skema</a></li>
-              <li><a class="dropdown-item" href="<?php echo base_url("controller_asesi/daftar") ?>">Daftar Skema</a></li>
+              <li><a class="dropdown-item" href="<?php echo base_url("Controller_Asesi/informasi") ?>">Informasi Skema</a></li>
+              <li><a class="dropdown-item" href="<?php echo base_url("Controller_Asesi/daftar") ?>">Daftar Skema</a></li>
             </ul>
           </li>
           <a class="nav-link hover" style="" onclick="logout()">Logout</a>
@@ -47,7 +47,7 @@
 
       <li class="sidebar-hover nav-item" id="sidebar-lsp-jurusan">
         <a class="nav-link active text-reset d-flex align-items-center justify-content-between fw-semibold"
-          href="<?php echo base_url("controller_asesi/home") ?>">
+          href="<?php echo base_url("Controller_Asesi/home") ?>">
           Profile
         </a>
       </li>
@@ -67,12 +67,12 @@
       <div class="show" id="sidebar-user-list">
         <li class="sidebar-hover nav-item" id="sidebar-user-pegawai">
           <a class="ps-4 nav-link text-reset"
-            href="<?php echo base_url("controller_asesi/informasi") ?>">
+            href="<?php echo base_url("Controller_Asesi/informasi") ?>">
             Informasi Skema 
           </a>
         </li>
         <li class="sidebar-hover nav-item" id="sidebar-user-asesi">
-          <a class="ps-4 nav-link text-reset" href="<?php echo base_url("controller_asesi/daftar") ?>">
+          <a class="ps-4 nav-link text-reset" href="<?php echo base_url("Controller_Asesi/daftar") ?>">
             Daftar Skema
           </a>
         </li>
@@ -135,10 +135,10 @@
 
   <!-- ajax -->
   <div id="script"></div>
-    <script src="http://localhost/LSP/jquery/app.js"></script>
+    <script src="../../../../../jquery/app.js"></script>
     <script language="javascript">
-        var site = "http://localhost/LSP/index.php/";
-        var loading_image_large = "http://localhost/LSP/gambar/loading_large.gif";
+        var site = "../../../../../index.php/";
+        var loading_image_large = "../../../../../gambar/loading_large.gif";
     </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 

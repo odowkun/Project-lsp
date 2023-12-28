@@ -17,7 +17,7 @@ if (!empty($pesan)) {
       ";
 }
 ?>
-<form action="<?php echo base_url("controller_asesi/submitDaftar")?>" method="post" class="needs-validation">
+<form action="<?php echo base_url("Controller_Asesi/submitDaftar")?>" method="post" class="needs-validation">
    <div class="mb-3 row">
       <label for="idJurusan" class="col-sm-2 col-form-label">Pilih Skema</label>
       <div class="col-sm-8">
@@ -200,12 +200,12 @@ if (!empty($pesan)) {
     };
 
     function detail(idujian) {
-       window.open("<?php echo base_url(); ?>Controller_asesi/detailDaftar?data="+idujian, "_self");
+       window.open("<?php echo base_url(); ?>Controller_Asesi/detailDaftar?data="+idujian, "_self");
     }
 
     function batal(idujian) {
       if (confirm("Apakah yakin membatalkan pendaftaran skema ?")) {
-        window.open("<?php echo base_url(); ?>Controller_asesi/batal?data="+idujian, "_self");
+        window.open("<?php echo base_url(); ?>Controller_Asesi/batal?data="+idujian, "_self");
       }
     }
   

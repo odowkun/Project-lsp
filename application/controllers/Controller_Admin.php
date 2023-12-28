@@ -61,7 +61,7 @@
       function submitPegawai() {
          $pass = $this->Model_Regis->password();
          $this->Model_Admin->submitPegawai($pass);
-         redirect(base_url("controller_admin/pegawai"));
+         redirect(base_url("Controller_Admin/pegawai"));
       }
 
       function editPegawai($nipPegawai) {
@@ -70,7 +70,7 @@
       
       function hapusPegawai($nipPegawai) {
          $this->Model_Admin->hapuspegawai($nipPegawai);
-         redirect(base_url("controller_admin/pegawai"));
+         redirect(base_url("Controller_Admin/pegawai"));
       }
 
       // ============================================== ASESI
@@ -100,23 +100,23 @@
 
       function submitBerkas($id, $value) {
          $this->Model_Admin->submitBerkas($id, $value);
-         redirect(base_url("controller_admin/detailberkas/$id"));
+         redirect(base_url("Controller_Admin/detailberkas/$id"));
       }
       function submitBayar($id, $value) {
          $this->Model_Admin->submitBayar($id, $value);
-         redirect(base_url("controller_admin/detailberkas/$id"));
+         redirect(base_url("Controller_Admin/detailberkas/$id"));
       }
 
       // ============================================== JURUSAN
       
       function submitJurusan() {
          $this->Model_Admin->submitJurusan();
-         redirect('controller_admin/jurusan');
+         redirect('Controller_Admin/jurusan');
       }
       
       function hapusJurusan($idJurusan) {
          $this->Model_Admin->hapusJurusan($idJurusan);
-         redirect('controller_admin/jurusan');
+         redirect('Controller_Admin/jurusan');
       }
       
       function editJurusan($idJurusan) {
@@ -126,12 +126,12 @@
       // ============================================== PRODI
       function submitProdi() {
          $this->Model_Admin->submitProdi();
-         redirect('controller_admin/prodi');
+         redirect('Controller_Admin/prodi');
       }
 
       function hapusProdi($idProdi) {
          $this->Model_Admin->hapusProdi($idProdi);
-         redirect('controller_admin/prodi');
+         redirect('Controller_Admin/prodi');
 		}
       
       function editProdi($idProdi) {
@@ -146,7 +146,7 @@
 
       function ubahPassword() {
          $this->Model_Admin->ubahPassword();
-         redirect('controller_admin/password');
+         redirect('Controller_Admin/password');
       }
 
       function tes() {

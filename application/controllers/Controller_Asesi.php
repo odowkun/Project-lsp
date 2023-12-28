@@ -29,7 +29,7 @@
       }
 
       function informasi(){
-         $data['tbSkema'] = $this->Model_Asesi->skema();
+         $data['tbskema'] = $this->Model_Asesi->skema();
          $data['informasi']=$this->load->view('template/dashboard/asesi/informasi', $data, TRUE);
          $this->load->view('template/dashboard/asesi/index', $data);
       }
@@ -38,7 +38,7 @@
 			$dataIdJurusan = $this->input->get('datajurusan');
 			$dataKodeSkema = $this->input->get('dataskema');
 			$data['hasil'] = $this->Model_Skema->informasiSkema($dataIdJurusan, $dataKodeSkema);
-			$data['tbSkema'] = $this->Model_Skema->skema($dataIdJurusan);
+			$data['tbskema'] = $this->Model_Skema->skema($dataIdJurusan);
          $data['informasi']=$this->load->view('template/dashboard/asesi/detailSkema', $data, TRUE);
          $this->load->view('template/dashboard/asesi/index', $data);
 		}
