@@ -58,7 +58,7 @@
                         <select class="form-select" name="verifikasiSkema" id="verifikasiSkema" disabled>
                             <option value=''>Pilih</option>
                             <option value='Terima'  <?php echo ($data->verifikasiSkema === 'Terima') ?  'selected' : ''; ?>>Aktif</option>
-                            <option value='Terima'  <?php echo ($data->verifikasiSkema === 'Tolak') ?  'selected' : ''; ?>>Tolak</option>
+                            <option value='Tolak'  <?php echo ($data->verifikasiSkema === 'Tolak') ?  'selected' : ''; ?>>Tolak</option>
                         </select>
                     </td>
                     <td>

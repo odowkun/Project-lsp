@@ -22,6 +22,7 @@
                 <th>Periode Mulai</th>
                 <th>Periode Selesai</th>
                 <th>Tempat</th>
+                <th>Kapasitas</th>
                 <th>Aksi</th>
             </tr>
         </thead>
@@ -30,7 +31,7 @@
                 if(empty($hasil)){
                     ?>
                         <tr>
-                            <td colspan="6" align="center">Data Kosong</td>
+                            <td colspan="7" align="center">Data Kosong</td>
                         </tr>
                     <?php
                 } else{
@@ -42,6 +43,7 @@
                 <td><?php echo $data->periodeMulai;  ?></td>
                 <td><?php echo $data->periodeSelesai;  ?></td>
                 <td><?php echo $data->tempat;  ?></td>
+                <td><?php echo $data->limit;  ?> Peserta</td>
                 <td>
                     <button type="button" class="btn btn-primary btn-sm" onclick="editjadwal(<?php echo $data->idjadwal ?>)">Edit</button>
                     <button type="button" class="btn btn-danger btn-sm" onclick="hapusjadwal(<?php echo $data->idjadwal ?>)">Hapus</button>
